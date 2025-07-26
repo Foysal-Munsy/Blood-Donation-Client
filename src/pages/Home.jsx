@@ -1,5 +1,6 @@
 import Banner from "../components/Banner";
 import ContactUs from "../components/ContactUs";
+import DashboardLayout from "../components/DashboardLayout";
 
 const Home = () => {
   return (
