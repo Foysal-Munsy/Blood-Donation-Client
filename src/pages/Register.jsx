@@ -95,8 +95,6 @@ const Register = () => {
                   />
                 </div>
 
-                
-
                 <input
                   type="submit"
                   value="Register Now"
@@ -104,7 +102,7 @@ const Register = () => {
                 />
               </form>
             </div>
-            <Social></Social>
+            {/* <Social></Social> */}
             <div className="lottie flex-1 flex mx-20 ">
               <Lottie animationData={happy}></Lottie>
             </div>

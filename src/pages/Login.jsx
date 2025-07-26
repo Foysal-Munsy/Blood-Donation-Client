@@ -21,9 +21,7 @@ const Login = () => {
     const pass = form.pass.value;
 
     signIn(email, pass)
-      .then((res) => {        
-  
-      })
+      .then((res) => {})
       .catch((err) => {
         console.log(err);
       });
@@ -82,7 +80,7 @@ const Login = () => {
                 />
               </form>
             </div>
-            <Social></Social>
+            {/* <Social></Social> */}
             <div className="lottie  flex-1 mx-20">
               <Lottie animationData={loginAnimation} loop={true}></Lottie>
             </div>
