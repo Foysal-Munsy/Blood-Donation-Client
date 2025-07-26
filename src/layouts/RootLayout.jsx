@@ -8,7 +8,7 @@ const RootLayout = () => {
   return (
     <div>
       {!hideHeaderFooter && <Header />}
-      <main className="min-h-screen">
+      <main className="min-h-[calc(100vh-285px)] ">
         <Outlet></Outlet>
       </main>
       {!hideHeaderFooter && <Footer />}

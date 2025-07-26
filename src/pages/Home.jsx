@@ -1,6 +1,6 @@
 import Banner from "../components/Banner";
 import ContactUs from "../components/ContactUs";
-import DashboardLayout from "../components/DashboardLayout";
+import DashboardLayout from "../components/DLayout";
 
 const Home = () => {
   return (

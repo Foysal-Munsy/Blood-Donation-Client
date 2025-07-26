@@ -9,7 +9,7 @@ import {
   FaTimes,
 } from "react-icons/fa";
 
-const DashboardLayout = () => {
+const DLayout = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const menuItems = [
@@ -58,4 +58,4 @@ const DashboardLayout = () => {
   );
 };
 
-export default DashboardLayout;
+export default DLayout;

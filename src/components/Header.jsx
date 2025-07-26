@@ -13,7 +13,7 @@ const Header = () => {
     { name: "Dashboard", path: "/dashboard" },
     { name: "Search", path: "/search" },
     { name: "Request", path: "/request" },
-    { name: "Blog", path: "/blog" },
+    // { name: "Blog", path: "/blog" },
     { name: "Funding", path: "/funding" },
 
     // ...(user?.email ? [{ name: "Manage My Foods", path: "/my-foods" }] : []),
@@ -52,6 +52,7 @@ const Header = () => {
               <NavLink
                 key={item.path}
                 to={item.path}
+                end={item.path === "/dashboard"}
                 className={({ isActive }) =>
                   `px-4 py-2 rounded-lg font-medium text-sm xl:text-base transition-all duration-200 ${
                     isActive

@@ -1,6 +1,6 @@
 import React from "react";
 import Sidebar from "../components/Sidebar";
 
-export default function Dashboard() {
-  return <div>dashboard</div>;
+export default function Blog() {
+  return <div>Blog</div>;
 }
