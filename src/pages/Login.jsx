@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { BiEnvelope, BiKey } from "react-icons/bi";
 import Title from "../components/Title";
 import { AuthContext } from "../providers/AuthProvider";
-import { useLocation, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import loginAnimation from "../assets/loginAnimation.json";
 
@@ -41,7 +41,7 @@ const Login = () => {
   return (
     <div className="bg-[url(/bg.png)] bg-contain">
       <div className="bg-white bg-opacity-90 min-h-screen">
-        <div className="w-11/12 mx-auto py-10 m-5 p-5">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="title mt-5">
             <Title>Login Now</Title>
           </div>
@@ -81,17 +81,21 @@ const Login = () => {
                   </p>
                 </div>
 
-                {/* Remember Me */}
-                <div className="p-1 flex gap-3 -mt-4 text-red-500">
-                  <input type="checkbox" name="remember" className="" />
-                  <span>Remember Me</span>
+                {/* Register link */}
+                <div className="p-1 flex gap-2 text-sm text-slate-600">
+                  <span>Don't have an account?</span>
+                  <Link
+                    to="/registration"
+                    className="text-red-500 hover:underline"
+                  >
+                    Register
+                  </Link>
                 </div>
-
                 {/* Submit */}
                 <input
                   type="submit"
                   value="Login Now"
-                  className="btn cursor-pointer bg-red-500 hover:bg-rose-600 text-white"
+                  className="btn cursor-pointer"
                 />
               </form>
             </div>

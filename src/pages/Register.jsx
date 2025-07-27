@@ -7,13 +7,15 @@ import {
   BiUser,
   BiDroplet,
 } from "react-icons/bi";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import happy from "../assets/happy.json";
 import Title from "../components/Title";
 import { AuthContext } from "../providers/AuthProvider";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { SlLocationPin } from "react-icons/sl";
+import { GrLocationPin } from "react-icons/gr";
 
 const Register = () => {
   const goTo = useNavigate();
@@ -117,6 +119,7 @@ const Register = () => {
         district,
         upazila,
         role: "donor",
+        status: "active",
       });
 
       goTo(location.state ? location.state : "/");
@@ -209,6 +212,7 @@ const Register = () => {
 
                 {/* District */}
                 <div className="flex items-center">
+                  <SlLocationPin className="text-2xl text-slate-500 mr-2" />
                   <select
                     name="district"
                     value={formData.district}
@@ -227,6 +231,7 @@ const Register = () => {
 
                 {/* Upazila */}
                 <div className="flex items-center">
+                  <GrLocationPin className="text-3xl text-slate-500 mr-2" />
                   <select
                     name="upazila"
                     value={formData.upazila}
@@ -275,7 +280,13 @@ const Register = () => {
                 {errorMsg && (
                   <p className="text-red-500 text-sm text-center">{errorMsg}</p>
                 )}
-
+                {/* Login link */}
+                <div className="p-1 flex gap-2 text-sm text-slate-600">
+                  <span>Have an account?</span>
+                  <Link to="/login" className="text-red-500 hover:underline">
+                    Login
+                  </Link>
+                </div>
                 {/* Submit */}
                 <button
                   type="submit"
