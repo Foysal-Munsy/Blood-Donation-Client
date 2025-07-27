@@ -11,12 +11,15 @@ import {
 } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import app from "../firebase/firebase.config";
+import useAxiosPublic from "../hooks/axiosPublic";
+
 export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const auth = getAuth(app);
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(true);
+  const axiosPublic = useAxiosPublic();
 
   const createUser = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
@@ -44,15 +47,37 @@ const AuthProvider = ({ children }) => {
     return signOut(auth);
   };
 
+  // useEffect(() => {
+  //   const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+  //     console.log("🚀 ~ unsubscribe ~ currentUser:", currentUser);
+  //     setUser(currentUser);
+  //     if (currentUser) {
+  //       axiosPublic
+  //         .post("/add-user", {
+  //           email: currentUser.email,
+  //           role: "donor",
+  //           loginCount: 1,
+  //         })
+  //         .then((res) => {
+  //           setUser(currentUser);
+  //           console.log(res.data);
+  //         });
+  //     }
+
+  //     setLoading(false);
+  //   });
+  //   return () => {
+  //     unsubscribe();
+  //   };
+  // }, []);
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       console.log("🚀 ~ unsubscribe ~ currentUser:", currentUser);
       setUser(currentUser);
       setLoading(false);
     });
-    return () => {
-      unsubscribe();
-    };
+    return () => unsubscribe();
   }, []);
 
   const authInfo = {

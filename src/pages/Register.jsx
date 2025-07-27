@@ -13,6 +13,7 @@ import Title from "../components/Title";
 import { AuthContext } from "../providers/AuthProvider";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const Register = () => {
   const goTo = useNavigate();
@@ -24,11 +25,13 @@ const Register = () => {
     image: "",
     blood: "",
     district: "",
+    districtId: "",
     upazila: "",
     pass: "",
     confirmPass: "",
   });
   const [errorMsg, setErrorMsg] = useState("");
+  const [loadingSave, setLoadingSave] = useState(false);
 
   // Fetch districts
   const { data: districts = [], isLoading: isDistrictsLoading } = useQuery({
@@ -39,19 +42,19 @@ const Register = () => {
     },
   });
 
-  // Fetch upazillas (filtered by selected district)
-  const { data: upazillas = [], isLoading: isUpazillasLoading } = useQuery({
-    queryKey: ["upazillas", formData.district],
+  // Fetch upazilas (filtered by districtId)
+  const { data: upazilas = [], isLoading: isUpazilasLoading } = useQuery({
+    queryKey: ["upazilas", formData.districtId],
     queryFn: async () => {
       const { data } = await axios.get(
-        `http://localhost:5001/upazillas?district_id=${formData.district}`
+        `http://localhost:5001/upazilas?district_id=${formData.districtId}`
       );
       return data;
     },
-    enabled: !!formData.district,
+    enabled: !!formData.districtId,
   });
 
-  if (isDistrictsLoading || isUpazillasLoading) return <p>Loading...</p>;
+  if (isDistrictsLoading || isUpazilasLoading) return <p>Loading...</p>;
 
   // Handle input changes
   const handleChange = (e) => {
@@ -59,35 +62,71 @@ const Register = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  // Handle district selection (set both name and id)
+  const handleDistrictChange = (e) => {
+    const selectedName = e.target.value;
+    const selectedDistrict = districts.find((d) => d.name === selectedName);
+    setFormData((prev) => ({
+      ...prev,
+      district: selectedName,
+      districtId: selectedDistrict ? selectedDistrict.id : "",
+      upazila: "", // reset upazila when district changes
+    }));
+  };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     const { name, email, image, blood, district, upazila, pass, confirmPass } =
       formData;
 
     if (pass !== confirmPass) {
       setErrorMsg("Passwords do not match!");
+      Swal.fire("Error", "Passwords do not match!", "error");
       return;
     }
 
-    // Create user with Firebase
-    createUser(email, pass)
-      .then((res) => {
-        updateUser({ displayName: name, photoURL: image }).then(() => {
-          setUser({
-            ...res.user,
-            displayName: name,
-            photoURL: image,
-            bloodGroup: blood,
-            district,
-            upazila,
-          });
-          goTo(`${location.state ? location.state : "/"}`);
-        });
-      })
-      .catch(() => {
-        setErrorMsg("Registration failed. Try again.");
+    setErrorMsg("");
+    setLoadingSave(true);
+
+    try {
+      // Create user with Firebase
+      const res = await createUser(email, pass);
+      await updateUser({ displayName: name, photoURL: image });
+
+      // Save user data to MongoDB with default role = donor
+      await axios.post("http://localhost:5001/add-user", {
+        name,
+        email,
+        image,
+        bloodGroup: blood,
+        district, // district name
+        upazila,
+        role: "donor",
+        // loginCount: 1,
       });
+
+      // Success popup
+      Swal.fire("Success", "Registration completed successfully!", "success");
+
+      // Set user in context
+      setUser({
+        ...res.user,
+        displayName: name,
+        photoURL: image,
+        bloodGroup: blood,
+        district,
+        upazila,
+        role: "donor",
+      });
+
+      goTo(location.state ? location.state : "/");
+    } catch (error) {
+      console.error(error);
+      Swal.fire("Error", "Registration failed. Try again.", "error");
+      setErrorMsg("Registration failed. Try again.");
+    } finally {
+      setLoadingSave(false);
+    }
   };
 
   return (
@@ -173,13 +212,13 @@ const Register = () => {
                   <select
                     name="district"
                     value={formData.district}
-                    onChange={handleChange}
+                    onChange={handleDistrictChange}
                     className="outline-none flex-1 border-b-2 p-2 bg-transparent focus:border-red-400 transition-all duration-200"
                     required
                   >
                     <option value="">Select District</option>
                     {districts.map((district) => (
-                      <option key={district.id} value={district.id}>
+                      <option key={district.id} value={district.name}>
                         {district.name}
                       </option>
                     ))}
@@ -196,7 +235,7 @@ const Register = () => {
                     required
                   >
                     <option value="">Select Upazila</option>
-                    {upazillas.map((u) => (
+                    {upazilas.map((u) => (
                       <option key={u.id} value={u.name}>
                         {u.name}
                       </option>
@@ -238,11 +277,13 @@ const Register = () => {
                 )}
 
                 {/* Submit */}
-                <input
+                <button
                   type="submit"
-                  value="Register Now"
                   className="btn cursor-pointer"
-                />
+                  disabled={loadingSave}
+                >
+                  {loadingSave ? "Registering..." : "Register Now"}
+                </button>
               </form>
             </div>
 
