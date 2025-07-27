@@ -1,4 +1,3 @@
-import axios from "axios";
 import {
   createUserWithEmailAndPassword,
   deleteUser,
@@ -12,7 +11,6 @@ import {
 } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import app from "../firebase/firebase.config";
-
 export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
@@ -50,13 +48,6 @@ const AuthProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       console.log("🚀 ~ unsubscribe ~ currentUser:", currentUser);
       setUser(currentUser);
-
-      axios.get("http://localhost:5001/", {
-        headers: {
-          Authorization: `Bearer ${currentUser.accessToken}`,
-        },
-      });
-
       setLoading(false);
     });
     return () => {
