@@ -1,5 +1,5 @@
 // Sidebar.jsx
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import { Link, NavLink } from "react-router";
 import {
   FaHome,
@@ -15,7 +15,7 @@ import useRole from "../hooks/useRole";
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const { user } = useContext(AuthContext);
+  // const { user } = useContext(AuthContext);
   const { role, loading } = useRole();
 
   useEffect(() => {
