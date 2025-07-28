@@ -11,6 +11,6 @@ export default function useRole() {
       setRole(res.data.role);
       setLoading(false);
     });
-  });
+  }, []);
   return { role, loading };
 }

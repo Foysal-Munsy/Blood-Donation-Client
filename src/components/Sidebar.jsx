@@ -1,21 +1,22 @@
 // Sidebar.jsx
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Link, NavLink } from "react-router";
 import {
   FaHome,
-  FaSearch,
   FaClipboardList,
-  FaBlog,
-  FaDonate,
-  FaTachometerAlt,
   FaBars,
   FaTimes,
+  FaUsers,
 } from "react-icons/fa";
 import { MdCreate } from "react-icons/md";
+import { AuthContext } from "../providers/AuthProvider";
+import useRole from "../hooks/useRole";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const { user } = useContext(AuthContext);
+  const { role } = useRole();
 
   useEffect(() => {
     const checkScreenSize = () => {
@@ -45,20 +46,33 @@ const Sidebar = () => {
 
   const menuItems = [
     { name: "Home", path: "/", icon: <FaHome /> },
-    // { name: "Dashboard", path: "/dashboard", icon: <FaTachometerAlt /> },
-    {
-      name: "My Donation Request",
-      path: "/dashboard/my-donation-requests",
-      icon: <FaClipboardList />,
-    },
-    {
-      name: "Create Donation Request",
-      path: "/dashboard/create-donation-request",
-      icon: <MdCreate />,
-    },
-    { name: "Search", path: "/search", icon: <FaSearch /> },
-    { name: "Blog", path: "/dashboard/blog", icon: <FaBlog /> },
-    { name: "Funding", path: "/funding", icon: <FaDonate /> },
+
+    // admin pages
+    ...(user && role === "admin"
+      ? [
+          {
+            name: "All Users",
+            path: "/dashboard/all-users",
+            icon: <FaUsers />,
+          },
+        ]
+      : []),
+
+    // donor pages
+    ...(user && role === "donor"
+      ? [
+          {
+            name: "My Donation Request",
+            path: "/dashboard/my-donation-requests",
+            icon: <FaClipboardList />,
+          },
+          {
+            name: "Create Donation Request",
+            path: "/dashboard/create-donation-request",
+            icon: <MdCreate />,
+          },
+        ]
+      : []),
   ];
 
   return (
