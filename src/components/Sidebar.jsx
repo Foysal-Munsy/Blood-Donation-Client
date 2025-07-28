@@ -11,6 +11,7 @@ import {
   FaBars,
   FaTimes,
 } from "react-icons/fa";
+import { MdCreate } from "react-icons/md";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -44,9 +45,18 @@ const Sidebar = () => {
 
   const menuItems = [
     { name: "Home", path: "/", icon: <FaHome /> },
-    { name: "Dashboard", path: "/dashboard", icon: <FaTachometerAlt /> },
+    // { name: "Dashboard", path: "/dashboard", icon: <FaTachometerAlt /> },
+    {
+      name: "My Donation Request",
+      path: "/dashboard/my-donation-requests",
+      icon: <FaClipboardList />,
+    },
+    {
+      name: "Create Donation Request",
+      path: "/dashboard/create-donation-request",
+      icon: <MdCreate />,
+    },
     { name: "Search", path: "/search", icon: <FaSearch /> },
-    { name: "Request", path: "/request", icon: <FaClipboardList /> },
     { name: "Blog", path: "/dashboard/blog", icon: <FaBlog /> },
     { name: "Funding", path: "/funding", icon: <FaDonate /> },
   ];
@@ -55,7 +65,7 @@ const Sidebar = () => {
     <>
       {/* Mobile Header */}
       <div className="lg:hidden fixed top-0 left-0 right-0 h-16 bg-white border-b border-rose-200 shadow-sm z-40 flex items-center justify-between px-4">
-        <Link to="/" className="flex items-center space-x-2">
+        <Link to="/dashboard" className="flex items-center space-x-2">
           <span className="font-black text-xl tracking-tight bg-gradient-to-r from-red-600 to-rose-700 bg-clip-text text-transparent">
             RedDrop
           </span>
@@ -91,7 +101,7 @@ const Sidebar = () => {
       >
         {/* Desktop Logo & Toggle */}
         <div className="hidden lg:flex items-center justify-between h-16 px-4 border-b border-rose-200">
-          <Link to="/" className="flex items-center space-x-2 group">
+          <Link to="/dashboard" className="flex items-center space-x-2 group">
             <span
               className={`font-black text-xl tracking-tight bg-gradient-to-r from-red-600 to-rose-700 bg-clip-text text-transparent transition-opacity duration-300 ${
                 !isOpen && "opacity-0 hidden"
@@ -112,7 +122,7 @@ const Sidebar = () => {
         {/* Mobile Header */}
         <div className="lg:hidden flex items-center justify-between h-16 px-4 border-b border-rose-200">
           <Link
-            to="/"
+            to="/dashboard"
             className="flex items-center space-x-2"
             onClick={closeSidebarOnMobile}
           >

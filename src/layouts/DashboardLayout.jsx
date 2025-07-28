@@ -7,7 +7,8 @@ const DashboardLayout = () => {
     <div className="min-h-screen bg-gray-50">
       <Sidebar />
       <main className="transition-all duration-300 lg:ml-64">
-        <div className="p-4 sm:p-6 lg:p-8">
+        {/* className="p-4 sm:p-6 lg:p-8" */}
+        <div>
           <Outlet />
         </div>
       </main>
