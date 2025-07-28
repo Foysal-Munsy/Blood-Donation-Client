@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 
 const useAxiosSecure = () => {
@@ -12,7 +12,17 @@ const useAxiosSecure = () => {
     },
   });
 
-  useEffect(() => {}, []);
+  // instance.interceptors.request.use(
+  //   (config) => {
+  //     config.headers.Authorization = `Bearer ${user.accessToken}`;
+  //     return config;
+  //   },
+  //   (error) => {
+  //     return Promise.reject(error);
+  //   }
+  // );
+
+  // useEffect(() => {}, []);
 
   return instance;
 };

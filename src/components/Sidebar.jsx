@@ -16,7 +16,7 @@ const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const { user } = useContext(AuthContext);
-  const { role } = useRole();
+  const { role, loading } = useRole();
 
   useEffect(() => {
     const checkScreenSize = () => {
@@ -44,36 +44,36 @@ const Sidebar = () => {
     }
   };
 
-  const menuItems = [
+  const adminMenu = [
     { name: "Home", path: "/", icon: <FaHome /> },
-
-    // admin pages
-    ...(user && role === "admin"
-      ? [
-          {
-            name: "All Users",
-            path: "/dashboard/all-users",
-            icon: <FaUsers />,
-          },
-        ]
-      : []),
-
-    // donor pages
-    ...(user && role === "donor"
-      ? [
-          {
-            name: "My Donation Request",
-            path: "/dashboard/my-donation-requests",
-            icon: <FaClipboardList />,
-          },
-          {
-            name: "Create Donation Request",
-            path: "/dashboard/create-donation-request",
-            icon: <MdCreate />,
-          },
-        ]
-      : []),
+    { name: "All Users", path: "/dashboard/all-users", icon: <FaUsers /> },
   ];
+
+  const donorMenu = [
+    { name: "Home", path: "/", icon: <FaHome /> },
+    {
+      name: "My Donation Request",
+      path: "/dashboard/my-donation-requests",
+      icon: <FaClipboardList />,
+    },
+    {
+      name: "Create Donation Request",
+      path: "/dashboard/create-donation-request",
+      icon: <MdCreate />,
+    },
+  ];
+
+  const defaultMenu = [{ name: "Home", path: "/", icon: <FaHome /> }];
+
+  // if (!user || role === null) return null;
+
+  let menuItems = defaultMenu;
+
+  if (role === "admin") menuItems = adminMenu;
+  else if (role === "donor") menuItems = donorMenu;
+  console.log("🚀 ~ Sidebar ~ menuItems:", role, menuItems);
+
+  if (loading) return <p>loading...</p>;
 
   return (
     <>

@@ -104,6 +104,7 @@ const Register = () => {
         district, // district name
         upazila,
         role: "donor",
+        status: "active",
         // loginCount: 1,
       });
 
