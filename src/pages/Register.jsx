@@ -16,9 +16,11 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { SlLocationPin } from "react-icons/sl";
 import { GrLocationPin } from "react-icons/gr";
+import useAxiosPublic from "../hooks/axiosPublic";
 
 const Register = () => {
   const goTo = useNavigate();
+  const axiosPublic = useAxiosPublic();
   const { createUser, setUser, updateUser } = useContext(AuthContext);
 
   const [formData, setFormData] = useState({
@@ -35,11 +37,10 @@ const Register = () => {
   const [errorMsg, setErrorMsg] = useState("");
   const [loadingSave, setLoadingSave] = useState(false);
 
-  // Fetch districts
   const { data: districts = [], isLoading: isDistrictsLoading } = useQuery({
     queryKey: ["districts"],
     queryFn: async () => {
-      const { data } = await axios.get("http://localhost:5001/districts");
+      const { data } = await axiosPublic.get("/districts");
       return data;
     },
   });
@@ -48,8 +49,8 @@ const Register = () => {
   const { data: upazilas = [], isLoading: isUpazilasLoading } = useQuery({
     queryKey: ["upazilas", formData.districtId],
     queryFn: async () => {
-      const { data } = await axios.get(
-        `http://localhost:5001/upazilas?district_id=${formData.districtId}`
+      const { data } = await axiosPublic.get(
+        `/upazilas?district_id=${formData.districtId}`
       );
       return data;
     },

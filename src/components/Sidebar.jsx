@@ -11,6 +11,7 @@ import {
 import { MdCreate } from "react-icons/md";
 import { AuthContext } from "../providers/AuthProvider";
 import useRole from "../hooks/useRole";
+import { CgProfile } from "react-icons/cg";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -46,11 +47,13 @@ const Sidebar = () => {
 
   const adminMenu = [
     { name: "Home", path: "/", icon: <FaHome /> },
+    { name: "Profile", path: "/dashboard/profile", icon: <CgProfile /> },
     { name: "All Users", path: "/dashboard/all-users", icon: <FaUsers /> },
   ];
 
   const donorMenu = [
     { name: "Home", path: "/", icon: <FaHome /> },
+    { name: "Profile", path: "/dashboard/profile", icon: <CgProfile /> },
     {
       name: "My Donation Request",
       path: "/dashboard/my-donation-requests",

@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
-import { AuthContext } from "../providers/AuthProvider";
-import useRole from "../hooks/useRole";
-import AdminDashboard from "./adminDashboard/AdminDashboard";
+import { AuthContext } from "../../providers/AuthProvider";
+import useRole from "../../hooks/useRole";
+import AdminDashboard from "../adminDashboard/AdminDashboard";
 
 export default function Dashboard() {
   const { user } = useContext(AuthContext);

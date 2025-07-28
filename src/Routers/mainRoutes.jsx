@@ -4,13 +4,14 @@ import Error from "../pages/Error";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
-import Dashboard from "../pages/Dashboard";
+import Dashboard from "../pages/dashboard/Dashboard";
 import Blog from "../pages/Blog";
 import DashboardLayout from "../layouts/DashboardLayout";
-import DonationRequest from "../pages/dashboard/DonationRequest";
-import CreateDonationRequest from "../pages/dashboard/CreateDonationRequest";
+import DonationRequest from "../pages/donorDashboard/DonationRequest";
+import CreateDonationRequest from "../pages/donorDashboard/CreateDonationRequest";
 import PrivateRoute from "./PrivateRoute";
 import AllUsers from "../pages/adminDashboard/AllUsers";
+import Profile from "../pages/dashboard/Profile";
 
 const mainRoutes = createBrowserRouter([
   {
@@ -31,7 +32,6 @@ const mainRoutes = createBrowserRouter([
         path: "registration",
         element: <Register></Register>,
       },
-      {},
     ],
   },
   {
@@ -46,6 +46,10 @@ const mainRoutes = createBrowserRouter([
             <Dashboard></Dashboard>
           </PrivateRoute>
         ),
+      },
+      {
+        path: "profile",
+        element: <Profile />,
       },
       {
         path: "all-users",

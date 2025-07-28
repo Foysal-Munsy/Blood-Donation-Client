@@ -1,9 +1,11 @@
 // DashboardLayout.jsx
 import { Outlet } from "react-router";
 import Sidebar from "../components/Sidebar";
+// import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const DashboardLayout = () => {
   return (
+    //   <QueryClientProvider client={QueryClient}>
     <div className="min-h-screen bg-gray-50">
       <Sidebar />
       <main className="transition-all duration-300 lg:ml-64">
@@ -13,6 +15,7 @@ const DashboardLayout = () => {
         </div>
       </main>
     </div>
+    // </QueryClientProvider>
   );
 };
 
