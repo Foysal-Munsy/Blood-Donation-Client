@@ -9,18 +9,12 @@ export default function useCurrentUser() {
   const axiosSecure = useAxiosSecure();
 
   useEffect(() => {
-    if (user?.email) {
-      axiosSecure
-        .get("/get-user")
-        .then((res) => {
-          setCurrentUser(res.data);
-        })
-        .catch(() => {
-          setCurrentUser(null);
-        })
-        .finally(() => setLoading(false));
-    }
-  }, [user?.email]);
+    if (user)
+      axiosSecure.get("/get-user").then((res) => {
+        setCurrentUser(res.data);
+        setLoading(false);
+      });
+  }, [user]);
 
   return { currentUser, loading };
 }

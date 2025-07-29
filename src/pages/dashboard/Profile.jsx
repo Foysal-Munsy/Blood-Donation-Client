@@ -1,14 +1,17 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import useCurrentUser from "../../hooks/useCurrentUser";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
+import { getAuth, updateProfile } from "firebase/auth";
 
 export default function Profile() {
-  const { currentUser, loading } = useCurrentUser();
+  const { currentUser, loading } = useCurrentUser(); // MongoDB user
+  const { setUser } = useContext(AuthContext); // AuthContext setter for Firebase user
   const axiosSecure = useAxiosSecure();
 
   const [editMode, setEditMode] = useState(false);
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -18,6 +21,7 @@ export default function Profile() {
     bloodGroup: "",
   });
 
+  // Sync form with MongoDB user on mount or update
   useEffect(() => {
     if (currentUser) {
       setFormData({
@@ -31,6 +35,7 @@ export default function Profile() {
     }
   }, [currentUser]);
 
+  // Handle form input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -39,23 +44,40 @@ export default function Profile() {
     }));
   };
 
+  // Handle form submit for updating both Firebase + MongoDB
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const auth = getAuth();
+
     try {
+      // 1️⃣ Update MongoDB user info
       const res = await axiosSecure.patch(
         `/update-user/${currentUser._id}`,
         formData
       );
+
+      // 2️⃣ Update Firebase display name and photo
+      await updateProfile(auth.currentUser, {
+        displayName: formData.name,
+        photoURL: formData.image,
+      });
+
+      // 3️⃣ Reload updated user from Firebase and set into AuthContext
+      await auth.currentUser.reload();
+      setUser(auth.currentUser);
+
+      // 4️⃣ Show success toast and exit edit mode
       if (res.data.modifiedCount > 0) {
         toast.success("Profile updated successfully");
         setEditMode(false);
       }
     } catch (err) {
-      toast.error("Failed to update profile");
       console.error(err);
+      toast.error("Failed to update profile");
     }
   };
 
+  // Loading state
   if (loading || !currentUser)
     return <p className="text-center mt-4">Loading...</p>;
 
@@ -63,6 +85,7 @@ export default function Profile() {
     <div className="max-w-xl mx-auto p-4">
       <h2 className="text-2xl font-bold text-center mb-6">Profile</h2>
 
+      {/* Profile Picture */}
       <div className="flex justify-center mb-6">
         <img
           src={formData.image}
@@ -71,6 +94,7 @@ export default function Profile() {
         />
       </div>
 
+      {/* Edit Button */}
       <div className="flex justify-end mb-2">
         <button
           onClick={() => setEditMode((prev) => !prev)}
@@ -80,6 +104,7 @@ export default function Profile() {
         </button>
       </div>
 
+      {/* Profile Form */}
       <form onSubmit={handleSubmit} className="space-y-4">
         <input
           type="text"
@@ -147,6 +172,7 @@ export default function Profile() {
           <option>O-</option>
         </select>
 
+        {/* Submit Button */}
         {editMode && (
           <button
             type="submit"

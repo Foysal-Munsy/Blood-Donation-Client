@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import WelcomeMsg from "../../components/WelcomeMsg";
 
-export default function DonorDashboard({ user, role }) {
+export default function DonorDashboard({ user }) {
   const axiosSecure = useAxiosSecure();
   const [donationRequests, setDonationRequests] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -28,15 +29,7 @@ export default function DonorDashboard({ user, role }) {
   return (
     <div className="p-4">
       {/* Welcome Message */}
-      {user && (
-        <div className="bg-gradient-to-r from-red-600 to-rose-600 text-white py-3 px-4 text-center overflow-hidden rounded-md shadow-md mb-6">
-          <p className="text-sm md:text-base font-medium animate-pulse">
-            Welcome back, <span className="font-bold">{user.displayName}</span>!
-            <span className="ml-2 hidden sm:inline">Your role is {role}.</span>
-          </p>
-        </div>
-      )}
-
+      <WelcomeMsg />
       {/* Donation Requests Table */}
       {!loading && donationRequests.length > 0 && (
         <div className="overflow-x-auto shadow rounded-md border border-gray-200">
@@ -96,14 +89,12 @@ export default function DonorDashboard({ user, role }) {
           </table>
         </div>
       )}
-
       {/* No requests */}
       {!loading && donationRequests.length === 0 && (
         <p className="text-gray-500 text-center mt-6">
           You have not created any donation requests yet.
         </p>
       )}
-
       {/* View All Requests Button */}
       {!loading && donationRequests.length > 0 && (
         <div className="mt-6 text-center">
