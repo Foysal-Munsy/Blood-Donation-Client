@@ -12,7 +12,6 @@ import happy from "../assets/happy.json";
 import Title from "../components/Title";
 import { AuthContext } from "../providers/AuthProvider";
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import Swal from "sweetalert2";
 import { SlLocationPin } from "react-icons/sl";
 import { GrLocationPin } from "react-icons/gr";
@@ -97,7 +96,7 @@ const Register = () => {
       await updateUser({ displayName: name, photoURL: image });
 
       // Save user data to MongoDB with default role = donor
-      await axios.post("http://localhost:5001/add-user", {
+      await axiosPublic.post("/add-user", {
         name,
         email,
         image,
