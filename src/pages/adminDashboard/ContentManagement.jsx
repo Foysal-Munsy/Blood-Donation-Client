@@ -4,6 +4,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 import { AuthContext } from "../../providers/AuthProvider";
 import useRole from "../../hooks/useRole";
+import Swal from "sweetalert2";
 
 const ContentManagement = () => {
   const [blogs, setBlogs] = useState([]);
@@ -49,6 +50,34 @@ const ContentManagement = () => {
     } catch (error) {
       toast.error("Failed to update blog status");
     }
+  };
+
+  const handleDeleteBlog = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to undo this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const res = await axiosSecure.delete(`/delete-blog/${id}`);
+          if (res.data.deletedCount > 0) {
+            toast.success("Blog deleted successfully");
+            setBlogs((prevBlogs) => prevBlogs.filter((b) => b._id !== id));
+
+            Swal.fire("Deleted!", "The blog has been deleted.", "success");
+          } else {
+            Swal.fire("Oops!", "Failed to delete blog.", "error");
+          }
+        } catch (error) {
+          Swal.fire("Error", "Something went wrong.", "error");
+        }
+      }
+    });
   };
 
   const filteredBlogs = blogs.filter((b) => {
@@ -124,7 +153,10 @@ const ContentManagement = () => {
                 )}
 
                 {/* Delete button (no logic yet) */}
-                <button className="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded text-sm">
+                <button
+                  onClick={() => handleDeleteBlog(blog._id)}
+                  className="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded text-sm"
+                >
                   Delete
                 </button>
               </div>
