@@ -12,6 +12,7 @@ import CreateDonationRequest from "../pages/donorDashboard/CreateDonationRequest
 import PrivateRoute from "./PrivateRoute";
 import AllUsers from "../pages/adminDashboard/AllUsers";
 import Profile from "../pages/dashboard/Profile";
+import AllBloodDonationRequest from "../pages/adminDashboard/AllBloodDonationRequest";
 
 const mainRoutes = createBrowserRouter([
   {
@@ -36,7 +37,11 @@ const mainRoutes = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <DashboardLayout></DashboardLayout>,
+    element: (
+      <PrivateRoute>
+        <DashboardLayout></DashboardLayout>
+      </PrivateRoute>
+    ),
     errorElement: <Error></Error>,
     children: [
       {
@@ -62,6 +67,11 @@ const mainRoutes = createBrowserRouter([
       {
         path: "create-donation-request",
         element: <CreateDonationRequest />,
+      },
+      {
+        // admin
+        path: "all-blood-donation-request",
+        element: <AllBloodDonationRequest />,
       },
       {
         path: "blog",

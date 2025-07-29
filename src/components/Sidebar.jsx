@@ -49,6 +49,11 @@ const Sidebar = () => {
     { name: "Home", path: "/", icon: <FaHome /> },
     { name: "Profile", path: "/dashboard/profile", icon: <CgProfile /> },
     { name: "All Users", path: "/dashboard/all-users", icon: <FaUsers /> },
+    {
+      name: "All Donation Request",
+      path: "/dashboard/all-blood-donation-request",
+      icon: <FaClipboardList />,
+    },
   ];
 
   const donorMenu = [
