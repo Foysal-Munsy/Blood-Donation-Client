@@ -85,8 +85,17 @@ const CreateDonationRequest = () => {
       );
       return;
     }
+    // const dataToSubmit = {
+    //   ...formData,
+    //   donationStatus: "pending",
+    // };
+    const selectedDistrict = districts.find(
+      (d) => d.id === formData.recipientDistrict
+    );
+
     const dataToSubmit = {
       ...formData,
+      recipientDistrict: selectedDistrict?.name || "",
       donationStatus: "pending",
     };
 

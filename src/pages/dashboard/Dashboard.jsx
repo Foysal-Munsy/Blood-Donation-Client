@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import useRole from "../../hooks/useRole";
 import AdminDashboard from "../adminDashboard/AdminDashboard";
+import DonorDashboard from "../donorDashboard/DonorDashboard";
 
 export default function Dashboard() {
   const { user } = useContext(AuthContext);
@@ -13,6 +14,9 @@ export default function Dashboard() {
 
   if (role === "admin") {
     return <AdminDashboard user={user} role={role} />;
+  }
+  if (role === "donor") {
+    return <DonorDashboard user={user} role={role} />;
   }
 
   return (
