@@ -7,6 +7,7 @@ import {
   FaBars,
   FaTimes,
   FaUsers,
+  FaPencilAlt,
 } from "react-icons/fa";
 import { MdCreate } from "react-icons/md";
 import { AuthContext } from "../providers/AuthProvider";
@@ -53,6 +54,11 @@ const Sidebar = () => {
       name: "All Donation Request",
       path: "/dashboard/all-blood-donation-request",
       icon: <FaClipboardList />,
+    },
+    {
+      name: "Content Management",
+      path: "/dashboard/content-management",
+      icon: <FaPencilAlt />,
     },
   ];
 

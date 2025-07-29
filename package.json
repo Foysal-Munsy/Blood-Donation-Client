@@ -17,6 +17,7 @@
     "axios": "^1.10.0",
     "firebase": "^11.10.0",
     "framer-motion": "^12.23.11",
+    "jodit-react": "^5.2.19",
     "lottie-react": "^2.4.1",
     "lucide-react": "^0.528.0",
     "react": "^19.1.0",

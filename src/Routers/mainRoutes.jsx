@@ -13,6 +13,8 @@ import PrivateRoute from "./PrivateRoute";
 import AllUsers from "../pages/adminDashboard/AllUsers";
 import Profile from "../pages/dashboard/Profile";
 import AllBloodDonationRequest from "../pages/adminDashboard/AllBloodDonationRequest";
+import ContentManagement from "../pages/adminDashboard/ContentManagement";
+import AddBlog from "../pages/adminDashboard/AddBlog";
 
 const mainRoutes = createBrowserRouter([
   {
@@ -72,6 +74,16 @@ const mainRoutes = createBrowserRouter([
         // admin
         path: "all-blood-donation-request",
         element: <AllBloodDonationRequest />,
+      },
+      {
+        // admin
+        path: "content-management",
+        element: <ContentManagement />,
+      },
+      {
+        // admin
+        path: "content-management/add-blog",
+        element: <AddBlog />,
       },
       {
         path: "blog",
