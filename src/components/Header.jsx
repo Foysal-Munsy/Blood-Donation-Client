@@ -13,8 +13,8 @@ const Header = () => {
     { name: "Dashboard", path: "/dashboard" },
     { name: "Search", path: "/search" },
     { name: "Request", path: "/request" },
-    // { name: "Blog", path: "/blog" },
-    { name: "Funding", path: "/funding" },
+    { name: "Blog", path: "/blog" },
+    // { name: "Funding", path: "/funding" },
 
     // ...(user?.email ? [{ name: "Manage My Foods", path: "/my-foods" }] : []),
   ];

@@ -15,6 +15,7 @@ import Profile from "../pages/dashboard/Profile";
 import AllBloodDonationRequest from "../pages/adminDashboard/AllBloodDonationRequest";
 import ContentManagement from "../pages/adminDashboard/ContentManagement";
 import AddBlog from "../pages/adminDashboard/AddBlog";
+import Request from "../pages/Request";
 
 const mainRoutes = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const mainRoutes = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
+      },
+      {
+        path: "request",
+        element: <Request />,
       },
 
       {
