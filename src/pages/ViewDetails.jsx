@@ -135,15 +135,24 @@ export default function ViewDetails() {
 
       <div className="text-center mt-6">
         <button
-          //   onClick={() => setShowModal(true)}
           onClick={() => {
-            if (donationStatus !== "inprogress") {
+            if (
+              donationStatus !== "inprogress" &&
+              donationStatus !== "done" &&
+              donationStatus !== "canceled"
+            ) {
               setShowModal(true);
             }
           }}
-          disabled={donationStatus === "inprogress"}
+          disabled={
+            donationStatus === "inprogress" ||
+            donationStatus === "done" ||
+            donationStatus === "canceled"
+          }
           className={`px-6 py-2 rounded transition ${
-            donationStatus === "inprogress"
+            donationStatus === "inprogress" ||
+            donationStatus === "done" ||
+            donationStatus === "canceled"
               ? "bg-gray-400 text-white cursor-not-allowed"
               : "bg-red-600 text-white hover:bg-red-700"
           }`}
