@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
-
 import { Link } from "react-router";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
@@ -25,7 +24,6 @@ export default function DonationRequest() {
         const donations = res.data;
         setDonations(donations);
 
-        // Fetch donor info for each donation
         const donorData = {};
         await Promise.all(
           donations.map(async (donation) => {
@@ -79,6 +77,39 @@ export default function DonationRequest() {
           .catch(() => {
             Swal.fire("Error", "Something went wrong.", "error");
           });
+      }
+    });
+  };
+
+  const handleStatusUpdate = async (id, newStatus) => {
+    Swal.fire({
+      title: `Change status to "${newStatus}"?`,
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonText: "Yes",
+    }).then(async (result) => {
+      if (!result.isConfirmed) return;
+
+      try {
+        const res = await axiosSecure.patch("/donation-status", {
+          id,
+          donationStatus: newStatus,
+        });
+
+        if (res.data.modifiedCount > 0) {
+          setDonations((prev) =>
+            prev.map((donation) =>
+              donation._id === id
+                ? { ...donation, donationStatus: newStatus }
+                : donation
+            )
+          );
+          Swal.fire("Success!", `Status updated to "${newStatus}".`, "success");
+        } else {
+          Swal.fire("Failed", "Status update failed. Try again.", "error");
+        }
+      } catch (error) {
+        Swal.fire("Error", "Something went wrong.", "error");
       }
     });
   };
@@ -185,12 +216,23 @@ export default function DonationRequest() {
                     >
                       Delete
                     </button>
+
                     {donation.donationStatus === "inprogress" && (
                       <>
-                        <button className="text-green-700 hover:underline text-sm ml-2">
+                        <button
+                          onClick={() =>
+                            handleStatusUpdate(donation._id, "done")
+                          }
+                          className="text-green-700 hover:underline text-sm ml-2"
+                        >
                           Done
                         </button>
-                        <button className="text-yellow-700 hover:underline text-sm ml-1">
+                        <button
+                          onClick={() =>
+                            handleStatusUpdate(donation._id, "canceled")
+                          }
+                          className="text-yellow-700 hover:underline text-sm ml-1"
+                        >
                           Cancel
                         </button>
                       </>
