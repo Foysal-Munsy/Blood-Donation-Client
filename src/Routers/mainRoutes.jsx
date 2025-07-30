@@ -28,6 +28,10 @@ const mainRoutes = createBrowserRouter([
         element: <Home></Home>,
       },
       {
+        path: "/blog",
+        element: <Blog />,
+      },
+      {
         path: "request",
         element: <Request />,
       },

@@ -1,28 +1,23 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router";
 import { AuthContext } from "../providers/AuthProvider";
-import useAxiosSecure from "../hooks/useAxiosSecure";
+import useAxiosPublic from "../hooks/axiosPublic";
 
 export default function Request() {
   const { user } = useContext(AuthContext);
-  const axiosSecure = useAxiosSecure();
+  const axiosPublic = useAxiosPublic();
   const [donations, setDonations] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!user) return;
-    axiosSecure
-      .get("/all-donation-requests")
+    axiosPublic
+      .get("/all-donation-requests-public")
       .then((res) => setDonations(res.data))
       .catch((err) => {
         console.error("Error fetching donation requests:", err);
       })
       .finally(() => setLoading(false));
   }, [user]);
-
-  const pendingDonations = donations.filter(
-    (d) => d.donationStatus === "pending"
-  );
 
   return (
     <div className="px-4 py-6">
@@ -32,7 +27,7 @@ export default function Request() {
 
       {loading ? (
         <p className="text-center text-gray-600">Loading pending requests...</p>
-      ) : pendingDonations.length === 0 ? (
+      ) : donations.length === 0 ? (
         <p className="text-center text-gray-500">
           No pending donation requests found.
         </p>
@@ -50,7 +45,7 @@ export default function Request() {
               </tr>
             </thead>
             <tbody>
-              {pendingDonations.map((donation, i) => (
+              {donations.map((donation, i) => (
                 <tr
                   key={donation._id}
                   className={i % 2 === 0 ? "bg-white" : "bg-gray-50"}

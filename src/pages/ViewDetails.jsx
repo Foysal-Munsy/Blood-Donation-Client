@@ -3,10 +3,12 @@ import useAxiosSecure from "../hooks/useAxiosSecure";
 import { AuthContext } from "../providers/AuthProvider";
 import { useParams } from "react-router";
 import Swal from "sweetalert2";
+import useAxiosPublic from "../hooks/axiosPublic";
 
 export default function ViewDetails() {
   const { ID } = useParams();
   const axiosSecure = useAxiosSecure();
+  const axiosPublic = useAxiosPublic();
   const { user } = useContext(AuthContext);
   const [details, setDetails] = useState(null);
   const [showModal, setShowModal] = useState(false);
@@ -36,17 +38,37 @@ export default function ViewDetails() {
 
   const handleConfirmDonation = async () => {
     try {
+      // Step 1: Update donation status
       const res = await axiosSecure.patch("/donation-status", {
         id: details._id,
         donationStatus: "inprogress",
       });
 
       if (res.data.modifiedCount > 0) {
-        Swal.fire({
-          icon: "success",
-          title: "Donation Inprogress!",
-          text: `Thank you ${user?.displayName} for your generosity.`,
-        });
+        // Step 2: Save donor info
+        const donorInfo = {
+          donorName: user?.displayName,
+          donorEmail: user?.email,
+          donationId: details._id,
+          createdAt: new Date(),
+        };
+
+        const donorRes = await axiosPublic.post("/add-donor", donorInfo);
+
+        if (donorRes.data.insertedId) {
+          Swal.fire({
+            icon: "success",
+            title: "Donation In Progress!",
+            text: `Thank you ${user?.displayName} for your generosity.`,
+          });
+        } else {
+          Swal.fire({
+            icon: "warning",
+            title: "Donor Not Saved",
+            text: "Donation status updated, but donor info wasn't saved.",
+          });
+        }
+
         setDetails({ ...details, donationStatus: "inprogress" });
         setShowModal(false);
       } else {
@@ -61,7 +83,7 @@ export default function ViewDetails() {
       Swal.fire({
         icon: "error",
         title: "Error!",
-        text: "Something went wrong while updating the donation status.",
+        text: "Something went wrong while confirming the donation.",
       });
     }
   };
