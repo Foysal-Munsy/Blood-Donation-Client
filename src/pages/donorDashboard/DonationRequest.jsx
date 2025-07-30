@@ -6,15 +6,39 @@ import { Link } from "react-router";
 export default function DonationRequest() {
   const { user } = useContext(AuthContext);
   const axiosSecure = useAxiosSecure();
+
   const [donations, setDonations] = useState([]);
+  const [donors, setDonors] = useState({});
   const [loading, setLoading] = useState(true);
   const [filterStatus, setFilterStatus] = useState("all");
 
   useEffect(() => {
     if (!user) return;
+
     axiosSecure
       .get("/my-donation-request")
-      .then((res) => setDonations(res.data))
+      .then(async (res) => {
+        const donations = res.data;
+        setDonations(donations);
+
+        // Fetch donor info for each donation
+        const donorData = {};
+        await Promise.all(
+          donations.map(async (donation) => {
+            try {
+              const donorRes = await axiosSecure.get(
+                `/find-donor?donationId=${donation._id}`
+              );
+              if (donorRes.data.length > 0) {
+                donorData[donation._id] = donorRes.data[0];
+              }
+            } catch (err) {
+              console.error("Error fetching donor for donation:", donation._id);
+            }
+          })
+        );
+        setDonors(donorData);
+      })
       .catch((err) => {
         console.error("Error fetching donation requests:", err);
       })
@@ -91,11 +115,13 @@ export default function DonationRequest() {
                     {donation.donationStatus}
                   </td>
                   <td className="px-3 py-2">
-                    {donation.donationStatus === "inprogress" && user ? (
+                    {donors[donation._id] ? (
                       <>
-                        <div>{user.name}</div>
-                        <div className="text-xs text-gray-500">
-                          {user.email}
+                        <div className="font-medium">
+                          {donors[donation._id].donorName}
+                        </div>
+                        <div className="text-xs text-gray-600">
+                          {donors[donation._id].donorEmail}
                         </div>
                       </>
                     ) : (
