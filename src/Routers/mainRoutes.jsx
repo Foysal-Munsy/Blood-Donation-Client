@@ -16,7 +16,7 @@ import AllBloodDonationRequest from "../pages/adminDashboard/AllBloodDonationReq
 import ContentManagement from "../pages/adminDashboard/ContentManagement";
 import AddBlog from "../pages/adminDashboard/AddBlog";
 import Request from "../pages/Request";
-
+import ViewDetails from "../pages/ViewDetails";
 const mainRoutes = createBrowserRouter([
   {
     path: "/",
@@ -30,6 +30,14 @@ const mainRoutes = createBrowserRouter([
       {
         path: "request",
         element: <Request />,
+      },
+      {
+        path: "details/:ID",
+        element: (
+          <PrivateRoute>
+            <ViewDetails />
+          </PrivateRoute>
+        ),
       },
 
       {

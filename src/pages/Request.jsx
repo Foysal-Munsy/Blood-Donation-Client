@@ -75,7 +75,7 @@ export default function Request() {
 
                   <td className="px-3 py-2">
                     <Link
-                      to={`/requests/${donation._id}`} // or your route path
+                      to={`/details/${donation._id}`}
                       className="text-blue-600 hover:underline text-sm"
                     >
                       View
