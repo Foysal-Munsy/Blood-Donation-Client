@@ -1,11 +1,15 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
+
 import { Link } from "react-router";
+import Swal from "sweetalert2";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useAxiosPublic from "../../hooks/axiosPublic";
 
 export default function DonationRequest() {
   const { user } = useContext(AuthContext);
   const axiosSecure = useAxiosSecure();
+  const axiosPublic = useAxiosPublic();
 
   const [donations, setDonations] = useState([]);
   const [donors, setDonors] = useState({});
@@ -44,6 +48,40 @@ export default function DonationRequest() {
       })
       .finally(() => setLoading(false));
   }, [user]);
+
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this request!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosPublic
+          .delete(`/delete-request/${id}`)
+          .then((res) => {
+            if (res.data.deletedCount > 0) {
+              setDonations((prev) =>
+                prev.filter((donation) => donation._id !== id)
+              );
+              Swal.fire(
+                "Deleted!",
+                "Your request has been deleted.",
+                "success"
+              );
+            } else {
+              Swal.fire("Error", "Deletion failed. Please try again.", "error");
+            }
+          })
+          .catch(() => {
+            Swal.fire("Error", "Something went wrong.", "error");
+          });
+      }
+    });
+  };
 
   const filteredDonations =
     filterStatus === "all"
@@ -141,12 +179,12 @@ export default function DonationRequest() {
                     >
                       Edit
                     </Link>
-                    <Link
-                      to="#"
+                    <button
+                      onClick={() => handleDelete(donation._id)}
                       className="text-red-600 hover:underline text-sm"
                     >
                       Delete
-                    </Link>
+                    </button>
                     {donation.donationStatus === "inprogress" && (
                       <>
                         <button className="text-green-700 hover:underline text-sm ml-2">
