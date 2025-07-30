@@ -130,7 +130,7 @@ export default function DonationRequest() {
                   </td>
                   <td className="px-3 py-2 space-x-1">
                     <Link
-                      to="#"
+                      to={`/details/${donation._id}`}
                       className="text-blue-600 hover:underline text-sm"
                     >
                       View

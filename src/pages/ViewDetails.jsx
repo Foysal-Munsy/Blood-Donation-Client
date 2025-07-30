@@ -135,8 +135,18 @@ export default function ViewDetails() {
 
       <div className="text-center mt-6">
         <button
-          onClick={() => setShowModal(true)}
-          className="bg-red-600 text-white px-6 py-2 rounded hover:bg-red-700 transition"
+          //   onClick={() => setShowModal(true)}
+          onClick={() => {
+            if (donationStatus !== "inprogress") {
+              setShowModal(true);
+            }
+          }}
+          disabled={donationStatus === "inprogress"}
+          className={`px-6 py-2 rounded transition ${
+            donationStatus === "inprogress"
+              ? "bg-gray-400 text-white cursor-not-allowed"
+              : "bg-red-600 text-white hover:bg-red-700"
+          }`}
         >
           Donate
         </button>
