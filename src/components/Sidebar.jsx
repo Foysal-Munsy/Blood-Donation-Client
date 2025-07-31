@@ -77,7 +77,14 @@ const Sidebar = () => {
     },
   ];
 
-  const defaultMenu = [{ name: "Home", path: "/", icon: <FaHome /> }];
+  const defaultMenu = [
+    { name: "Home", path: "/", icon: <FaHome /> },
+    {
+      name: "All Donation Request",
+      path: "/dashboard/all-blood-donation-request",
+      icon: <FaClipboardList />,
+    },
+  ];
 
   // if (!user || role === null) return null;
 

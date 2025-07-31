@@ -4,9 +4,12 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { Link } from "react-router";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../hooks/axiosPublic";
+import useRole from "../../hooks/useRole";
 
 export default function AllBloodDonationRequest() {
   const { user } = useContext(AuthContext);
+  const { role } = useRole();
+  console.log(role);
   const axiosSecure = useAxiosSecure();
   const axiosPublic = useAxiosPublic();
   const [donations, setDonations] = useState([]);
@@ -207,24 +210,30 @@ export default function AllBloodDonationRequest() {
                     )}
                   </td>
                   <td className="px-3 py-2 space-x-1">
-                    <Link
-                      to={`/details/${donation._id}`}
-                      className="text-blue-600 hover:underline text-sm"
-                    >
-                      View
-                    </Link>
-                    <Link
-                      to={`/dashboard/update-donation-request/${donation._id}`}
-                      className="text-green-600 hover:underline text-sm"
-                    >
-                      Edit
-                    </Link>
-                    <button
-                      onClick={() => handleDelete(donation._id)}
-                      className="text-red-600 cursor-pointer hover:underline text-sm"
-                    >
-                      Delete
-                    </button>
+                    {/* Only show these actions if NOT a volunteer */}
+                    {role !== "volunteer" && (
+                      <>
+                        <Link
+                          to={`/details/${donation._id}`}
+                          className="text-blue-600 hover:underline text-sm"
+                        >
+                          View
+                        </Link>
+                        <Link
+                          to={`/dashboard/update-donation-request/${donation._id}`}
+                          className="text-green-600 hover:underline text-sm"
+                        >
+                          Edit
+                        </Link>
+                        <button
+                          onClick={() => handleDelete(donation._id)}
+                          className="text-red-600 cursor-pointer hover:underline text-sm"
+                        >
+                          Delete
+                        </button>
+                      </>
+                    )}
+
                     {donation.donationStatus === "inprogress" && (
                       <>
                         <button
