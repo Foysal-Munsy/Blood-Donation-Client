@@ -5,7 +5,8 @@ import { useEffect, useState } from "react";
 const AdminDashboard = ({ user, role, stats }) => {
   const axiosSecure = useAxiosSecure();
   const [users, setUsers] = useState([]);
-  console.log("🚀 ~ UsersList ~ s:", users);
+  const donors = users.filter((user) => user.role === "donor");
+  //   console.log("🚀 ~ UsersList ~ s:", users, donors);
 
   useEffect(() => {
     axiosSecure("/get-users")
@@ -15,7 +16,7 @@ const AdminDashboard = ({ user, role, stats }) => {
 
   // stats fallback
   const {
-    totalDonor = users.length,
+    totalDonor = donors.length,
     totalFunding = 0,
     totalRequests = 0,
   } = stats || {};
