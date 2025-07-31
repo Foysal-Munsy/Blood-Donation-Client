@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useParams, useNavigate } from "react-router";
 import useAxiosSecure from "../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 export default function UpdateDonationRequest() {
   const { ID } = useParams();
   const axiosSecure = useAxiosSecure();
+  const navigate = useNavigate();
   const [details, setDetails] = useState(null);
 
   useEffect(() => {
@@ -15,34 +17,56 @@ export default function UpdateDonationRequest() {
 
   if (!details) return <p className="text-center mt-10">Loading...</p>;
 
-  const {
-    requesterName,
-    requesterEmail,
-    recipientName,
-    recipientDistrict,
-    recipientUpazila,
-    hospitalName,
-    fullAddress,
-    bloodGroup,
-    donationDate,
-    donationTime,
-    requestMessage,
-    donationStatus,
-  } = details;
+  const handleUpdate = async (e) => {
+    e.preventDefault();
+    const form = e.target;
+
+    const updatedRequest = {
+      requesterName: form.requesterName.value,
+      requesterEmail: details.requesterEmail, // keep email from original data
+      recipientName: form.recipientName.value,
+      recipientDistrict: form.recipientDistrict.value,
+      recipientUpazila: form.recipientUpazila.value,
+      hospitalName: form.hospitalName.value,
+      fullAddress: form.fullAddress.value,
+      bloodGroup: form.bloodGroup.value,
+      donationDate: form.donationDate.value,
+      donationTime: form.donationTime.value,
+      requestMessage: form.requestMessage.value,
+      donationStatus: details.donationStatus, // preserve status
+    };
+
+    try {
+      const res = await axiosSecure.put(
+        `/update-donation-request/${ID}`,
+        updatedRequest
+      );
+
+      if (res.data.modifiedCount > 0) {
+        Swal.fire("Success!", "Request updated successfully.", "success");
+        navigate("/dashboard/my-donation-requests");
+      } else {
+        Swal.fire("Info", "No changes made.", "info");
+      }
+    } catch (error) {
+      console.error(error);
+      Swal.fire("Error", "Failed to update request.", "error");
+    }
+  };
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-8">
       <h2 className="text-2xl font-semibold mb-6 text-center">
         Update Donation Request
       </h2>
-      <form className="space-y-4">
+      <form onSubmit={handleUpdate} className="space-y-4">
         <div>
           <label className="block font-medium">Requester Name</label>
           <input
             type="text"
-            defaultValue={requesterName}
+            name="requesterName"
+            defaultValue={details.requesterName}
             className="w-full border border-gray-300 p-2 rounded"
-            readOnly
           />
         </div>
 
@@ -50,7 +74,8 @@ export default function UpdateDonationRequest() {
           <label className="block font-medium">Requester Email</label>
           <input
             type="email"
-            defaultValue={requesterEmail}
+            name="requesterEmail"
+            defaultValue={details.requesterEmail}
             className="w-full border border-gray-300 p-2 rounded"
             readOnly
           />
@@ -60,7 +85,8 @@ export default function UpdateDonationRequest() {
           <label className="block font-medium">Recipient Name</label>
           <input
             type="text"
-            defaultValue={recipientName}
+            name="recipientName"
+            defaultValue={details.recipientName}
             className="w-full border border-gray-300 p-2 rounded"
           />
         </div>
@@ -70,7 +96,8 @@ export default function UpdateDonationRequest() {
             <label className="block font-medium">District</label>
             <input
               type="text"
-              defaultValue={recipientDistrict}
+              name="recipientDistrict"
+              defaultValue={details.recipientDistrict}
               className="w-full border border-gray-300 p-2 rounded"
             />
           </div>
@@ -78,7 +105,8 @@ export default function UpdateDonationRequest() {
             <label className="block font-medium">Upazila</label>
             <input
               type="text"
-              defaultValue={recipientUpazila}
+              name="recipientUpazila"
+              defaultValue={details.recipientUpazila}
               className="w-full border border-gray-300 p-2 rounded"
             />
           </div>
@@ -88,7 +116,8 @@ export default function UpdateDonationRequest() {
           <label className="block font-medium">Hospital Name</label>
           <input
             type="text"
-            defaultValue={hospitalName}
+            name="hospitalName"
+            defaultValue={details.hospitalName}
             className="w-full border border-gray-300 p-2 rounded"
           />
         </div>
@@ -96,7 +125,8 @@ export default function UpdateDonationRequest() {
         <div>
           <label className="block font-medium">Full Address</label>
           <textarea
-            defaultValue={fullAddress}
+            name="fullAddress"
+            defaultValue={details.fullAddress}
             className="w-full border border-gray-300 p-2 rounded"
           ></textarea>
         </div>
@@ -106,16 +136,17 @@ export default function UpdateDonationRequest() {
             <label className="block font-medium">Blood Group</label>
             <input
               type="text"
-              defaultValue={bloodGroup}
+              name="bloodGroup"
+              defaultValue={details.bloodGroup}
               className="w-full border border-gray-300 p-2 rounded"
-              readOnly
             />
           </div>
           <div>
             <label className="block font-medium">Status</label>
             <input
               type="text"
-              defaultValue={donationStatus}
+              name="donationStatus"
+              defaultValue={details.donationStatus}
               className="w-full border border-gray-300 p-2 rounded"
               readOnly
             />
@@ -127,7 +158,8 @@ export default function UpdateDonationRequest() {
             <label className="block font-medium">Date</label>
             <input
               type="date"
-              defaultValue={donationDate}
+              name="donationDate"
+              defaultValue={details.donationDate}
               className="w-full border border-gray-300 p-2 rounded"
             />
           </div>
@@ -135,7 +167,8 @@ export default function UpdateDonationRequest() {
             <label className="block font-medium">Time</label>
             <input
               type="time"
-              defaultValue={donationTime}
+              name="donationTime"
+              defaultValue={details.donationTime}
               className="w-full border border-gray-300 p-2 rounded"
             />
           </div>
@@ -144,7 +177,8 @@ export default function UpdateDonationRequest() {
         <div>
           <label className="block font-medium">Request Message</label>
           <textarea
-            defaultValue={requestMessage}
+            name="requestMessage"
+            defaultValue={details.requestMessage}
             className="w-full border border-gray-300 p-2 rounded"
           ></textarea>
         </div>
