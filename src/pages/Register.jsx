@@ -1,5 +1,5 @@
 import Lottie from "lottie-react";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import {
   BiEnvelope,
   BiImageAdd,
@@ -11,11 +11,11 @@ import { Link, useNavigate } from "react-router";
 import happy from "../assets/happy.json";
 import Title from "../components/Title";
 import { AuthContext } from "../providers/AuthProvider";
-import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import { SlLocationPin } from "react-icons/sl";
 import { GrLocationPin } from "react-icons/gr";
 import useAxiosPublic from "../hooks/axiosPublic";
+import axios from "axios";
 
 const Register = () => {
   const goTo = useNavigate();
@@ -36,35 +36,38 @@ const Register = () => {
   const [errorMsg, setErrorMsg] = useState("");
   const [loadingSave, setLoadingSave] = useState(false);
 
-  const { data: districts = [], isLoading: isDistrictsLoading } = useQuery({
-    queryKey: ["districts"],
-    queryFn: async () => {
-      const { data } = await axiosPublic.get("/districts");
-      return data;
-    },
-  });
+  const [districts, setDistricts] = useState([]);
+  const [upazilas, setUpazilas] = useState([]);
+  const [filteredUpazilas, setFilteredUpazilas] = useState([]);
 
-  // Fetch upazilas (filtered by districtId)
-  const { data: upazilas = [], isLoading: isUpazilasLoading } = useQuery({
-    queryKey: ["upazilas", formData.districtId],
-    queryFn: async () => {
-      const { data } = await axiosPublic.get(
-        `/upazilas?district_id=${formData.districtId}`
+  useEffect(() => {
+    const fetchData = async () => {
+      const [districtRes, upazilaRes] = await Promise.all([
+        axios.get("/districts.json"),
+        axios.get("/upazilas.json"),
+      ]);
+      setDistricts(districtRes.data);
+      setUpazilas(upazilaRes.data);
+    };
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    if (formData.districtId) {
+      const filtered = upazilas.filter(
+        (u) => u.district_id === formData.districtId
       );
-      return data;
-    },
-    enabled: !!formData.districtId,
-  });
+      setFilteredUpazilas(filtered);
+    } else {
+      setFilteredUpazilas([]);
+    }
+  }, [formData.districtId, upazilas]);
 
-  if (isDistrictsLoading || isUpazilasLoading) return <p>Loading...</p>;
-
-  // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  // Handle district selection (set both name and id)
   const handleDistrictChange = (e) => {
     const selectedName = e.target.value;
     const selectedDistrict = districts.find((d) => d.name === selectedName);
@@ -72,7 +75,7 @@ const Register = () => {
       ...prev,
       district: selectedName,
       districtId: selectedDistrict ? selectedDistrict.id : "",
-      upazila: "", // reset upazila when district changes
+      upazila: "",
     }));
   };
 
@@ -91,27 +94,22 @@ const Register = () => {
     setLoadingSave(true);
 
     try {
-      // Create user with Firebase
       const res = await createUser(email, pass);
       await updateUser({ displayName: name, photoURL: image });
 
-      // Save user data to MongoDB with default role = donor
       await axiosPublic.post("/add-user", {
         name,
         email,
         image,
         bloodGroup: blood,
-        district, // district name
+        district,
         upazila,
         role: "donor",
         status: "active",
-        // loginCount: 1,
       });
 
-      // Success popup
       Swal.fire("Success", "Registration completed successfully!", "success");
 
-      // Set user in context
       setUser({
         ...res.user,
         displayName: name,
@@ -142,7 +140,7 @@ const Register = () => {
           </div>
 
           <div className="flex justify-between items-center gap-5 pt-8 flex-col lg:flex-row">
-            {/* Registration Form */}
+            {/* Form */}
             <div className="login-form flex-1 w-full max-w-lg">
               <form
                 onSubmit={handleSubmit}
@@ -152,7 +150,7 @@ const Register = () => {
                 <div className="flex items-center">
                   <BiUser className="text-3xl text-slate-500 mr-2" />
                   <input
-                    className="outline-none flex-1 border-b-2 p-2 bg-transparent focus:border-red-400 transition-all duration-200"
+                    className="outline-none flex-1 border-b-2 p-2 bg-transparent focus:border-red-400"
                     type="text"
                     name="name"
                     placeholder="Enter Full Name"
@@ -166,7 +164,7 @@ const Register = () => {
                 <div className="flex items-center">
                   <BiImageAdd className="text-3xl text-slate-500 mr-2" />
                   <input
-                    className="outline-none flex-1 border-b-2 p-2 bg-transparent focus:border-red-400 transition-all duration-200"
+                    className="outline-none flex-1 border-b-2 p-2 bg-transparent focus:border-red-400"
                     type="text"
                     name="image"
                     placeholder="Enter Image URL"
@@ -179,7 +177,7 @@ const Register = () => {
                 <div className="flex items-center">
                   <BiEnvelope className="text-3xl text-slate-500 mr-2" />
                   <input
-                    className="outline-none flex-1 border-b-2 p-2 bg-transparent focus:border-red-400 transition-all duration-200"
+                    className="outline-none flex-1 border-b-2 p-2 bg-transparent focus:border-red-400"
                     type="email"
                     name="email"
                     placeholder="Enter Email"
@@ -196,7 +194,7 @@ const Register = () => {
                     name="blood"
                     value={formData.blood}
                     onChange={handleChange}
-                    className="outline-none flex-1 border-b-2 p-2 bg-transparent focus:border-red-400 transition-all duration-200"
+                    className="outline-none flex-1 border-b-2 p-2 bg-transparent focus:border-red-400"
                     required
                   >
                     <option value="">Select Blood Group</option>
@@ -218,7 +216,7 @@ const Register = () => {
                     name="district"
                     value={formData.district}
                     onChange={handleDistrictChange}
-                    className="outline-none flex-1 border-b-2 p-2 bg-transparent focus:border-red-400 transition-all duration-200"
+                    className="outline-none flex-1 border-b-2 p-2 bg-transparent focus:border-red-400"
                     required
                   >
                     <option value="">Select District</option>
@@ -237,11 +235,11 @@ const Register = () => {
                     name="upazila"
                     value={formData.upazila}
                     onChange={handleChange}
-                    className="outline-none flex-1 border-b-2 p-2 bg-transparent focus:border-red-400 transition-all duration-200"
+                    className="outline-none flex-1 border-b-2 p-2 bg-transparent focus:border-red-400"
                     required
                   >
                     <option value="">Select Upazila</option>
-                    {upazilas.map((u) => (
+                    {filteredUpazilas.map((u) => (
                       <option key={u.id} value={u.name}>
                         {u.name}
                       </option>
@@ -253,7 +251,7 @@ const Register = () => {
                 <div className="flex items-center">
                   <BiKey className="text-3xl text-slate-500 mr-2" />
                   <input
-                    className="outline-none flex-1 border-b-2 p-2 bg-transparent focus:border-red-400 transition-all duration-200"
+                    className="outline-none flex-1 border-b-2 p-2 bg-transparent focus:border-red-400"
                     type="password"
                     name="pass"
                     placeholder="Enter Password"
@@ -267,7 +265,7 @@ const Register = () => {
                 <div className="flex items-center">
                   <BiKey className="text-3xl text-slate-500 mr-2" />
                   <input
-                    className="outline-none flex-1 border-b-2 p-2 bg-transparent focus:border-red-400 transition-all duration-200"
+                    className="outline-none flex-1 border-b-2 p-2 bg-transparent focus:border-red-400"
                     type="password"
                     name="confirmPass"
                     placeholder="Confirm Password"
@@ -281,6 +279,7 @@ const Register = () => {
                 {errorMsg && (
                   <p className="text-red-500 text-sm text-center">{errorMsg}</p>
                 )}
+
                 {/* Login link */}
                 <div className="p-1 flex gap-2 text-sm text-slate-600">
                   <span>Have an account?</span>
@@ -288,6 +287,7 @@ const Register = () => {
                     Login
                   </Link>
                 </div>
+
                 {/* Submit */}
                 <button
                   type="submit"
@@ -299,7 +299,7 @@ const Register = () => {
               </form>
             </div>
 
-            {/* Animation */}
+            {/* Lottie Animation */}
             <div className="lottie flex-1 flex mx-20">
               <Lottie animationData={happy} />
             </div>
