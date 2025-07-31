@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 const AdminDashboard = ({ user, role, stats }) => {
   const axiosSecure = useAxiosSecure();
   const [users, setUsers] = useState([]);
+  const [request, setRequest] = useState([]);
   const donors = users.filter((user) => user.role === "donor");
   //   console.log("🚀 ~ UsersList ~ s:", users, donors);
 
@@ -14,11 +15,17 @@ const AdminDashboard = ({ user, role, stats }) => {
       .catch((err) => console.error("Error fetching users:", err));
   }, []);
 
+  useEffect(() => {
+    axiosSecure("/all-donation-requests")
+      .then(({ data }) => setRequest(data))
+      .catch((err) => console.error("Error fetching donation requests:", err));
+  }, []);
+
   // stats fallback
   const {
     totalDonor = donors.length,
     totalFunding = 0,
-    totalRequests = 0,
+    totalRequests = request.length,
   } = stats || {};
 
   return (
