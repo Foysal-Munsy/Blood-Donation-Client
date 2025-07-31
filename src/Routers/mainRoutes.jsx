@@ -19,6 +19,7 @@ import Request from "../pages/Request";
 import ViewDetails from "../pages/ViewDetails";
 import UpdateDonationRequest from "../pages/UpdateDonationRequest";
 import BlogDetails from "../pages/BlogDetails";
+import Search from "../pages/Search";
 const mainRoutes = createBrowserRouter([
   {
     path: "/",
@@ -32,6 +33,10 @@ const mainRoutes = createBrowserRouter([
       {
         path: "blog",
         element: <Blog />,
+      },
+      {
+        path: "search",
+        element: <Search />,
       },
       {
         path: "blog-details/:ID",
