@@ -17,6 +17,7 @@ import ContentManagement from "../pages/adminDashboard/ContentManagement";
 import AddBlog from "../pages/adminDashboard/AddBlog";
 import Request from "../pages/Request";
 import ViewDetails from "../pages/ViewDetails";
+import UpdateDonationRequest from "../pages/UpdateDonationRequest";
 const mainRoutes = createBrowserRouter([
   {
     path: "/",
@@ -82,6 +83,10 @@ const mainRoutes = createBrowserRouter([
       {
         path: "my-donation-requests",
         element: <DonationRequest />,
+      },
+      {
+        path: "update-donation-request/:ID",
+        element: <UpdateDonationRequest />,
       },
       {
         path: "create-donation-request",

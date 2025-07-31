@@ -205,11 +205,12 @@ export default function DonationRequest() {
                       View
                     </Link>
                     <Link
-                      to="#"
+                      to={`/dashboard/update-donation-request/${donation._id}`}
                       className="text-green-600 hover:underline text-sm"
                     >
                       Edit
                     </Link>
+
                     <button
                       onClick={() => handleDelete(donation._id)}
                       className="text-red-600 hover:underline text-sm"
