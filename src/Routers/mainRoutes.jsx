@@ -18,6 +18,7 @@ import AddBlog from "../pages/adminDashboard/AddBlog";
 import Request from "../pages/Request";
 import ViewDetails from "../pages/ViewDetails";
 import UpdateDonationRequest from "../pages/UpdateDonationRequest";
+import BlogDetails from "../pages/BlogDetails";
 const mainRoutes = createBrowserRouter([
   {
     path: "/",
@@ -29,8 +30,16 @@ const mainRoutes = createBrowserRouter([
         element: <Home></Home>,
       },
       {
-        path: "/blog",
+        path: "blog",
         element: <Blog />,
+      },
+      {
+        path: "blog-details/:ID",
+        element: (
+          <PrivateRoute>
+            <BlogDetails />
+          </PrivateRoute>
+        ),
       },
       {
         path: "request",
@@ -107,10 +116,10 @@ const mainRoutes = createBrowserRouter([
         path: "content-management/add-blog",
         element: <AddBlog />,
       },
-      {
-        path: "blog",
-        element: <Blog></Blog>,
-      },
+      // {
+      //   path: "blog",
+      //   element: <Blog></Blog>,
+      // },
     ],
   },
 ]);
