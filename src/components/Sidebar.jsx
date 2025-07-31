@@ -84,6 +84,11 @@ const Sidebar = () => {
       path: "/dashboard/all-blood-donation-request",
       icon: <FaClipboardList />,
     },
+    {
+      name: "Content Management",
+      path: "/dashboard/content-management",
+      icon: <FaPencilAlt />,
+    },
   ];
 
   // if (!user || role === null) return null;
