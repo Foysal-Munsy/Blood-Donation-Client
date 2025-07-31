@@ -2,24 +2,126 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { Link } from "react-router";
+import Swal from "sweetalert2";
+import useAxiosPublic from "../../hooks/axiosPublic";
 
 export default function AllBloodDonationRequest() {
   const { user } = useContext(AuthContext);
   const axiosSecure = useAxiosSecure();
+  const axiosPublic = useAxiosPublic();
   const [donations, setDonations] = useState([]);
+  const [donors, setDonors] = useState({});
   const [loading, setLoading] = useState(true);
   const [filterStatus, setFilterStatus] = useState("all");
 
+  //   useEffect(() => {
+  //     if (!user) return;
+  //     axiosSecure
+  //       .get("/all-donation-requests")
+  //       .then((res) => setDonations(res.data))
+  //       .catch((err) => {
+  //         console.error("Error fetching donation requests:", err);
+  //       })
+  //       .finally(() => setLoading(false));
+  //   }, [user]);
+
   useEffect(() => {
     if (!user) return;
+
     axiosSecure
       .get("/all-donation-requests")
-      .then((res) => setDonations(res.data))
+      .then(async (res) => {
+        const donations = res.data;
+        setDonations(donations);
+
+        const donorData = {};
+        await Promise.all(
+          donations.map(async (donation) => {
+            try {
+              const donorRes = await axiosSecure.get(
+                `/find-donor?donationId=${donation._id}`
+              );
+              if (donorRes.data.length > 0) {
+                donorData[donation._id] = donorRes.data[0];
+              }
+            } catch (err) {
+              console.error("Error fetching donor for donation:", donation._id);
+            }
+          })
+        );
+        setDonors(donorData);
+      })
       .catch((err) => {
         console.error("Error fetching donation requests:", err);
       })
       .finally(() => setLoading(false));
   }, [user]);
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this request!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosPublic
+          .delete(`/delete-request/${id}`)
+          .then((res) => {
+            if (res.data.deletedCount > 0) {
+              setDonations((prev) =>
+                prev.filter((donation) => donation._id !== id)
+              );
+              Swal.fire(
+                "Deleted!",
+                "Your request has been deleted.",
+                "success"
+              );
+            } else {
+              Swal.fire("Error", "Deletion failed. Please try again.", "error");
+            }
+          })
+          .catch(() => {
+            Swal.fire("Error", "Something went wrong.", "error");
+          });
+      }
+    });
+  };
+
+  const handleStatusUpdate = async (id, newStatus) => {
+    Swal.fire({
+      title: `Change status to "${newStatus}"?`,
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonText: "Yes",
+    }).then(async (result) => {
+      if (!result.isConfirmed) return;
+
+      try {
+        const res = await axiosSecure.patch("/donation-status", {
+          id,
+          donationStatus: newStatus,
+        });
+
+        if (res.data.modifiedCount > 0) {
+          setDonations((prev) =>
+            prev.map((donation) =>
+              donation._id === id
+                ? { ...donation, donationStatus: newStatus }
+                : donation
+            )
+          );
+          Swal.fire("Success!", `Status updated to "${newStatus}".`, "success");
+        } else {
+          Swal.fire("Failed", "Status update failed. Try again.", "error");
+        }
+      } catch (error) {
+        Swal.fire("Error", "Something went wrong.", "error");
+      }
+    });
+  };
 
   const filteredDonations =
     filterStatus === "all"
@@ -91,11 +193,13 @@ export default function AllBloodDonationRequest() {
                     {donation.donationStatus}
                   </td>
                   <td className="px-3 py-2">
-                    {donation.donationStatus === "inprogress" && user ? (
+                    {donors[donation._id] ? (
                       <>
-                        <div>{user.name}</div>
-                        <div className="text-xs text-gray-500">
-                          {user.email}
+                        <div className="font-medium">
+                          {donors[donation._id].donorName}
+                        </div>
+                        <div className="text-xs text-gray-600">
+                          {donors[donation._id].donorEmail}
                         </div>
                       </>
                     ) : (
@@ -104,29 +208,39 @@ export default function AllBloodDonationRequest() {
                   </td>
                   <td className="px-3 py-2 space-x-1">
                     <Link
-                      to="#"
+                      to={`/details/${donation._id}`}
                       className="text-blue-600 hover:underline text-sm"
                     >
                       View
                     </Link>
                     <Link
-                      to="#"
+                      to={`/dashboard/update-donation-request/${donation._id}`}
                       className="text-green-600 hover:underline text-sm"
                     >
                       Edit
                     </Link>
-                    <Link
-                      to="#"
-                      className="text-red-600 hover:underline text-sm"
+                    <button
+                      onClick={() => handleDelete(donation._id)}
+                      className="text-red-600 cursor-pointer hover:underline text-sm"
                     >
                       Delete
-                    </Link>
+                    </button>
                     {donation.donationStatus === "inprogress" && (
                       <>
-                        <button className="text-green-700 hover:underline text-sm ml-2">
+                        <button
+                          onClick={() =>
+                            handleStatusUpdate(donation._id, "done")
+                          }
+                          className="text-green-700 hover:underline text-sm ml-2"
+                        >
                           Done
                         </button>
-                        <button className="text-yellow-700 hover:underline text-sm ml-1">
+                        <button
+                          onClick={() =>
+                            handleStatusUpdate(donation._id, "canceled")
+                          }
+                          className="text-yellow-700 hover:underline text-sm ml-1"
+                        >
                           Cancel
                         </button>
                       </>
