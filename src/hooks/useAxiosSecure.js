@@ -6,7 +6,7 @@ const useAxiosSecure = () => {
   const { user } = useContext(AuthContext);
   // console.log("🚀 ~ useAxiosSecure ~ accessToken:", user.accessToken);
   const instance = axios.create({
-    baseURL: "http://localhost:5001",
+    baseURL: "https://blood-donation-server-sigma.vercel.app",
     headers: {
       Authorization: `Bearer ${user.accessToken}`,
     },

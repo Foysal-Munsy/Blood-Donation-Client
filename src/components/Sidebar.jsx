@@ -47,7 +47,7 @@ const Sidebar = () => {
   };
 
   const adminMenu = [
-    { name: "Home", path: "/", icon: <FaHome /> },
+    { name: "Back To Home", path: "/", icon: <FaHome /> },
     { name: "Profile", path: "/dashboard/profile", icon: <CgProfile /> },
     { name: "All Users", path: "/dashboard/all-users", icon: <FaUsers /> },
     {
@@ -63,7 +63,7 @@ const Sidebar = () => {
   ];
 
   const donorMenu = [
-    { name: "Home", path: "/", icon: <FaHome /> },
+    { name: "Back To Home", path: "/", icon: <FaHome /> },
     { name: "Profile", path: "/dashboard/profile", icon: <CgProfile /> },
     {
       name: "My Donation Request",
@@ -78,7 +78,7 @@ const Sidebar = () => {
   ];
 
   const defaultMenu = [
-    { name: "Home", path: "/", icon: <FaHome /> },
+    { name: "Back To Home", path: "/", icon: <FaHome /> },
     {
       name: "All Donation Request",
       path: "/dashboard/all-blood-donation-request",
