@@ -1,10 +1,10 @@
 # 🩸 Blood Donation Client – A Blood Donation Management Platform
 
 **Admin Panel Access:**  
-👤 Username: `admin@bloodbond.com`  
-🔐 Password: `admin123`
+👤 Username: `foysal@m.com`  
+🔐 Password: `123456`
 
-🌐 **Live Site:** [https://bloodbond.vercel.app](https://bloodbond.vercel.app)
+🌐 **Live Site:** [https://blood-donation-app-ff014.web.app/](https://blood-donation-app-ff014.web.app/)
 
 ---
 
