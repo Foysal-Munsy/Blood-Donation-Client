@@ -15,24 +15,12 @@ const Header = () => {
     { name: "Request", path: "/request" },
     { name: "Blog", path: "/blog" },
     // { name: "Funding", path: "/funding" },
-
-    // ...(user?.email ? [{ name: "Manage My Foods", path: "/my-foods" }] : []),
   ];
 
   const handleNavLinkClick = () => setIsMenuOpen(false);
 
   return (
     <nav className="sticky top-0 z-50 bg-white shadow-lg border-b border-rose-200">
-      {/* User Greeting Banner */}
-      {user && (
-        <div className="bg-gradient-to-r from-red-600 to-rose-600 text-white py-3 px-4 text-center overflow-hidden">
-          <p className="text-sm md:text-base font-medium animate-pulse">
-            Welcome back, <span className="font-bold">{user.displayName}</span>!
-            <span className="ml-2 hidden sm:inline">Explore it.</span>
-          </p>
-        </div>
-      )}
-
       {/* Main Navigation */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 lg:h-20">

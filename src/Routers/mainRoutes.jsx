@@ -79,12 +79,8 @@ const mainRoutes = createBrowserRouter([
     errorElement: <Error></Error>,
     children: [
       {
-        path: "",
-        element: (
-          <PrivateRoute>
-            <Dashboard></Dashboard>
-          </PrivateRoute>
-        ),
+        index: true,
+        element: <Dashboard></Dashboard>,
       },
       {
         path: "profile",

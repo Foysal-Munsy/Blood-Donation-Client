@@ -10,14 +10,13 @@ import {
   FaPencilAlt,
 } from "react-icons/fa";
 import { MdCreate } from "react-icons/md";
-import { AuthContext } from "../providers/AuthProvider";
 import useRole from "../hooks/useRole";
 import { CgProfile } from "react-icons/cg";
+import { ArrowLeft } from "lucide-react";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  // const { user } = useContext(AuthContext);
   const { role, loading } = useRole();
 
   useEffect(() => {
@@ -47,7 +46,8 @@ const Sidebar = () => {
   };
 
   const adminMenu = [
-    { name: "Back To Home", path: "/", icon: <FaHome /> },
+    // Changed path from "" to "/dashboard" to make exact matching work
+    { name: "Dashboard", path: "/dashboard", icon: <FaHome />, end: true },
     { name: "Profile", path: "/dashboard/profile", icon: <CgProfile /> },
     { name: "All Users", path: "/dashboard/all-users", icon: <FaUsers /> },
     {
@@ -63,7 +63,8 @@ const Sidebar = () => {
   ];
 
   const donorMenu = [
-    { name: "Back To Home", path: "/", icon: <FaHome /> },
+    // Changed path from "" to "/dashboard" to make exact matching work
+    { name: "Dashboard", path: "/dashboard", icon: <FaHome />, end: true },
     { name: "Profile", path: "/dashboard/profile", icon: <CgProfile /> },
     {
       name: "My Donation Request",
@@ -78,7 +79,9 @@ const Sidebar = () => {
   ];
 
   const defaultMenu = [
-    { name: "Back To Home", path: "/", icon: <FaHome /> },
+    // Changed path from "" to "/dashboard" to make exact matching work
+    { name: "Dashboard", path: "/dashboard", icon: <FaHome />, end: true },
+    { name: "Profile", path: "/dashboard/profile", icon: <CgProfile /> },
     {
       name: "All Donation Request",
       path: "/dashboard/all-blood-donation-request",
@@ -91,13 +94,10 @@ const Sidebar = () => {
     },
   ];
 
-  // if (!user || role === null) return null;
-
   let menuItems = defaultMenu;
 
   if (role === "admin") menuItems = adminMenu;
   else if (role === "donor") menuItems = donorMenu;
-  console.log("🚀 ~ Sidebar ~ menuItems:", role, menuItems);
 
   if (loading) return <p>loading...</p>;
 
@@ -129,7 +129,7 @@ const Sidebar = () => {
 
       {/* Sidebar */}
       <aside
-        className={`fixed top-0 left-0 h-screen bg-white border-r border-rose-200 shadow-lg z-50 transform transition-all duration-300 ${
+        className={`fixed top-0 left-0 h-screen bg-white border-r border-rose-200 shadow-lg z-50 transform transition-all duration-300 flex flex-col ${
           isMobile
             ? isOpen
               ? "w-64 translate-x-0"
@@ -139,72 +139,87 @@ const Sidebar = () => {
             : "w-20"
         }`}
       >
-        {/* Desktop Logo & Toggle */}
-        <div className="hidden lg:flex items-center justify-between h-16 px-4 border-b border-rose-200">
-          <Link to="/dashboard" className="flex items-center space-x-2 group">
-            <span
-              className={`font-black text-xl tracking-tight bg-gradient-to-r from-red-600 to-rose-700 bg-clip-text text-transparent transition-opacity duration-300 ${
-                !isOpen && "opacity-0 hidden"
-              }`}
-            >
-              RedDrop
-            </span>
-            <span className="text-2xl">🩸</span>
-          </Link>
-          {/* <button
-            onClick={toggleSidebar}
-            className="p-2 rounded-lg text-gray-700 hover:text-red-700 hover:bg-rose-50 transition-all duration-200"
-          >
-            {isOpen ? <FaTimes /> : <FaBars />}
-          </button> */}
-        </div>
-
-        {/* Mobile Header */}
-        <div className="lg:hidden flex items-center justify-between h-16 px-4 border-b border-rose-200">
-          <Link
-            to="/dashboard"
-            className="flex items-center space-x-2"
-            onClick={closeSidebarOnMobile}
-          >
-            <span className="font-black text-xl tracking-tight bg-gradient-to-r from-red-600 to-rose-700 bg-clip-text text-transparent">
-              RedDrop
-            </span>
-            <span className="text-2xl">🩸</span>
-          </Link>
-          <button
-            onClick={closeSidebarOnMobile}
-            className="p-2 rounded-lg text-gray-700 hover:text-red-700 hover:bg-rose-50 transition-all duration-200"
-          >
-            <FaTimes />
-          </button>
-        </div>
-
-        {/* Navigation */}
-        <nav className="flex flex-col mt-4 space-y-1 px-2">
-          {menuItems.map((item, index) => (
-            <NavLink
-              key={index}
-              to={item.path}
-              onClick={closeSidebarOnMobile}
-              className={({ isActive }) =>
-                `flex items-center gap-3 px-4 py-3 rounded-lg font-medium text-sm transition-all duration-200 ${
-                  isActive
-                    ? "bg-rose-100 text-red-700 shadow-sm"
-                    : "text-gray-700 hover:text-red-700 hover:bg-rose-50"
-                }`
-              }
-            >
-              <span className="text-lg flex-shrink-0">{item.icon}</span>
+        <div className="flex-1 overflow-y-auto">
+          {/* Desktop Logo & Toggle */}
+          <div className="hidden lg:flex items-center justify-between h-16 px-4 border-b border-rose-200">
+            <Link to="/dashboard" className="flex items-center space-x-2 group">
               <span
-                className={`transition-opacity duration-300 ${
-                  !isMobile && !isOpen && "opacity-0 hidden"
+                className={`font-black text-xl tracking-tight bg-gradient-to-r from-red-600 to-rose-700 bg-clip-text text-transparent transition-opacity duration-300 ${
+                  !isOpen && "opacity-0 hidden"
                 }`}
               >
-                {item.name}
+                RedDrop
               </span>
-            </NavLink>
-          ))}
-        </nav>
+              <span className="text-2xl">🩸</span>
+            </Link>
+          </div>
+
+          {/* Mobile Header */}
+          <div className="lg:hidden flex items-center justify-between h-16 px-4 border-b border-rose-200">
+            <Link
+              to="/dashboard"
+              className="flex items-center space-x-2"
+              onClick={closeSidebarOnMobile}
+            >
+              <span className="font-black text-xl tracking-tight bg-gradient-to-r from-red-600 to-rose-700 bg-clip-text text-transparent">
+                RedDrop
+              </span>
+              <span className="text-2xl">🩸</span>
+            </Link>
+            <button
+              onClick={closeSidebarOnMobile}
+              className="p-2 rounded-lg text-gray-700 hover:text-red-700 hover:bg-rose-50 transition-all duration-200"
+            >
+              <FaTimes />
+            </button>
+          </div>
+
+          {/* Navigation */}
+          <nav className="flex flex-col mt-4 space-y-1 px-2">
+            {menuItems.map((item, index) => (
+              <NavLink
+                key={index}
+                to={item.path}
+                end={item.end || false} // Use the end prop to ensure exact matching
+                onClick={closeSidebarOnMobile}
+                className={({ isActive }) =>
+                  `flex items-center gap-3 px-4 py-3 rounded-lg font-medium text-sm transition-all duration-200 ${
+                    isActive
+                      ? "bg-rose-100 text-red-700 shadow-sm"
+                      : "text-gray-700 hover:text-red-700 hover:bg-rose-50"
+                  }`
+                }
+              >
+                <span className="text-lg flex-shrink-0">{item.icon}</span>
+                <span
+                  className={`transition-opacity duration-300 ${
+                    !isMobile && !isOpen && "opacity-0 hidden"
+                  }`}
+                >
+                  {item.name}
+                </span>
+              </NavLink>
+            ))}
+          </nav>
+        </div>
+
+        {/* Footer */}
+        <footer className="mt-auto pb-4 px-4 border-t border-rose-200/50">
+          <Link
+            to="/"
+            onClick={() => isMobile && setIsOpen(false)}
+            className={`flex items-center justify-center gap-2 w-full px-4 py-3 rounded-lg font-medium text-sm transition-all duration-200 ${
+              !isMobile && !isOpen ? "justify-center" : "justify-start"
+            } text-gray-700 hover:text-red-700 hover:bg-rose-50`}
+          >
+            <ArrowLeft className="text-lg flex-shrink-0" />
+            {(!isMobile || isOpen) && (
+              <span className="transition-opacity duration-300">
+                Back to Home
+              </span>
+            )}
+          </Link>
+        </footer>
       </aside>
 
       {/* Mobile spacer to push content below mobile header */}
