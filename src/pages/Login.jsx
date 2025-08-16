@@ -13,7 +13,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   // Redirect path (default to "/")
-  const from = location.state?.from?.pathname || "/";
+  const from = location?.state || "/";
 
   const handleSubmit = (e) => {
     e.preventDefault();
