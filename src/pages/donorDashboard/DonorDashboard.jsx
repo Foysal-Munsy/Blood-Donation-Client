@@ -4,6 +4,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import WelcomeMsg from "../../components/WelcomeMsg";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../hooks/axiosPublic";
+import PageTitle from "../../components/PageTitle";
 
 export default function DonorDashboard({ user }) {
   const axiosSecure = useAxiosSecure();
@@ -69,6 +70,7 @@ export default function DonorDashboard({ user }) {
 
   return (
     <div className="p-4">
+      <PageTitle title={"Donor Dashboard"} />
       {/* Welcome Message */}
       <WelcomeMsg />
 

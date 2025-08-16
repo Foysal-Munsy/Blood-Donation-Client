@@ -5,6 +5,7 @@ import { Link } from "react-router";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../hooks/axiosPublic";
 import useRole from "../../hooks/useRole";
+import PageTitle from "../../components/PageTitle";
 
 export default function AllBloodDonationRequest() {
   const { user } = useContext(AuthContext);
@@ -133,6 +134,7 @@ export default function AllBloodDonationRequest() {
 
   return (
     <div className="px-4 py-6">
+      <PageTitle title={"All Donation Request"} />
       <h2 className="text-2xl font-semibold mb-4 text-center">
         All Donation Requests
       </h2>

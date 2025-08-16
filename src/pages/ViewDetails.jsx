@@ -4,6 +4,7 @@ import { AuthContext } from "../providers/AuthProvider";
 import { useParams } from "react-router";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../hooks/axiosPublic";
+import PageTitle from "../components/PageTitle";
 
 export default function ViewDetails() {
   const { ID } = useParams();
@@ -90,6 +91,7 @@ export default function ViewDetails() {
 
   return (
     <div className="p-4 max-w-2xl mx-auto space-y-4">
+      <PageTitle title={"Details"} />
       <h2 className="text-2xl font-semibold text-center mb-6">
         Donation Request Details
       </h2>

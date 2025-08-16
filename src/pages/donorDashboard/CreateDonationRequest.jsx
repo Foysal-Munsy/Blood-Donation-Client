@@ -3,6 +3,7 @@ import { AuthContext } from "../../providers/AuthProvider";
 import toast from "react-hot-toast";
 import useAxiosPublic from "../../hooks/axiosPublic";
 import useStatus from "../../hooks/useStatus";
+import PageTitle from "../../components/PageTitle";
 
 const CreateDonationRequest = () => {
   const axiosPublic = useAxiosPublic();
@@ -115,6 +116,7 @@ const CreateDonationRequest = () => {
 
   return (
     <div>
+      <PageTitle title={"Create Donation Request"} />
       <h2 className="text-2xl">Create Donation Request</h2>
       <form
         onSubmit={handleSubmit}

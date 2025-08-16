@@ -6,6 +6,7 @@ import { AuthContext } from "../providers/AuthProvider";
 import { Link, useLocation, useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import loginAnimation from "../assets/loginAnimation.json";
+import PageTitle from "../components/PageTitle";
 
 const Login = () => {
   const { signIn } = useContext(AuthContext);
@@ -40,6 +41,7 @@ const Login = () => {
 
   return (
     <div className="bg-[url(/bg.png)] bg-contain">
+      <PageTitle title={"Login"} />
       <div className="bg-white bg-opacity-90 min-h-screen">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="title mt-5">

@@ -16,6 +16,7 @@ import { SlLocationPin } from "react-icons/sl";
 import { GrLocationPin } from "react-icons/gr";
 import useAxiosPublic from "../hooks/axiosPublic";
 import axios from "axios";
+import PageTitle from "../components/PageTitle";
 
 const Register = () => {
   const goTo = useNavigate();
@@ -133,6 +134,7 @@ const Register = () => {
 
   return (
     <div className="bg-[url(/bg.png)] bg-contain">
+      <PageTitle title={"Register"} />
       <div className="bg-white bg-opacity-90 min-h-screen">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="title mt-5">

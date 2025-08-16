@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router";
 
 import useAxiosPublic from "../hooks/axiosPublic";
+import PageTitle from "../components/PageTitle";
 
 export default function Blog() {
   const axiosPublic = useAxiosPublic();
@@ -25,6 +26,7 @@ export default function Blog() {
 
   return (
     <div className="max-w-6xl mx-auto p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <PageTitle title={"Blog"} />
       {blogs.length === 0 ? (
         <p className="col-span-full text-center text-gray-500">
           No published blogs found.

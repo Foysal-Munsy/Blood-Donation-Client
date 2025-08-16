@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import useAxiosPublic from "../hooks/axiosPublic";
+import PageTitle from "../components/PageTitle";
 
 const Search = () => {
   const axiosPublic = useAxiosPublic();
@@ -88,6 +89,7 @@ const Search = () => {
 
   return (
     <div className="min-h-screen p-6 bg-gray-50">
+      <PageTitle title={"Search"} />
       <h2 className="text-2xl font-bold text-center mb-6">
         Find a Blood Donor
       </h2>

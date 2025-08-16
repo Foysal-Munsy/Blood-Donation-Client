@@ -4,6 +4,7 @@ import { Link } from "react-router";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useAxiosPublic from "../../hooks/axiosPublic";
+import PageTitle from "../../components/PageTitle";
 
 export default function DonationRequest() {
   const { user } = useContext(AuthContext);
@@ -121,6 +122,7 @@ export default function DonationRequest() {
 
   return (
     <div className="px-4 py-6">
+      <PageTitle title={"My Donation Request"} />
       <h2 className="text-2xl font-semibold mb-4 text-center">
         My Donation Requests
       </h2>

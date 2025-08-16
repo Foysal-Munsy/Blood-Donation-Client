@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router";
 import { AuthContext } from "../providers/AuthProvider";
 import useAxiosPublic from "../hooks/axiosPublic";
+import PageTitle from "../components/PageTitle";
 
 export default function Request() {
   const { user } = useContext(AuthContext);
@@ -21,6 +22,7 @@ export default function Request() {
 
   return (
     <div className="px-4 py-6">
+      <PageTitle title={"Request"} />
       <h2 className="text-2xl font-semibold mb-4 text-center">
         Pending Blood Donation Requests
       </h2>

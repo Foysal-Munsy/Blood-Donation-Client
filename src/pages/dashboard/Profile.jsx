@@ -4,6 +4,7 @@ import useCurrentUser from "../../hooks/useCurrentUser";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 import { getAuth, updateProfile } from "firebase/auth";
+import PageTitle from "../../components/PageTitle";
 
 export default function Profile() {
   const { currentUser, loading } = useCurrentUser(); // MongoDB user
@@ -83,6 +84,7 @@ export default function Profile() {
 
   return (
     <div className="max-w-xl mx-auto p-4">
+      <PageTitle title={"Profile"} />
       <h2 className="text-2xl font-bold text-center mb-6">Profile</h2>
 
       {/* Profile Picture */}

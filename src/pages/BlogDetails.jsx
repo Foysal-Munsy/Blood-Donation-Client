@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import useAxiosSecure from "../hooks/useAxiosSecure";
+import PageTitle from "../components/PageTitle";
 
 export default function BlogDetails() {
   const axiosSecure = useAxiosSecure();
@@ -28,6 +29,7 @@ export default function BlogDetails() {
 
   return (
     <div className="max-w-3xl mx-auto p-4 mt-10">
+      <PageTitle title={"Blog Details"} />
       <img
         src={thumbnail}
         alt={title}

@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import { AuthContext } from "../../providers/AuthProvider";
 import useRole from "../../hooks/useRole";
 import Swal from "sweetalert2";
+import PageTitle from "../../components/PageTitle";
 
 const ContentManagement = () => {
   const [blogs, setBlogs] = useState([]);
@@ -87,6 +88,7 @@ const ContentManagement = () => {
 
   return (
     <div className="p-6">
+      <PageTitle title={"Content Management"} />
       {/* Header */}
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold">Content Management</h1>

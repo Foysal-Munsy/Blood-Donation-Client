@@ -1,6 +1,7 @@
 import { FaUsers, FaHandHoldingUsd, FaTint } from "react-icons/fa";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useEffect, useState } from "react";
+import PageTitle from "../../components/PageTitle";
 
 const AdminDashboard = ({ user, role, stats }) => {
   const axiosSecure = useAxiosSecure();
@@ -30,6 +31,7 @@ const AdminDashboard = ({ user, role, stats }) => {
 
   return (
     <div className="w-full">
+      <PageTitle title={"Admin Dashboard"} />
       {/* Welcome Message */}
       {user && (
         <div className="bg-gradient-to-r from-red-600 to-rose-600 text-white py-3 px-4 text-center overflow-hidden rounded-md shadow-md mb-6">
