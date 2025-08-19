@@ -21,22 +21,20 @@ export default function Request() {
   }, [user]);
 
   return (
-    <div className="px-4 py-6">
+    <div className="container mx-auto px-4 sm:px-6 lg:px-8">
       <PageTitle title={"Request"} />
       <h2 className="text-2xl font-semibold mb-4 text-center">
         Pending Blood Donation Requests
       </h2>
 
       {loading ? (
-        <p className="text-center text-gray-600">Loading pending requests...</p>
+        <p className="text-center">Loading pending requests...</p>
       ) : donations.length === 0 ? (
-        <p className="text-center text-gray-500">
-          No pending donation requests found.
-        </p>
+        <p className="text-center">No pending donation requests found.</p>
       ) : (
         <div className="overflow-x-auto">
-          <table className="w-full border border-gray-200 rounded-lg overflow-hidden text-sm">
-            <thead className="bg-gray-100 text-gray-800">
+          <table className="w-full border border-border rounded-lg overflow-hidden text-sm">
+            <thead className="bg-cardBg text-highlighted">
               <tr>
                 <th className="px-3 py-2">Recipient</th>
                 <th className="px-3 py-2">Location</th>
@@ -46,11 +44,11 @@ export default function Request() {
                 <th className="px-3 py-2">Actions</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="text-center">
               {donations.map((donation, i) => (
                 <tr
                   key={donation._id}
-                  className={i % 2 === 0 ? "bg-white" : "bg-gray-50"}
+                  className={i % 2 === 0 ? "bg-white" : "bg-rose-50"}
                 >
                   <td className="px-3 py-2 font-medium">
                     {donation.recipientName}
@@ -61,11 +59,13 @@ export default function Request() {
                   <td className="px-3 py-2">
                     {donation.donationDate}
                     <br />
-                    <span className="text-gray-500 text-xs">
+                    <span className="text-xs opacity-75">
                       {donation.donationTime}
                     </span>
                   </td>
-                  <td className="px-3 py-2">{donation.bloodGroup}</td>
+                  <td className="px-3 py-2 font-semibold text-highlighted">
+                    {donation.bloodGroup}
+                  </td>
                   <td className="px-3 py-2 capitalize">
                     {donation.donationStatus}
                   </td>
@@ -73,7 +73,7 @@ export default function Request() {
                   <td className="px-3 py-2">
                     <Link
                       to={`/details/${donation._id}`}
-                      className="text-blue-600 hover:underline text-sm"
+                      className="text-highlighted hover:underline text-sm font-medium"
                     >
                       View
                     </Link>

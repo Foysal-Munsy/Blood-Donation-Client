@@ -1,2 +1,81 @@
 @import "tailwindcss";
+
 /* @plugin "daisyui"; */
+/* Theme 8: Soft RedDrop Comfort */
+@theme {
+    --color-background: linear-gradient(180deg, #fff1f2 0%, #ffffff 50%, #fef2f2 100%);
+    --color-text: #374151;
+    --color-accent: linear-gradient(90deg, #dc2626 0%, #be123c 50%, #881337 100%);
+    --color-highlighted: #7f1d1d;
+    --color-cardBg: linear-gradient(135deg, #fef7f0 0%, #fff1f2 100%);
+    --color-border: #fbb6ce;
+    --color-cta: linear-gradient(135deg, #ef4444 0%, #be123c 100%);
+    --color-btn-text: #ffffff;
+    --color-nav-bg: linear-gradient(135deg, #ffffff 0%, #fff7ed 100%);
+    --color-nav-shadow: rgba(220, 38, 38, 0.15);
+}
+
+/* Custom Utility Classes */
+.bg-background {
+    background: var(--color-background);
+}
+
+.bg-nav {
+    background: var(--color-nav-bg);
+}
+
+.bg-cardBg {
+    background: var(--color-cardBg);
+}
+
+.bg-accent {
+    background: var(--color-accent);
+}
+
+.bg-cta {
+    background: var(--color-cta);
+}
+
+.text-text {
+    color: var(--color-text);
+}
+
+.text-highlighted {
+    color: var(--color-highlighted);
+}
+
+.text-btn-text {
+    color: var(--color-btn-text);
+}
+
+.border-border {
+    border-color: var(--color-border);
+}
+
+.bg-highlighted {
+    background-color: var(--color-highlighted);
+}
+
+/* Hover states */
+.hover\:bg-rose-50:hover {
+    background-color: rgba(251, 182, 206, 0.2);
+}
+
+.hover\:text-highlighted:hover {
+    color: var(--color-highlighted);
+}
+
+.hover\:border-highlighted:hover {
+    border-color: var(--color-highlighted);
+}
+
+/* Additional utility classes you might need */
+.shadow-nav {
+    box-shadow: 0 4px 6px -1px var(--color-nav-shadow);
+}
+
+body {
+    background: var(--color-background);
+    color: var(--color-text);
+    /* transition: background 0.3s, color 0.3s; */
+}

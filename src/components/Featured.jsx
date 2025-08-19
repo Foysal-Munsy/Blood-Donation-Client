@@ -2,7 +2,7 @@ import { Link } from "react-router";
 
 const Featured = () => {
   return (
-    <section className="bg-rose-50 py-12 px-6 md:px-20 text-center rounded-2xl shadow-md my-10">
+    <section className=" py-12 px-6 md:px-20 text-center rounded-2xl shadow-md my-10">
       <h2 className="text-3xl md:text-4xl font-bold text-rose-600 mb-4">
         Donate Blood, Save Lives ❤️
       </h2>

@@ -20,7 +20,12 @@ export default function ViewDetails() {
     });
   }, [ID]);
 
-  if (!details) return <p className="text-center mt-10">Loading...</p>;
+  if (!details)
+    return (
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 min-h-screen flex items-center justify-center">
+        <p className="text-center">Loading donation details...</p>
+      </div>
+    );
 
   const {
     requesterName,
@@ -90,52 +95,108 @@ export default function ViewDetails() {
   };
 
   return (
-    <div className="p-4 max-w-2xl mx-auto space-y-4">
+    <div className="container mx-auto px-4 sm:px-6 lg:px-8 min-h-screen">
       <PageTitle title={"Details"} />
-      <h2 className="text-2xl font-semibold text-center mb-6">
-        Donation Request Details
-      </h2>
 
-      <div className="space-y-2">
-        <p>
-          <strong>Requester Name:</strong> {requesterName}
-        </p>
-        <p>
-          <strong>Requester Email:</strong> {requesterEmail}
-        </p>
-        <p>
-          <strong>Recipient Name:</strong> {recipientName}
-        </p>
-        <p>
-          <strong>District:</strong> {recipientDistrict}
-        </p>
-        <p>
-          <strong>Upazila:</strong> {recipientUpazila}
-        </p>
-        <p>
-          <strong>Hospital Name:</strong> {hospitalName}
-        </p>
-        <p>
-          <strong>Address:</strong> {fullAddress}
-        </p>
-        <p>
-          <strong>Blood Group:</strong> {bloodGroup}
-        </p>
-        <p>
-          <strong>Donation Date:</strong> {donationDate}
-        </p>
-        <p>
-          <strong>Donation Time:</strong> {donationTime}
-        </p>
-        <p>
-          <strong>Message:</strong> {requestMessage}
-        </p>
-        <p>
-          <strong>Status:</strong> {donationStatus}
-        </p>
+      {/* Header */}
+      <div className="text-center mb-8">
+        <h2 className="text-3xl font-bold mb-4">Donation Request Details</h2>
+        <div
+          className={`inline-block px-4 py-2 rounded-full text-sm font-semibold ${
+            donationStatus === "pending"
+              ? "bg-yellow-100 text-yellow-800"
+              : donationStatus === "inprogress"
+              ? "bg-blue-100 text-blue-800"
+              : donationStatus === "done"
+              ? "bg-green-100 text-green-800"
+              : "bg-red-100 text-red-800"
+          }`}
+        >
+          Status: {donationStatus.toUpperCase()}
+        </div>
       </div>
 
-      <div className="text-center mt-6">
+      {/* Main Content */}
+      <div className="bg-cardBg border-border border rounded-lg p-6 shadow-sm">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Left Column */}
+          <div className="space-y-6">
+            {/* Requester Information */}
+            <div>
+              <h3 className="text-lg font-semibold text-highlighted mb-3">
+                Requester Information
+              </h3>
+              <div className="space-y-2">
+                <p>
+                  <strong>Name:</strong> {requesterName}
+                </p>
+                <p>
+                  <strong>Email:</strong> {requesterEmail}
+                </p>
+              </div>
+            </div>
+
+            {/* Recipient Information */}
+            <div>
+              <h3 className="text-lg font-semibold text-highlighted mb-3">
+                Recipient Information
+              </h3>
+              <div className="space-y-2">
+                <p>
+                  <strong>Name:</strong> {recipientName}
+                </p>
+                <p>
+                  <strong>Location:</strong> {recipientUpazila},{" "}
+                  {recipientDistrict}
+                </p>
+                <p>
+                  <strong>Hospital:</strong> {hospitalName}
+                </p>
+                <p>
+                  <strong>Address:</strong> {fullAddress}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Column */}
+          <div className="space-y-6">
+            {/* Donation Details */}
+            <div>
+              <h3 className="text-lg font-semibold text-highlighted mb-3">
+                Donation Details
+              </h3>
+              <div className="space-y-2">
+                <p>
+                  <strong>Blood Group:</strong>{" "}
+                  <span className="text-highlighted font-bold">
+                    {bloodGroup}
+                  </span>
+                </p>
+                <p>
+                  <strong>Date:</strong> {donationDate}
+                </p>
+                <p>
+                  <strong>Time:</strong> {donationTime}
+                </p>
+              </div>
+            </div>
+
+            {/* Message */}
+            <div>
+              <h3 className="text-lg font-semibold text-highlighted mb-3">
+                Message
+              </h3>
+              <p className="bg-rose-50 p-4 rounded-lg border border-border">
+                {requestMessage}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Action Button */}
+      <div className="text-center mt-8">
         <button
           onClick={() => {
             if (
@@ -151,57 +212,83 @@ export default function ViewDetails() {
             donationStatus === "done" ||
             donationStatus === "canceled"
           }
-          className={`px-6 py-2 rounded transition ${
+          className={`px-8 py-3 rounded-lg text-lg font-semibold transition-all duration-300 cursor-pointer ${
             donationStatus === "inprogress" ||
             donationStatus === "done" ||
             donationStatus === "canceled"
               ? "bg-gray-400 text-white cursor-not-allowed"
-              : "bg-red-600 text-white hover:bg-red-700"
+              : "bg-cta text-btn-text hover:shadow-lg transform hover:-translate-y-0.5"
           }`}
         >
-          Donate
+          {donationStatus === "inprogress"
+            ? "Donation in Progress"
+            : donationStatus === "done"
+            ? "Donation Completed"
+            : donationStatus === "canceled"
+            ? "Request Canceled"
+            : "Confirm Donation"}
         </button>
       </div>
 
       {/* Modal */}
       {showModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-          <div className="bg-white p-6 rounded-lg shadow-lg w-[90%] max-w-md relative">
-            <h3 className="text-xl font-semibold mb-4">Confirm Donation</h3>
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 p-4">
+          <div className="bg-white p-6 rounded-lg shadow-xl w-full max-w-md relative">
+            <button
+              onClick={() => setShowModal(false)}
+              className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 text-2xl"
+            >
+              ×
+            </button>
 
-            <div className="space-y-4">
+            <h3 className="text-2xl font-semibold text-highlighted mb-6 text-center">
+              Confirm Donation
+            </h3>
+
+            <div className="space-y-4 mb-6">
               <div>
-                <label className="block text-sm font-medium">Donor Name</label>
+                <label className="block text-sm font-medium mb-2">
+                  Donor Name
+                </label>
                 <input
                   type="text"
                   value={user?.displayName || ""}
                   readOnly
-                  className="w-full border p-2 rounded"
+                  className="w-full border-border border rounded-lg px-4 py-3 bg-gray-50"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium">Donor Email</label>
+                <label className="block text-sm font-medium mb-2">
+                  Donor Email
+                </label>
                 <input
                   type="email"
                   value={user?.email || ""}
                   readOnly
-                  className="w-full border p-2 rounded"
+                  className="w-full border-border border rounded-lg px-4 py-3 bg-gray-50"
                 />
               </div>
             </div>
 
-            <div className="mt-6 flex justify-end gap-2">
+            <div className="bg-rose-50 border border-border rounded-lg p-4 mb-6">
+              <p className="text-sm text-highlighted font-semibold">
+                ⚠️ By confirming, you agree to donate blood and will be
+                contacted for further details.
+              </p>
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <button
                 onClick={() => setShowModal(false)}
-                className="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400"
+                className="px-6 py-3 border border-border rounded-lg hover:bg-gray-100 transition-colors"
               >
                 Cancel
               </button>
               <button
                 onClick={handleConfirmDonation}
-                className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
+                className="px-6 py-3 bg-cta text-btn-text rounded-lg hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-300"
               >
-                Confirm
+                Confirm Donation
               </button>
             </div>
           </div>

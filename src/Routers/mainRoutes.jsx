@@ -20,6 +20,7 @@ import ViewDetails from "../pages/ViewDetails";
 import UpdateDonationRequest from "../pages/UpdateDonationRequest";
 import BlogDetails from "../pages/BlogDetails";
 import Search from "../pages/Search";
+import Funding from "../pages/Funding";
 const mainRoutes = createBrowserRouter([
   {
     path: "/",
@@ -57,6 +58,10 @@ const mainRoutes = createBrowserRouter([
             <ViewDetails />
           </PrivateRoute>
         ),
+      },
+      {
+        path: "funding",
+        element: <Funding />,
       },
 
       {

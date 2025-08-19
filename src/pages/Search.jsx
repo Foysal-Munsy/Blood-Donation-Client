@@ -88,7 +88,7 @@ const Search = () => {
   };
 
   return (
-    <div className="min-h-screen p-6 bg-gray-50">
+    <div className="min-h-screen container  mx-auto px-4 sm:px-6 lg:px-8">
       <PageTitle title={"Search"} />
       <h2 className="text-2xl font-bold text-center mb-6">
         Find a Blood Donor
@@ -96,14 +96,14 @@ const Search = () => {
 
       <form
         onSubmit={handleSearch}
-        className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8 bg-white p-6 rounded-lg shadow"
+        className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8 bg-cardBg p-6 rounded-lg shadow"
       >
         {/* Blood Group */}
         <select
           name="bloodGroup"
           value={formData.bloodGroup}
           onChange={handleChange}
-          className="border rounded px-3 py-2"
+          className="border-border border rounded px-3 py-2 bg-white"
         >
           <option value="">Select Blood Group</option>
           <option value="A+">A+</option>
@@ -121,7 +121,7 @@ const Search = () => {
           name="district"
           value={formData.district}
           onChange={handleChange}
-          className="border rounded px-3 py-2"
+          className="border-border border rounded px-3 py-2 bg-white"
         >
           <option value="">Select District</option>
           {districts.map((district) => (
@@ -136,7 +136,7 @@ const Search = () => {
           name="upazila"
           value={formData.upazila}
           onChange={handleChange}
-          className="border rounded px-3 py-2"
+          className="border-border border rounded px-3 py-2 bg-white"
           disabled={!filteredUpazilas.length}
         >
           <option value="">Select Upazila</option>
@@ -150,7 +150,7 @@ const Search = () => {
         {/* Search Button */}
         <button
           type="submit"
-          className="bg-red-500 text-white rounded px-4 py-2 hover:bg-red-600 transition-all"
+          className="bg-cta text-btn-text rounded px-4 py-2 hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-300"
         >
           Search
         </button>
@@ -162,16 +162,16 @@ const Search = () => {
           {searchResult.map((donor) => (
             <div
               key={donor._id}
-              className="border rounded-lg shadow p-4 bg-white text-center"
+              className="border-border border rounded-lg shadow p-4 bg-cardBg text-center"
             >
               <img
                 src={donor.image}
                 alt={donor.name}
-                className="w-24 h-24 mx-auto rounded-full object-cover mb-2"
+                className="w-24 h-24 mx-auto rounded-full object-cover mb-2 border-2 border-border"
               />
               <h3 className="font-semibold text-lg">{donor.name}</h3>
-              <p className="text-sm text-gray-600">{donor.bloodGroup}</p>
-              <p className="text-sm text-gray-500">
+              <p className="text-sm text-highlighted">{donor.bloodGroup}</p>
+              <p className="text-sm">
                 {donor.upazila}, {donor.district}
               </p>
               <p className="text-sm text-blue-600">{donor.email}</p>
@@ -179,7 +179,7 @@ const Search = () => {
           ))}
         </div>
       ) : (
-        <p className="text-center text-gray-500">
+        <p className="text-center">
           {donors.length > 0
             ? "No donor found!"
             : "Please search to find donors."}
