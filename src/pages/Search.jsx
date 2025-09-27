@@ -103,7 +103,7 @@ const Search = () => {
           name="bloodGroup"
           value={formData.bloodGroup}
           onChange={handleChange}
-          className="border-border border rounded px-3 py-2 bg-white"
+          className="border-border border rounded px-3 py-2 "
         >
           <option value="">Select Blood Group</option>
           <option value="A+">A+</option>
@@ -121,7 +121,7 @@ const Search = () => {
           name="district"
           value={formData.district}
           onChange={handleChange}
-          className="border-border border rounded px-3 py-2 bg-white"
+          className="border-border border rounded px-3 py-2 "
         >
           <option value="">Select District</option>
           {districts.map((district) => (
@@ -136,7 +136,7 @@ const Search = () => {
           name="upazila"
           value={formData.upazila}
           onChange={handleChange}
-          className="border-border border rounded px-3 py-2 bg-white"
+          className="border-border border rounded px-3 py-2 "
           disabled={!filteredUpazilas.length}
         >
           <option value="">Select Upazila</option>

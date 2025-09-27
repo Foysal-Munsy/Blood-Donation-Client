@@ -8,7 +8,7 @@ const DashboardLayout = () => {
   return (
     //   <QueryClientProvider client={QueryClient}>
     <HelmetProvider>
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen ">
         <Sidebar />
         <main className="transition-all duration-300 lg:ml-64">
           {/* className="p-4 sm:p-6 lg:p-8" */}

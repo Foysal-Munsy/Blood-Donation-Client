@@ -48,7 +48,11 @@ export default function Request() {
               {donations.map((donation, i) => (
                 <tr
                   key={donation._id}
-                  className={i % 2 === 0 ? "bg-white" : "bg-rose-50"}
+                  className={
+                    i % 2 === 0
+                      ? "border border-white"
+                      : "border border-rose-50"
+                  }
                 >
                   <td className="px-3 py-2 font-medium">
                     {donation.recipientName}

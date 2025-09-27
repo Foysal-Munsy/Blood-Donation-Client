@@ -13,6 +13,7 @@ import { MdCreate } from "react-icons/md";
 import useRole from "../hooks/useRole";
 import { CgProfile } from "react-icons/cg";
 import { ArrowLeft } from "lucide-react";
+import ThemeToggle from "./ThemeToggle";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -152,6 +153,7 @@ const Sidebar = () => {
               </span>
               <span className="text-2xl">🩸</span>
             </Link>
+            <ThemeToggle />
           </div>
 
           {/* Mobile Header */}

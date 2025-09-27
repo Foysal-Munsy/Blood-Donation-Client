@@ -3,6 +3,7 @@ import { CgMenuMotion } from "react-icons/cg";
 import { RiMenuAddLine } from "react-icons/ri";
 import { Link, NavLink } from "react-router";
 import { AuthContext } from "../providers/AuthProvider";
+import ThemeToggle from "./ThemeToggle";
 
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -56,6 +57,7 @@ const Header = () => {
 
           {/* Desktop User Actions */}
           <div className="hidden lg:flex items-center space-x-4">
+            <ThemeToggle />
             {user && user.email ? (
               <div className="flex items-center space-x-3">
                 {user.photoURL && (
