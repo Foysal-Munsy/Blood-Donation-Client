@@ -11,6 +11,7 @@ import {
 } from "react-icons/fa";
 import { MdCreate } from "react-icons/md";
 import useRole from "../hooks/useRole";
+import Loader from "./Loader";
 import { CgProfile } from "react-icons/cg";
 import { ArrowLeft } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
@@ -100,7 +101,8 @@ const Sidebar = () => {
   if (role === "admin") menuItems = adminMenu;
   else if (role === "donor") menuItems = donorMenu;
 
-  if (loading) return <p>loading...</p>;
+  // Loading is now handled at DashboardLayout level to avoid double loaders
+  // if (loading) return <Loader label="Loading sidebar..." />;
 
   return (
     <>

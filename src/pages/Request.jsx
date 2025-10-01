@@ -3,6 +3,7 @@ import { Link } from "react-router";
 import { AuthContext } from "../providers/AuthProvider";
 import useAxiosPublic from "../hooks/axiosPublic";
 import PageTitle from "../components/PageTitle";
+import Loader from "../components/Loader";
 
 export default function Request() {
   const { user } = useContext(AuthContext);
@@ -28,7 +29,7 @@ export default function Request() {
       </h2>
 
       {loading ? (
-        <p className="text-center">Loading pending requests...</p>
+        <Loader label="Loading pending requests..." />
       ) : donations.length === 0 ? (
         <p className="text-center">No pending donation requests found.</p>
       ) : (

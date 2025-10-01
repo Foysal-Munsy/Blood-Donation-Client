@@ -5,6 +5,7 @@ import { useParams } from "react-router";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../hooks/axiosPublic";
 import PageTitle from "../components/PageTitle";
+import Loader from "../components/Loader";
 
 export default function ViewDetails() {
   const { ID } = useParams();
@@ -20,12 +21,7 @@ export default function ViewDetails() {
     });
   }, [ID]);
 
-  if (!details)
-    return (
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 min-h-screen flex items-center justify-center">
-        <p className="text-center">Loading donation details...</p>
-      </div>
-    );
+  if (!details) return <Loader label="Loading donation details..." full={true} />;
 
   const {
     requesterName,

@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import Loader from "../../components/Loader";
 import { AuthContext } from "../../providers/AuthProvider";
 import useRole from "../../hooks/useRole";
 import AdminDashboard from "../adminDashboard/AdminDashboard";
@@ -10,7 +11,7 @@ export default function Dashboard() {
   const { role, loading } = useRole();
 
   if (loading) {
-    return <h1>Loading....</h1>;
+    return <Loader label="Loading dashboard..." full={true} />;
   }
 
   if (role === "admin") {

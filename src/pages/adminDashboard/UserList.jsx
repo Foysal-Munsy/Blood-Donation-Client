@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from "react";
+import Loader from "../../components/Loader";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 import { AuthContext } from "../../providers/AuthProvider";
@@ -78,11 +79,7 @@ const UsersList = () => {
       : users.filter((user) => user.status === filterStatus);
 
   if (loading) {
-    return (
-      <div className="min-h-96 flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-highlighted"></div>
-      </div>
-    );
+    return <Loader label="Loading users..." full={true} />;
   }
 
   return (

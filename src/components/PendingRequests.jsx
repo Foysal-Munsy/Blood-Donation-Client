@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router";
 import useAxiosPublic from "../hooks/axiosPublic";
 import Title from "./Title";
+import Loader from "./Loader";
 
 export default function PendingRequests() {
   const axiosPublic = useAxiosPublic();
@@ -41,7 +42,7 @@ export default function PendingRequests() {
       <p className="text-gray-600">These patients are waiting for your help.</p>
 
       {loading ? (
-        <div className="text-center text-gray-600">Loading requests...</div>
+        <Loader label="Loading requests..." />
       ) : error ? (
         <div className="text-center text-red-600">{error}</div>
       ) : items.length === 0 ? (

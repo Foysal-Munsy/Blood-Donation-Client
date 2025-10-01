@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Loader from "../components/Loader";
 import { useParams } from "react-router";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import PageTitle from "../components/PageTitle";
@@ -17,7 +18,7 @@ export default function BlogDetails() {
   }, [ID]);
 
   if (loading || !details)
-    return <p className="text-center mt-10 font-semibold">Loading...</p>;
+    return <Loader label="Loading blog..." full={true} />;
 
   const { title, thumbnail, content, status, createdAt } = details;
 

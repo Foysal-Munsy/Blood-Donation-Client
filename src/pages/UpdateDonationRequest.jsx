@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Loader from "../components/Loader";
 import { useParams, useNavigate } from "react-router";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
@@ -15,7 +16,7 @@ export default function UpdateDonationRequest() {
     });
   }, [ID]);
 
-  if (!details) return <p className="text-center mt-10">Loading...</p>;
+  if (!details) return <Loader label="Loading request..." full={true} />;
 
   const handleUpdate = async (e) => {
     e.preventDefault();

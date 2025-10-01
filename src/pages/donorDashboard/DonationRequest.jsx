@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useAxiosPublic from "../../hooks/axiosPublic";
 import PageTitle from "../../components/PageTitle";
+import Loader from "../../components/Loader";
 
 export default function DonationRequest() {
   const { user } = useContext(AuthContext);
@@ -146,7 +147,7 @@ export default function DonationRequest() {
 
       {/* Loading State */}
       {loading ? (
-        <p className="text-center text-gray-600">Loading your requests...</p>
+        <Loader label="Loading your requests..." />
       ) : filteredDonations.length === 0 ? (
         <p className="text-center text-gray-500">No donation requests found.</p>
       ) : (

@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 import useAxiosPublic from "../../hooks/axiosPublic";
 import useRole from "../../hooks/useRole";
 import PageTitle from "../../components/PageTitle";
+import Loader from "../../components/Loader";
 
 export default function AllBloodDonationRequest() {
   const { user } = useContext(AuthContext);
@@ -158,7 +159,7 @@ export default function AllBloodDonationRequest() {
 
       {/* Loading State */}
       {loading ? (
-        <p className="text-center text-gray-600">Loading your requests...</p>
+        <Loader label="Loading requests..." />
       ) : filteredDonations.length === 0 ? (
         <p className="text-center text-gray-500">No donation requests found.</p>
       ) : (

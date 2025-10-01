@@ -1,13 +1,14 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import useCurrentUser from "../hooks/useCurrentUser";
+import Loader from "./Loader";
 export default function WelcomeMsg() {
   const { user } = useContext(AuthContext);
 
   const { currentUser, loading } = useCurrentUser();
 
   // if (loading || !currentUser) return null;
-  if (loading) return <p>loading...</p>;
+  if (loading) return <Loader label="Loading user..." />;
   // console.log("🚀 ~ WelcomeMsg ~ currentUser:", currentUser);
 
   return (

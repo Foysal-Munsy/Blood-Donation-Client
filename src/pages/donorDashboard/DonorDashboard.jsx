@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Loader from "../../components/Loader";
 import { Link } from "react-router";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import WelcomeMsg from "../../components/WelcomeMsg";
@@ -75,6 +76,7 @@ export default function DonorDashboard({ user }) {
       <WelcomeMsg />
 
       {/* Donation Requests Table */}
+      {loading && <Loader label="Loading your latest requests..." />}
       {!loading && donationRequests.length > 0 && (
         <div className="overflow-x-auto shadow rounded-md border border-gray-200">
           <table className="min-w-full divide-y divide-gray-200 text-sm">

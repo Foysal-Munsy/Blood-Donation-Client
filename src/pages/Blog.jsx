@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Loader from "../components/Loader";
 import { Link } from "react-router";
 import useAxiosPublic from "../hooks/axiosPublic";
 import PageTitle from "../components/PageTitle";
@@ -21,12 +22,7 @@ export default function Blog() {
       });
   }, []);
 
-  if (loading)
-    return (
-      <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        <p className="text-center">Loading blogs...</p>
-      </section>
-    );
+  if (loading) return <Loader label="Loading blogs..." full={true} />;
 
   return (
     <section className="container mx-auto px-4 sm:px-6 lg:px-8 ">

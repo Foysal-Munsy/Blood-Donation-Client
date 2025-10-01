@@ -5,6 +5,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 import { getAuth, updateProfile } from "firebase/auth";
 import PageTitle from "../../components/PageTitle";
+import Loader from "../../components/Loader";
 
 export default function Profile() {
   const { currentUser, loading } = useCurrentUser();
@@ -72,11 +73,7 @@ export default function Profile() {
   };
 
   if (loading || !currentUser)
-    return (
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 min-h-screen flex items-center justify-center">
-        <p className="text-center">Loading profile...</p>
-      </div>
-    );
+    return <Loader label="Loading profile..." full={true} />;
 
   return (
     <div className=" min-h-screen">
