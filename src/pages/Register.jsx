@@ -133,9 +133,9 @@ const Register = () => {
   };
 
   return (
-    <div className="bg-[url(/bg.png)] bg-contain">
+    <div className="bg-background">
       <PageTitle title={"Register"} />
-      <div className="bg-white bg-opacity-90 min-h-screen">
+      <div className="min-h-screen">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="title mt-5">
             <Title>Join with Us</Title>
@@ -146,13 +146,13 @@ const Register = () => {
             <div className="login-form flex-1 w-full max-w-lg">
               <form
                 onSubmit={handleSubmit}
-                className="bg-white p-5 flex flex-col gap-6 backdrop-blur-sm bg-opacity-10 shadow-lg rounded-lg"
+                className="bg-cardBg border border-border p-5 flex flex-col gap-6 shadow rounded-lg"
               >
                 {/* Name */}
                 <div className="flex items-center">
-                  <BiUser className="text-3xl text-slate-500 mr-2" />
+                  <BiUser className="text-3xl text-highlighted mr-2" />
                   <input
-                    className="outline-none flex-1 border-b-2 p-2 bg-transparent focus:border-red-400"
+                    className="outline-none flex-1 border-b p-2 bg-transparent focus:border-highlighted border-border text-text"
                     type="text"
                     name="name"
                     placeholder="Enter Full Name"
@@ -164,9 +164,9 @@ const Register = () => {
 
                 {/* Image */}
                 <div className="flex items-center">
-                  <BiImageAdd className="text-3xl text-slate-500 mr-2" />
+                  <BiImageAdd className="text-3xl text-highlighted mr-2" />
                   <input
-                    className="outline-none flex-1 border-b-2 p-2 bg-transparent focus:border-red-400"
+                    className="outline-none flex-1 border-b p-2 bg-transparent focus:border-highlighted border-border text-text"
                     type="text"
                     name="image"
                     placeholder="Enter Image URL"
@@ -177,9 +177,9 @@ const Register = () => {
 
                 {/* Email */}
                 <div className="flex items-center">
-                  <BiEnvelope className="text-3xl text-slate-500 mr-2" />
+                  <BiEnvelope className="text-3xl text-highlighted mr-2" />
                   <input
-                    className="outline-none flex-1 border-b-2 p-2 bg-transparent focus:border-red-400"
+                    className="outline-none flex-1 border-b p-2 bg-transparent focus:border-highlighted border-border text-text"
                     type="email"
                     name="email"
                     placeholder="Enter Email"
@@ -191,12 +191,12 @@ const Register = () => {
 
                 {/* Blood Group */}
                 <div className="flex items-center">
-                  <BiDroplet className="text-3xl text-slate-500 mr-2" />
+                  <BiDroplet className="text-3xl text-highlighted mr-2" />
                   <select
                     name="blood"
                     value={formData.blood}
                     onChange={handleChange}
-                    className="outline-none flex-1 border-b-2 p-2 bg-transparent focus:border-red-400"
+                    className="outline-none flex-1 border-b p-2 bg-cardBg focus:border-highlighted border-border text-text"
                     required
                   >
                     <option value="">Select Blood Group</option>
@@ -213,12 +213,12 @@ const Register = () => {
 
                 {/* District */}
                 <div className="flex items-center">
-                  <SlLocationPin className="text-2xl text-slate-500 mr-2" />
+                  <SlLocationPin className="text-2xl text-highlighted mr-2" />
                   <select
                     name="district"
                     value={formData.district}
                     onChange={handleDistrictChange}
-                    className="outline-none flex-1 border-b-2 p-2 bg-transparent focus:border-red-400"
+                    className="outline-none flex-1 border-b p-2 bg-cardBg focus:border-highlighted border-border text-text"
                     required
                   >
                     <option value="">Select District</option>
@@ -232,12 +232,12 @@ const Register = () => {
 
                 {/* Upazila */}
                 <div className="flex items-center">
-                  <GrLocationPin className="text-3xl text-slate-500 mr-2" />
+                  <GrLocationPin className="text-3xl text-highlighted mr-2" />
                   <select
                     name="upazila"
                     value={formData.upazila}
                     onChange={handleChange}
-                    className="outline-none flex-1 border-b-2 p-2 bg-transparent focus:border-red-400"
+                    className="outline-none flex-1 border-b p-2 bg-cardBg focus:border-highlighted border-border text-text"
                     required
                   >
                     <option value="">Select Upazila</option>
@@ -251,9 +251,9 @@ const Register = () => {
 
                 {/* Password */}
                 <div className="flex items-center">
-                  <BiKey className="text-3xl text-slate-500 mr-2" />
+                  <BiKey className="text-3xl text-highlighted mr-2" />
                   <input
-                    className="outline-none flex-1 border-b-2 p-2 bg-transparent focus:border-red-400"
+                    className="outline-none flex-1 border-b p-2 bg-transparent focus:border-highlighted border-border text-text"
                     type="password"
                     name="pass"
                     placeholder="Enter Password"
@@ -265,9 +265,9 @@ const Register = () => {
 
                 {/* Confirm Password */}
                 <div className="flex items-center">
-                  <BiKey className="text-3xl text-slate-500 mr-2" />
+                  <BiKey className="text-3xl text-highlighted mr-2" />
                   <input
-                    className="outline-none flex-1 border-b-2 p-2 bg-transparent focus:border-red-400"
+                    className="outline-none flex-1 border-b p-2 bg-transparent focus:border-highlighted border-border text-text"
                     type="password"
                     name="confirmPass"
                     placeholder="Confirm Password"
@@ -279,13 +279,13 @@ const Register = () => {
 
                 {/* Error */}
                 {errorMsg && (
-                  <p className="text-red-500 text-sm text-center">{errorMsg}</p>
+                  <p className="text-highlighted text-sm text-center">{errorMsg}</p>
                 )}
 
                 {/* Login link */}
-                <div className="p-1 flex gap-2 text-sm text-slate-600">
+                <div className="p-1 flex gap-2 text-sm text-text opacity-80">
                   <span>Have an account?</span>
-                  <Link to="/login" className="text-red-500 hover:underline">
+                  <Link to="/login" className="text-highlighted hover:underline">
                     Login
                   </Link>
                 </div>
@@ -293,7 +293,7 @@ const Register = () => {
                 {/* Submit */}
                 <button
                   type="submit"
-                  className="btn cursor-pointer"
+                  className="cursor-pointer px-4 py-2 rounded-lg bg-cta text-btn-text font-semibold hover:shadow-md transition"
                   disabled={loadingSave}
                 >
                   {loadingSave ? "Registering..." : "Register Now"}

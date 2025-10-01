@@ -40,9 +40,9 @@ const Login = () => {
   };
 
   return (
-    <div className="bg-[url(/bg.png)] bg-contain">
+    <div className="bg-background">
       <PageTitle title={"Login"} />
-      <div className="bg-white bg-opacity-90 min-h-screen">
+      <div className="min-h-screen">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="title mt-5">
             <Title>Login Now</Title>
@@ -52,13 +52,13 @@ const Login = () => {
             <div className="login-form flex-1 w-full max-w-lg">
               <form
                 onSubmit={handleSubmit}
-                className="bg-white p-5 flex flex-col gap-8 backdrop-blur-sm bg-opacity-10 shadow-lg rounded-lg"
+                className="bg-cardBg border border-border p-5 flex flex-col gap-8 shadow rounded-lg"
               >
                 {/* Email */}
                 <div className="flex justify-start items-center">
-                  <BiEnvelope className="text-3xl text-rose-500" />
+                  <BiEnvelope className="text-3xl text-highlighted" />
                   <input
-                    className="outline-none flex-1 border-b-2 p-2 bg-transparent focus:border-rose-500 transition-all duration-200"
+                    className="outline-none flex-1 border-b p-2 bg-transparent focus:border-highlighted transition-all duration-200 border-border text-text"
                     type="email"
                     name="email"
                     placeholder="Enter email"
@@ -69,26 +69,26 @@ const Login = () => {
                 {/* Password */}
                 <div className="space-y-1">
                   <div className="flex justify-start items-center">
-                    <BiKey className="text-3xl text-rose-500" />
+                    <BiKey className="text-3xl text-highlighted" />
                     <input
-                      className="outline-none flex-1 border-b-2 p-2 bg-transparent focus:border-red-500 transition-all duration-200"
+                      className="outline-none flex-1 border-b p-2 bg-transparent focus:border-highlighted transition-all duration-200 border-border text-text"
                       type="password"
                       name="pass"
                       placeholder="Enter password"
                       required
                     />
                   </div>
-                  <p className="text-end text-[13px] text-rose-500 cursor-pointer">
+                  <p className="text-end text-[13px] text-highlighted cursor-pointer">
                     Forgot password?
                   </p>
                 </div>
 
                 {/* Register link */}
-                <div className="p-1 flex gap-2 text-sm text-slate-600">
+                <div className="p-1 flex gap-2 text-sm text-text opacity-80">
                   <span>Don't have an account?</span>
                   <Link
                     to="/registration"
-                    className="text-red-500 hover:underline"
+                    className="text-highlighted hover:underline"
                   >
                     Register
                   </Link>
@@ -97,7 +97,7 @@ const Login = () => {
                 <input
                   type="submit"
                   value="Login Now"
-                  className="btn cursor-pointer"
+                  className="cursor-pointer px-4 py-2 rounded-lg bg-cta text-btn-text font-semibold hover:shadow-md transition"
                 />
               </form>
             </div>

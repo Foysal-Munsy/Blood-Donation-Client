@@ -183,7 +183,7 @@ const Sidebar = () => {
             <p className={`text-xs font-semibold uppercase tracking-wider text-gray-500 ${
               !isMobile && !isOpen ? "opacity-0 hidden" : ""
             }`}>
-              {role === "admin" ? "Admin" : role === "donor" ? "Donor" : "General"}
+              {role === "admin" ? "Admin" : role === "donor" ? "Donor" : "Volunteer"}
             </p>
           </div>
 
