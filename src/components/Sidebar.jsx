@@ -178,6 +178,15 @@ const Sidebar = () => {
             </button>
           </div>
 
+          {/* Section Label */}
+          <div className="px-4 mt-4">
+            <p className={`text-xs font-semibold uppercase tracking-wider text-gray-500 ${
+              !isMobile && !isOpen ? "opacity-0 hidden" : ""
+            }`}>
+              {role === "admin" ? "Admin" : role === "donor" ? "Donor" : "General"}
+            </p>
+          </div>
+
           {/* Navigation */}
           <nav className="flex flex-col mt-4 space-y-1 px-2">
             {menuItems.map((item, index) => (
@@ -186,11 +195,13 @@ const Sidebar = () => {
                 to={item.path}
                 end={item.end || false} // Use the end prop to ensure exact matching
                 onClick={closeSidebarOnMobile}
+                title={item.name}
+                aria-label={item.name}
                 className={({ isActive }) =>
-                  `flex items-center gap-3 px-4 py-3 rounded-lg font-medium text-sm transition-all duration-200 ${
+                  `flex items-center gap-3 px-4 py-3 rounded-lg font-medium text-sm transition-all duration-200 border-l-4 ${
                     isActive
-                      ? "bg-rose-100 text-red-700 shadow-sm"
-                      : "text-gray-700 hover:text-red-700 hover:bg-rose-50"
+                      ? "bg-rose-100 text-red-700 shadow-sm border-red-500"
+                      : "text-gray-700 hover:text-red-700 hover:bg-rose-50 border-transparent hover:border-red-200"
                   }`
                 }
               >
@@ -208,7 +219,18 @@ const Sidebar = () => {
         </div>
 
         {/* Footer */}
-        <footer className="mt-auto pb-4 px-4 border-t border-rose-200/50">
+        <footer className="mt-auto pb-4 px-4 border-t border-rose-200/50 space-y-2">
+          {role === "donor" && (
+            <Link
+              to="/dashboard/create-donation-request"
+              onClick={() => isMobile && setIsOpen(false)}
+              className={`block text-center w-full px-4 py-3 rounded-lg font-semibold text-sm transition-all duration-200 bg-cta text-btn-text hover:shadow-md ${
+                !isMobile && !isOpen ? "truncate" : ""
+              }`}
+            >
+              New Donation Request
+            </Link>
+          )}
           <Link
             to="/"
             onClick={() => isMobile && setIsOpen(false)}
