@@ -161,11 +161,11 @@ export default function AllBloodDonationRequest() {
       {loading ? (
         <Loader label="Loading requests..." />
       ) : filteredDonations.length === 0 ? (
-        <p className="text-center text-gray-500">No donation requests found.</p>
+        <p className="text-center opacity-75">No donation requests found.</p>
       ) : (
         <div className="overflow-x-auto">
-          <table className="w-full border border-gray-200 rounded-lg overflow-hidden text-sm">
-            <thead className="bg-gray-100 text-gray-800">
+          <table className="w-full border border-border rounded-lg overflow-hidden text-sm">
+            <thead className="bg-cardBg text-text">
               <tr>
                 <th className="px-3 py-2">Recipient</th>
                 <th className="px-3 py-2">Location</th>
@@ -180,7 +180,7 @@ export default function AllBloodDonationRequest() {
               {filteredDonations.map((donation, i) => (
                 <tr
                   key={donation._id}
-                  className={i % 2 === 0 ? "bg-white" : "bg-gray-50"}
+                  className={i % 2 === 0 ? "bg-cardBg" : "bg-rose-50/40"}
                 >
                   <td className="px-3 py-2 font-medium">
                     {donation.recipientName}
@@ -190,7 +190,7 @@ export default function AllBloodDonationRequest() {
                   </td>
                   <td className="px-3 py-2">
                     {donation.donationDate} <br />
-                    <span className="text-gray-500 text-xs">
+                    <span className="opacity-75 text-xs">
                       {donation.donationTime}
                     </span>
                   </td>
@@ -204,12 +204,12 @@ export default function AllBloodDonationRequest() {
                         <div className="font-medium">
                           {donors[donation._id].donorName}
                         </div>
-                        <div className="text-xs text-gray-600">
+                        <div className="text-xs opacity-75">
                           {donors[donation._id].donorEmail}
                         </div>
                       </>
                     ) : (
-                      <span className="text-gray-400 italic">—</span>
+                      <span className="opacity-50 italic">—</span>
                     )}
                   </td>
                   <td className="px-3 py-2 space-x-1">
@@ -218,19 +218,19 @@ export default function AllBloodDonationRequest() {
                       <>
                         <Link
                           to={`/details/${donation._id}`}
-                          className="text-blue-600 hover:underline text-sm"
+                          className="text-highlighted hover:underline text-sm"
                         >
                           View
                         </Link>
                         <Link
                           to={`/dashboard/update-donation-request/${donation._id}`}
-                          className="text-green-600 hover:underline text-sm"
+                          className="text-highlighted hover:underline text-sm"
                         >
                           Edit
                         </Link>
                         <button
                           onClick={() => handleDelete(donation._id)}
-                          className="text-red-600 cursor-pointer hover:underline text-sm"
+                          className="text-highlighted cursor-pointer hover:underline text-sm"
                         >
                           Delete
                         </button>
@@ -243,7 +243,7 @@ export default function AllBloodDonationRequest() {
                           onClick={() =>
                             handleStatusUpdate(donation._id, "done")
                           }
-                          className="text-green-700 hover:underline text-sm ml-2"
+                          className="text-highlighted hover:underline text-sm ml-2"
                         >
                           Done
                         </button>
@@ -251,7 +251,7 @@ export default function AllBloodDonationRequest() {
                           onClick={() =>
                             handleStatusUpdate(donation._id, "canceled")
                           }
-                          className="text-yellow-700 hover:underline text-sm ml-1"
+                          className="text-highlighted hover:underline text-sm ml-1"
                         >
                           Cancel
                         </button>
