@@ -107,7 +107,7 @@ const Sidebar = () => {
   return (
     <>
       {/* Mobile Header */}
-      <div className="lg:hidden fixed top-0 left-0 right-0 h-16 bg-white border-b border-rose-200 shadow-sm z-40 flex items-center justify-between px-4">
+      <div className="lg:hidden fixed top-0 left-0 right-0 h-16 bg-nav border-b border-border shadow-nav z-40 flex items-center justify-between px-4">
         <Link to="/dashboard" className="flex items-center space-x-2">
           <span className="font-black text-xl tracking-tight bg-gradient-to-r from-red-600 to-rose-700 bg-clip-text text-transparent">
             RedDrop
@@ -132,7 +132,7 @@ const Sidebar = () => {
 
       {/* Sidebar */}
       <aside
-        className={`fixed top-0 left-0 h-screen bg-white border-r border-rose-200 shadow-lg z-50 transform transition-all duration-300 flex flex-col ${
+        className={`fixed top-0 left-0 h-screen bg-cardBg border-r border-border shadow-lg z-50 transform transition-all duration-300 flex flex-col ${
           isMobile
             ? isOpen
               ? "w-64 translate-x-0"
@@ -144,7 +144,7 @@ const Sidebar = () => {
       >
         <div className="flex-1 overflow-y-auto">
           {/* Desktop Logo & Toggle */}
-          <div className="hidden lg:flex items-center justify-between h-16 px-4 border-b border-rose-200">
+          <div className="hidden lg:flex items-center justify-between h-16 px-4 border-b border-border">
             <Link to="/dashboard" className="flex items-center space-x-2 group">
               <span
                 className={`font-black text-xl tracking-tight bg-gradient-to-r from-red-600 to-rose-700 bg-clip-text text-transparent transition-opacity duration-300 ${
@@ -159,7 +159,7 @@ const Sidebar = () => {
           </div>
 
           {/* Mobile Header */}
-          <div className="lg:hidden flex items-center justify-between h-16 px-4 border-b border-rose-200">
+          <div className="lg:hidden flex items-center justify-between h-16 px-4 border-b border-border">
             <Link
               to="/dashboard"
               className="flex items-center space-x-2"
@@ -200,12 +200,12 @@ const Sidebar = () => {
                 className={({ isActive }) =>
                   `flex items-center gap-3 px-4 py-3 rounded-lg font-medium text-sm transition-all duration-200 border-l-4 ${
                     isActive
-                      ? "bg-rose-100 text-red-700 shadow-sm border-red-500"
-                      : "text-gray-700 hover:text-red-700 hover:bg-rose-50 border-transparent hover:border-red-200"
+                      ? "bg-rose-100 text-highlighted shadow-sm border-red-500"
+                      : "text-text hover:text-highlighted hover:bg-rose-50 border-transparent hover:border-red-200"
                   }`
                 }
               >
-                <span className="text-lg flex-shrink-0">{item.icon}</span>
+                <span className="text-lg flex-shrink-0 text-highlighted">{item.icon}</span>
                 <span
                   className={`transition-opacity duration-300 ${
                     !isMobile && !isOpen && "opacity-0 hidden"

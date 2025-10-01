@@ -21,7 +21,7 @@ const Header = () => {
   const handleNavLinkClick = () => setIsMenuOpen(false);
 
   return (
-    <nav className="sticky top-0 z-50 bg-white shadow-lg border-b border-rose-200">
+    <nav className="sticky top-0 z-50 bg-nav shadow-nav border-b border-border">
       {/* Main Navigation */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 lg:h-20">
@@ -45,8 +45,8 @@ const Header = () => {
                 className={({ isActive }) =>
                   `px-4 py-2 rounded-lg font-medium text-sm xl:text-base transition-all duration-200 ${
                     isActive
-                      ? "bg-rose-100 text-red-900 shadow-sm"
-                      : "text-gray-700 hover:text-red-700 hover:bg-rose-50"
+                      ? "bg-rose-100 text-highlighted shadow-sm"
+                      : "text-text hover:text-highlighted hover:bg-rose-50"
                   }`
                 }
               >
@@ -71,11 +71,11 @@ const Header = () => {
                       <img
                         src={user.photoURL}
                         alt={user.displayName}
-                        className="w-10 h-10 rounded-full object-cover border-2 border-rose-300 shadow-sm hover:border-rose-500 transition-colors duration-200"
+                        className="w-10 h-10 rounded-full object-cover border-2 border-border shadow-sm hover:border-rose-500 transition-colors duration-200"
                         title={user.displayName}
                       />
                       <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white"></div>
-                      <span className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-white border border-rose-200 shadow-sm flex items-center justify-center pointer-events-none">
+                      <span className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-cardBg border border-border shadow-sm flex items-center justify-center pointer-events-none">
                         <FiChevronDown
                           className={`w-3 h-3 text-gray-600 transition-transform duration-200 ${
                             isMenuOpen ? "rotate-180" : "rotate-0"
@@ -89,7 +89,7 @@ const Header = () => {
 
                 {isMenuOpen && (
                   <div
-                    className="absolute right-0 mt-2 w-48 bg-white border border-rose-200 rounded-lg shadow-lg py-1 z-50"
+                    className="absolute right-0 mt-2 w-48 bg-cardBg border border-border rounded-lg shadow-lg py-1 z-50"
                     role="menu"
                   >
                     <NavLink
@@ -98,8 +98,8 @@ const Header = () => {
                       className={({ isActive }) =>
                         `block px-4 py-2 text-sm ${
                           isActive
-                            ? "text-red-700 bg-rose-50"
-                            : "text-gray-700 hover:text-red-700 hover:bg-rose-50"
+                            ? "text-highlighted bg-rose-50"
+                            : "text-text hover:text-highlighted hover:bg-rose-50"
                         }`
                       }
                       role="menuitem"
@@ -111,7 +111,7 @@ const Header = () => {
                         setIsMenuOpen(false);
                         logOut();
                       }}
-                      className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:text-red-700 hover:bg-red-50"
+                      className="block w-full text-left px-4 py-2 text-sm text-highlighted hover:text-highlighted hover:bg-red-50"
                       role="menuitem"
                     >
                       Logout
@@ -123,13 +123,13 @@ const Header = () => {
               <div className="flex items-center space-x-2">
                 <NavLink
                   to="/login"
-                  className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-red-700 hover:bg-rose-50 rounded-lg transition-all duration-200"
+                  className="px-4 py-2 text-sm font-medium text-text hover:text-highlighted hover:bg-rose-50 rounded-lg transition-all duration-200"
                 >
                   Login
                 </NavLink>
                 <NavLink
                   to="/registration"
-                  className="px-4 py-2 text-sm font-medium bg-red-500 text-white rounded-lg hover:bg-red-600 shadow-sm hover:shadow-md transform hover:-translate-y-0.5 transition-all duration-200"
+                  className="px-4 py-2 text-sm font-medium bg-cta text-btn-text rounded-lg hover:shadow-md transform hover:-translate-y-0.5 transition-all duration-200"
                 >
                   Register
                 </NavLink>
@@ -144,7 +144,7 @@ const Header = () => {
                 <img
                   src={user.photoURL}
                   alt={user.displayName}
-                  className="w-9 h-9 rounded-full object-cover border-2 border-rose-300 shadow-sm"
+                  className="w-9 h-9 rounded-full object-cover border-2 border-border shadow-sm"
                   title={user.displayName}
                 />
                 <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-white"></div>
@@ -171,7 +171,7 @@ const Header = () => {
             isMenuOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
           }`}
         >
-          <div className="py-4 border-t border-rose-100">
+          <div className="py-4 border-t border-border">
             <div className="space-y-1">
               {menu.map((item) => (
                 <NavLink
@@ -181,8 +181,8 @@ const Header = () => {
                   className={({ isActive }) =>
                     `block px-4 py-3 text-base font-medium rounded-lg transition-all duration-200 ${
                       isActive
-                        ? "bg-rose-100 text-red-900 border-l-4 border-red-500"
-                        : "text-gray-700 hover:text-red-700 hover:bg-rose-50"
+                        ? "bg-rose-100 text-highlighted border-l-4 border-red-500"
+                        : "text-text hover:text-highlighted hover:bg-rose-50"
                     }`
                   }
                 >
@@ -191,13 +191,13 @@ const Header = () => {
               ))}
 
               {/* Mobile Auth Actions */}
-              <div className="pt-4 mt-4 border-t border-rose-100 space-y-2">
+              <div className="pt-4 mt-4 border-t border-border space-y-2">
                 {user && user.email ? (
                   <>
                     <NavLink
                       to="/dashboard"
                       onClick={handleNavLinkClick}
-                      className="block px-4 py-3 text-base font-medium text-gray-700 hover:text-red-700 hover:bg-rose-50 rounded-lg transition-all duration-200"
+                      className="block px-4 py-3 text-base font-medium text-text hover:text-highlighted hover:bg-rose-50 rounded-lg transition-all duration-200"
                     >
                       Dashboard
                     </NavLink>
@@ -206,7 +206,7 @@ const Header = () => {
                         logOut();
                         setIsMenuOpen(false);
                       }}
-                      className="block w-full text-left px-4 py-3 text-base font-medium text-red-600 hover:text-red-700 hover:bg-red-50 rounded-lg transition-all duration-200"
+                      className="block w-full text-left px-4 py-3 text-base font-medium text-highlighted hover:text-highlighted hover:bg-red-50 rounded-lg transition-all duration-200"
                     >
                       Logout
                     </button>
@@ -216,14 +216,14 @@ const Header = () => {
                     <NavLink
                       to="/login"
                       onClick={handleNavLinkClick}
-                      className="block px-4 py-3 text-base font-medium text-gray-700 hover:text-red-700 hover:bg-rose-50 rounded-lg transition-all duration-200"
+                      className="block px-4 py-3 text-base font-medium text-text hover:text-highlighted hover:bg-rose-50 rounded-lg transition-all duration-200"
                     >
                       Login
                     </NavLink>
                     <NavLink
                       to="/registration"
                       onClick={handleNavLinkClick}
-                      className="block px-4 py-3 text-base font-medium bg-red-500 text-white rounded-lg hover:bg-red-600 text-center transition-all duration-200"
+                      className="block px-4 py-3 text-base font-medium bg-cta text-btn-text rounded-lg text-center transition-all duration-200"
                     >
                       Register
                     </NavLink>
