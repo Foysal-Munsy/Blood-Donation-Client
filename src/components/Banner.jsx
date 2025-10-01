@@ -8,7 +8,7 @@ const Banner = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 min-h-screen flex flex-col-reverse lg:flex-row items-center justify-between gap-10 py-12 lg:py-20">
         <div className="flex-1 space-y-6 text-center lg:text-left">
           <h1 className="text-5xl font-extrabold leading-tight">
-            Save Lives,{" "}
+            Save Lives,
             <span className="text-highlighted">Join as a Donor!</span>
           </h1>
           <p className="text-lg max-w-md mx-auto lg:mx-0">
