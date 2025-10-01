@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { CgMenuMotion } from "react-icons/cg";
 import { RiMenuAddLine } from "react-icons/ri";
+import { FiChevronDown } from "react-icons/fi";
 import { Link, NavLink } from "react-router";
 import { AuthContext } from "../providers/AuthProvider";
 import ThemeToggle from "./ThemeToggle";
@@ -11,7 +12,6 @@ const Header = () => {
 
   const menu = [
     { name: "Home", path: "/" },
-    { name: "Dashboard", path: "/dashboard" },
     { name: "Search", path: "/search" },
     { name: "Request", path: "/request" },
     { name: "Blog", path: "/blog" },
@@ -59,24 +59,65 @@ const Header = () => {
           <div className="hidden lg:flex items-center space-x-4">
             <ThemeToggle />
             {user && user.email ? (
-              <div className="flex items-center space-x-3">
-                {user.photoURL && (
-                  <div className="relative">
-                    <img
-                      src={user.photoURL}
-                      alt={user.displayName}
-                      className="w-10 h-10 rounded-full object-cover border-2 border-rose-300 shadow-sm hover:border-rose-500 transition-colors duration-200"
-                      title={user.displayName}
-                    />
-                    <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-900 rounded-full border-2 border-white"></div>
+              <div className="relative">
+                <div className="flex items-center space-x-3">
+                  {user.photoURL && (
+                    <button
+                      onClick={() => setIsMenuOpen((prev) => !prev)}
+                      className="relative focus:outline-none"
+                      aria-haspopup="menu"
+                      aria-expanded={isMenuOpen}
+                    >
+                      <img
+                        src={user.photoURL}
+                        alt={user.displayName}
+                        className="w-10 h-10 rounded-full object-cover border-2 border-rose-300 shadow-sm hover:border-rose-500 transition-colors duration-200"
+                        title={user.displayName}
+                      />
+                      <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white"></div>
+                      <span className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-white border border-rose-200 shadow-sm flex items-center justify-center pointer-events-none">
+                        <FiChevronDown
+                          className={`w-3 h-3 text-gray-600 transition-transform duration-200 ${
+                            isMenuOpen ? "rotate-180" : "rotate-0"
+                          }`}
+                          aria-hidden="true"
+                        />
+                      </span>
+                    </button>
+                  )}
+                </div>
+
+                {isMenuOpen && (
+                  <div
+                    className="absolute right-0 mt-2 w-48 bg-white border border-rose-200 rounded-lg shadow-lg py-1 z-50"
+                    role="menu"
+                  >
+                    <NavLink
+                      to="/dashboard"
+                      onClick={() => setIsMenuOpen(false)}
+                      className={({ isActive }) =>
+                        `block px-4 py-2 text-sm ${
+                          isActive
+                            ? "text-red-700 bg-rose-50"
+                            : "text-gray-700 hover:text-red-700 hover:bg-rose-50"
+                        }`
+                      }
+                      role="menuitem"
+                    >
+                      Dashboard
+                    </NavLink>
+                    <button
+                      onClick={() => {
+                        setIsMenuOpen(false);
+                        logOut();
+                      }}
+                      className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:text-red-700 hover:bg-red-50"
+                      role="menuitem"
+                    >
+                      Logout
+                    </button>
                   </div>
                 )}
-                <button
-                  onClick={logOut}
-                  className="px-4 py-2 text-sm font-medium text-red-600 hover:text-red-700 hover:bg-red-50 rounded-lg transition-all duration-200"
-                >
-                  Logout
-                </button>
               </div>
             ) : (
               <div className="flex items-center space-x-2">
@@ -152,15 +193,24 @@ const Header = () => {
               {/* Mobile Auth Actions */}
               <div className="pt-4 mt-4 border-t border-rose-100 space-y-2">
                 {user && user.email ? (
-                  <button
-                    onClick={() => {
-                      logOut();
-                      setIsMenuOpen(false);
-                    }}
-                    className="block w-full text-left px-4 py-3 text-base font-medium text-red-600 hover:text-red-700 hover:bg-red-50 rounded-lg transition-all duration-200"
-                  >
-                    Logout
-                  </button>
+                  <>
+                    <NavLink
+                      to="/dashboard"
+                      onClick={handleNavLinkClick}
+                      className="block px-4 py-3 text-base font-medium text-gray-700 hover:text-red-700 hover:bg-rose-50 rounded-lg transition-all duration-200"
+                    >
+                      Dashboard
+                    </NavLink>
+                    <button
+                      onClick={() => {
+                        logOut();
+                        setIsMenuOpen(false);
+                      }}
+                      className="block w-full text-left px-4 py-3 text-base font-medium text-red-600 hover:text-red-700 hover:bg-red-50 rounded-lg transition-all duration-200"
+                    >
+                      Logout
+                    </button>
+                  </>
                 ) : (
                   <div className="space-y-2">
                     <NavLink
