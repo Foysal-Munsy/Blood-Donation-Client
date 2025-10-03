@@ -39,14 +39,18 @@ export default function PendingRequests() {
   return (
     <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-3">
       <Title>Urgent Pending Requests</Title>
-      <p className="text-text opacity-80">These patients are waiting for your help.</p>
+      <p className="text-text opacity-80">
+        These patients are waiting for your help.
+      </p>
 
       {loading ? (
         <Loader label="Loading requests..." />
       ) : error ? (
         <div className="text-center text-highlighted">{error}</div>
       ) : items.length === 0 ? (
-        <div className="text-center opacity-70">No pending requests right now.</div>
+        <div className="text-center opacity-70">
+          No pending requests right now.
+        </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {items.map((item) => (
@@ -64,13 +68,16 @@ export default function PendingRequests() {
               </div>
               <div className="text-sm text-text space-y-1">
                 <p>
-                  <span className="font-medium">Location:</span> {item.recipientDistrict}, {item.recipientUpazila}
+                  <span className="font-medium">Location:</span>{" "}
+                  {item.recipientDistrict}, {item.recipientUpazila}
                 </p>
                 <p>
-                  <span className="font-medium">When:</span> {item.donationDate} at {item.donationTime}
+                  <span className="font-medium">When:</span> {item.donationDate}{" "}
+                  at {item.donationTime}
                 </p>
                 <p className="capitalize">
-                  <span className="font-medium">Status:</span> {item.donationStatus}
+                  <span className="font-medium">Status:</span>{" "}
+                  {item.donationStatus}
                 </p>
               </div>
 
@@ -98,5 +105,3 @@ export default function PendingRequests() {
     </section>
   );
 }
-
-
