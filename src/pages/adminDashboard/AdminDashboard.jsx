@@ -20,12 +20,14 @@ const AdminDashboard = ({ user, role, stats }) => {
       .then(({ data }) => setRequest(data))
       .catch((err) => console.error("Error fetching donation requests:", err));
   }, []);
-
+  const totalDone = request.filter(
+    (item) => item.donationStatus === "done"
+  ).length;
   // stats fallback
   const {
     totalDonor = donors.length,
     totalFunding = 0,
-    totalRequests = request.length,
+    totalRequests = request.length - totalDone,
   } = stats || {};
 
   return (
