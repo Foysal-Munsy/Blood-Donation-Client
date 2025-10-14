@@ -19,11 +19,17 @@ const VolunteerDashboard = ({ user, role, stats }) => {
       .then(({ data }) => setRequest(data))
       .catch((err) => console.error("Error fetching donation requests:", err));
   }, []);
+  // console.log(request);
+  const totalDone = request.filter(
+    (item) => item.donationStatus === "done"
+  ).length;
+  // console.log(totalDone);
+
   // stats fallback
   const {
     totalDonor = donors.length,
     totalFunding = 0,
-    totalRequests = request.length,
+    totalRequests = request.length - totalDone,
   } = stats || {};
 
   return (
