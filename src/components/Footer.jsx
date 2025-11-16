@@ -1,5 +1,14 @@
 import { Link } from "react-router";
-import { FiMail, FiPhone, FiMapPin, FiHeart, FiFacebook, FiTwitter, FiInstagram, FiLinkedin } from "react-icons/fi";
+import {
+  FiMail,
+  FiPhone,
+  FiMapPin,
+  FiHeart,
+  FiFacebook,
+  FiTwitter,
+  FiInstagram,
+  FiLinkedin,
+} from "react-icons/fi";
 
 const Footer = () => {
   const quickLinks = [
@@ -21,7 +30,10 @@ const Footer = () => {
       {/* Decorative Elements */}
       <div className="absolute inset-0 opacity-30">
         <div className="absolute top-10 left-10 w-64 h-64 bg-gradient-to-r from-rose-300 to-red-300 rounded-full mix-blend-multiply filter blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-10 right-10 w-64 h-64 bg-gradient-to-r from-red-300 to-rose-400 rounded-full mix-blend-multiply filter blur-3xl animate-pulse" style={{ animationDelay: "2s" }}></div>
+        <div
+          className="absolute bottom-10 right-10 w-64 h-64 bg-gradient-to-r from-red-300 to-rose-400 rounded-full mix-blend-multiply filter blur-3xl animate-pulse"
+          style={{ animationDelay: "2s" }}
+        ></div>
       </div>
 
       <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
@@ -35,7 +47,8 @@ const Footer = () => {
               <span className="text-3xl">🩸</span>
             </div>
             <p className="text-gray-600 text-sm leading-relaxed">
-              Connecting donors with those in need. Every drop counts, every donor matters. Join us in saving lives.
+              Connecting donors with those in need. Every drop counts, every
+              donor matters. Join us in saving lives.
             </p>
             <div className="flex items-center gap-2">
               <FiHeart className="text-rose-600 w-5 h-5" />
@@ -107,7 +120,9 @@ const Footer = () => {
 
             {/* Social Media */}
             <div className="mt-6">
-              <h4 className="text-sm font-semibold text-gray-700 mb-3">Follow Us</h4>
+              <h4 className="text-sm font-semibold text-gray-700 mb-3">
+                Follow Us
+              </h4>
               <div className="flex gap-3">
                 {[
                   { icon: <FiFacebook />, link: "#" },
@@ -135,7 +150,8 @@ const Footer = () => {
               Stay Updated
             </h3>
             <p className="text-gray-600 text-sm mb-6">
-              Subscribe to our newsletter for blood donation tips and urgent requests
+              Subscribe to our newsletter for blood donation tips and urgent
+              requests
             </p>
             <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
               <input
@@ -154,14 +170,23 @@ const Footer = () => {
         <div className="pt-8 border-t-2 border-rose-200">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
             <p className="text-gray-600 text-sm text-center sm:text-left">
-              © {new Date().getFullYear()} <span className="font-bold text-rose-600">RedDrop</span>. All rights reserved. Made with{" "}
-              <FiHeart className="inline text-rose-600 animate-pulse" /> for humanity.
+              © {new Date().getFullYear()}{" "}
+              <span className="font-bold text-rose-600">RedDrop</span>. All
+              rights reserved. Made with{" "}
+              <FiHeart className="inline text-rose-600 animate-pulse" /> for
+              humanity.
             </p>
             <div className="flex gap-6 text-sm">
-              <Link to="/" className="text-gray-600 hover:text-rose-600 transition-colors">
+              <Link
+                to="/"
+                className="text-gray-600 hover:text-rose-600 transition-colors"
+              >
                 Privacy Policy
               </Link>
-              <Link to="/" className="text-gray-600 hover:text-rose-600 transition-colors">
+              <Link
+                to="/"
+                className="text-gray-600 hover:text-rose-600 transition-colors"
+              >
                 Terms of Service
               </Link>
             </div>

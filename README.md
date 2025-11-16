@@ -77,71 +77,56 @@ A modern, full-stack blood donation management platform connecting donors with t
 
 ## 📸 Screenshots
 
-### Home Page
-![Home Page]()
+### Hero Section 
+![Hero Section](https://github.com/Foysal-Munsy/readme-assets/blob/main/blood-donation-client/hero.png)
 
-### Hero Section with Real-time Stats
-![Hero Section]()
-
-### Impact Statistics Dashboard
-![Impact Statistics]()
+### Impact Statistics 
+![Impact Statistics](https://github.com/Foysal-Munsy/readme-assets/blob/main/blood-donation-client/impact.png)
 
 ### Donation Process Guide
-![Donation Process]()
+![Donation Process](https://github.com/Foysal-Munsy/readme-assets/blob/main/blood-donation-client/donation-process.png)
 
 ### Blood Helper AI Assistant
-![Blood Helper]()
+![Blood Helper](https://github.com/Foysal-Munsy/readme-assets/blob/main/blood-donation-client/blood-helper.png)
 
 ### Search Donors
-![Search Donors]()
+![Search Donors](https://github.com/Foysal-Munsy/readme-assets/blob/main/blood-donation-client/search-donors.png)
 
 ### Blood Donation Requests
-![Donation Requests]()
+![Donation Requests](https://github.com/Foysal-Munsy/readme-assets/blob/main/blood-donation-client/donation-request.png)
 
-### Request Details
-![Request Details]()
-
-### User Dashboard
-![User Dashboard]()
+### Donor Dashboard
+![Donor Dashboard](https://github.com/Foysal-Munsy/readme-assets/blob/main/blood-donation-client/user-dashboard.png)
 
 ### Create Donation Request
-![Create Request]()
+![Create Request](https://github.com/Foysal-Munsy/readme-assets/blob/main/blood-donation-client/create-request.png)
 
 ### My Donation Requests
-![My Requests]()
+![My Requests](https://github.com/Foysal-Munsy/readme-assets/blob/main/blood-donation-client/my-request.png)
 
 ### Admin Dashboard
-![Admin Dashboard]()
+![Admin Dashboard](https://github.com/Foysal-Munsy/readme-assets/blob/main/blood-donation-client/admin-dashboard.png)
 
 ### User Management
-![User Management]()
+![User Management](https://github.com/Foysal-Munsy/readme-assets/blob/main/blood-donation-client/user-management.png)
 
 ### All Donation Requests (Admin)
-![Admin Requests]()
+![Admin Requests](https://github.com/Foysal-Munsy/readme-assets/blob/main/blood-donation-client/all-donation-request-admin.png)
 
 ### Content Management
-![Content Management]()
+![Content Management](https://github.com/Foysal-Munsy/readme-assets/blob/main/blood-donation-client/content-management.png)
 
 ### Blog Page
-![Blog]()
+![Blog](https://github.com/Foysal-Munsy/readme-assets/blob/main/blood-donation-client/blog-page.png)
 
 ### Blog Details
-![Blog Details]()
+![Blog Details](https://github.com/Foysal-Munsy/readme-assets/blob/main/blood-donation-client/blog-details.png)
 
 ### Add Blog (Admin)
-![Add Blog]()
-
-### Login Page
-![Login]()
-
-### Registration Page
-![Registration]()
-
-### Profile Page
-![Profile]()
+![Add Blog](https://github.com/Foysal-Munsy/readme-assets/blob/main/blood-donation-client/add-blog.png)
 
 ### Footer
-![Footer]()
+![Footer](https://github.com/Foysal-Munsy/readme-assets/blob/main/blood-donation-client/footer.png)
 
 ---
 
