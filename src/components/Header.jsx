@@ -4,7 +4,6 @@ import { RiMenuAddLine } from "react-icons/ri";
 import { FiChevronDown } from "react-icons/fi";
 import { Link, NavLink } from "react-router";
 import { AuthContext } from "../providers/AuthProvider";
-import ThemeToggle from "./ThemeToggle";
 
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -27,7 +26,7 @@ const Header = () => {
         <div className="flex justify-between items-center h-16 lg:h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2 group">
-            <span className="text-2xl lg:text-3xl font-black bg-gradient-to-r from-red-600 to-rose-700 dark:from-rose-400 dark:to-red-400 bg-clip-text text-transparent tracking-tight group-hover:scale-105 transform transition-transform duration-200">
+            <span className="text-2xl lg:text-3xl font-black bg-gradient-to-r from-red-600 to-rose-700 bg-clip-text text-transparent tracking-tight group-hover:scale-105 transform transition-transform duration-200">
               RedDrop
             </span>
             <span className="text-2xl group-hover:rotate-180 transform transition-transform duration-200">
@@ -45,8 +44,8 @@ const Header = () => {
                 className={({ isActive }) =>
                   `px-4 py-2 rounded-lg font-medium text-sm xl:text-base transition-all duration-200 ${
                     isActive
-                      ? "bg-rose-100 dark:bg-slate-700 text-highlighted dark:text-rose-400 shadow-sm"
-                      : "text-text hover:text-highlighted dark:hover:text-rose-400 hover:bg-rose-50 dark:hover:bg-slate-700"
+                      ? "bg-rose-100 text-highlighted shadow-sm"
+                      : "text-text hover:text-highlighted hover:bg-rose-50"
                   }`
                 }
               >
@@ -57,7 +56,6 @@ const Header = () => {
 
           {/* Desktop User Actions */}
           <div className="hidden lg:flex items-center space-x-4">
-            <ThemeToggle />
             {user && user.email ? (
               <div className="relative">
                 <div className="flex items-center space-x-3">
@@ -71,7 +69,7 @@ const Header = () => {
                       <img
                         src={user.photoURL}
                         alt={user.displayName}
-                        className="w-10 h-10 rounded-full object-cover border-2 border-border dark:border-slate-600 shadow-sm hover:border-rose-500 dark:hover:border-rose-400 transition-colors duration-200"
+                        className="w-10 h-10 rounded-full object-cover border-2 border-border shadow-sm hover:border-rose-500 transition-colors duration-200"
                         title={user.displayName}
                       />
                       <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white"></div>
@@ -89,7 +87,7 @@ const Header = () => {
 
                 {isMenuOpen && (
                   <div
-                    className="absolute right-0 mt-2 w-48 bg-cardBg dark:bg-slate-800 border border-border dark:border-slate-600 rounded-lg shadow-lg dark:shadow-2xl py-1 z-50"
+                    className="absolute right-0 mt-2 w-48 bg-cardBg border border-border rounded-lg shadow-lg py-1 z-50"
                     role="menu"
                   >
                     <NavLink
@@ -98,8 +96,8 @@ const Header = () => {
                       className={({ isActive }) =>
                         `block px-4 py-2 text-sm ${
                           isActive
-                            ? "text-highlighted dark:text-rose-400 bg-rose-50 dark:bg-slate-700"
-                            : "text-text hover:text-highlighted dark:hover:text-rose-400 hover:bg-rose-50 dark:hover:bg-slate-700"
+                            ? "text-highlighted bg-rose-50"
+                            : "text-text hover:text-highlighted hover:bg-rose-50"
                         }`
                       }
                       role="menuitem"
@@ -111,7 +109,7 @@ const Header = () => {
                         setIsMenuOpen(false);
                         logOut();
                       }}
-                      className="block w-full text-left px-4 py-2 text-sm text-highlighted dark:text-rose-400 hover:text-highlighted hover:bg-red-50 dark:hover:bg-slate-700"
+                      className="block w-full text-left px-4 py-2 text-sm text-highlighted hover:text-highlighted hover:bg-red-50"
                       role="menuitem"
                     >
                       Logout
@@ -123,13 +121,13 @@ const Header = () => {
               <div className="flex items-center space-x-2">
                 <NavLink
                   to="/login"
-                  className="px-4 py-2 text-sm font-medium text-text hover:text-highlighted dark:hover:text-rose-400 hover:bg-rose-50 dark:hover:bg-slate-700 rounded-lg transition-all duration-200"
+                  className="px-4 py-2 text-sm font-medium text-text hover:text-highlighted hover:bg-rose-50 rounded-lg transition-all duration-200"
                 >
                   Login
                 </NavLink>
                 <NavLink
                   to="/registration"
-                  className="px-4 py-2 text-sm font-medium bg-cta text-btn-text rounded-lg hover:shadow-md dark:hover:shadow-rose-900/50 transform hover:-translate-y-0.5 transition-all duration-200"
+                  className="px-4 py-2 text-sm font-medium bg-cta text-btn-text rounded-lg hover:shadow-md transform hover:-translate-y-0.5 transition-all duration-200"
                 >
                   Register
                 </NavLink>
@@ -153,7 +151,7 @@ const Header = () => {
 
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="p-2 rounded-lg text-gray-700 dark:text-slate-300 hover:text-red-700 dark:hover:text-rose-400 hover:bg-rose-50 dark:hover:bg-slate-700 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-red-500 dark:focus:ring-rose-400 focus:ring-offset-2 dark:focus:ring-offset-slate-900"
+              className="p-2 rounded-lg text-gray-700 hover:text-red-700 hover:bg-rose-50 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
               aria-label="Toggle menu"
             >
               {isMenuOpen ? (
@@ -181,8 +179,8 @@ const Header = () => {
                   className={({ isActive }) =>
                     `block px-4 py-3 text-base font-medium rounded-lg transition-all duration-200 ${
                       isActive
-                        ? "bg-rose-100 dark:bg-slate-700 text-highlighted dark:text-rose-400 border-l-4 border-red-500 dark:border-rose-400"
-                        : "text-text hover:text-highlighted dark:hover:text-rose-400 hover:bg-rose-50 dark:hover:bg-slate-700"
+                        ? "bg-rose-100 text-highlighted border-l-4 border-red-500"
+                        : "text-text hover:text-highlighted hover:bg-rose-50"
                     }`
                   }
                 >
@@ -197,7 +195,7 @@ const Header = () => {
                     <NavLink
                       to="/dashboard"
                       onClick={handleNavLinkClick}
-                      className="block px-4 py-3 text-base font-medium text-text hover:text-highlighted dark:hover:text-rose-400 hover:bg-rose-50 dark:hover:bg-slate-700 rounded-lg transition-all duration-200"
+                      className="block px-4 py-3 text-base font-medium text-text hover:text-highlighted hover:bg-rose-50 rounded-lg transition-all duration-200"
                     >
                       Dashboard
                     </NavLink>
@@ -206,7 +204,7 @@ const Header = () => {
                         logOut();
                         setIsMenuOpen(false);
                       }}
-                      className="block w-full text-left px-4 py-3 text-base font-medium text-highlighted dark:text-rose-400 hover:text-highlighted hover:bg-red-50 dark:hover:bg-slate-700 rounded-lg transition-all duration-200"
+                      className="block w-full text-left px-4 py-3 text-base font-medium text-highlighted hover:text-highlighted hover:bg-red-50 rounded-lg transition-all duration-200"
                     >
                       Logout
                     </button>
@@ -216,7 +214,7 @@ const Header = () => {
                     <NavLink
                       to="/login"
                       onClick={handleNavLinkClick}
-                      className="block px-4 py-3 text-base font-medium text-text hover:text-highlighted dark:hover:text-rose-400 hover:bg-rose-50 dark:hover:bg-slate-700 rounded-lg transition-all duration-200"
+                      className="block px-4 py-3 text-base font-medium text-text hover:text-highlighted hover:bg-rose-50 rounded-lg transition-all duration-200"
                     >
                       Login
                     </NavLink>

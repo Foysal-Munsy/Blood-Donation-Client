@@ -57,98 +57,116 @@ export default function UpdateDonationRequest() {
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-8">
-      <h2 className="text-2xl font-semibold mb-6 text-center">
+      <h2 className="text-4xl font-bold mb-8 text-center bg-gradient-to-r from-rose-600 to-red-600 bg-clip-text text-transparent">
         Update Donation Request
       </h2>
-      <form onSubmit={handleUpdate} className="space-y-4">
+      <form onSubmit={handleUpdate} className="glass p-8 rounded-2xl space-y-6">
         <div>
-          <label className="block font-medium">Requester Name</label>
+          <label className="block font-medium mb-2 text-slate-700">
+            Requester Name
+          </label>
           <input
             type="text"
             name="requesterName"
             defaultValue={details.requesterName}
-            className="w-full border border-gray-300 p-2 rounded"
+            className="w-full border-2 border-rose-200 p-3 rounded-lg focus:ring-2 focus:ring-rose-400 transition-all"
           />
         </div>
 
         <div>
-          <label className="block font-medium">Requester Email</label>
+          <label className="block font-medium mb-2 text-slate-700">
+            Requester Email
+          </label>
           <input
             type="email"
             name="requesterEmail"
             defaultValue={details.requesterEmail}
-            className="w-full border border-gray-300 p-2 rounded"
+            className="w-full border-2 border-rose-200 p-3 rounded-lg bg-slate-50"
             readOnly
           />
         </div>
 
         <div>
-          <label className="block font-medium">Recipient Name</label>
+          <label className="block font-medium mb-2 text-slate-700">
+            Recipient Name
+          </label>
           <input
             type="text"
             name="recipientName"
             defaultValue={details.recipientName}
-            className="w-full border border-gray-300 p-2 rounded"
+            className="w-full border-2 border-rose-200 p-3 rounded-lg focus:ring-2 focus:ring-rose-400 transition-all"
           />
         </div>
 
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label className="block font-medium">District</label>
+            <label className="block font-medium mb-2 text-slate-700">
+              District
+            </label>
             <input
               type="text"
               name="recipientDistrict"
               defaultValue={details.recipientDistrict}
-              className="w-full border border-gray-300 p-2 rounded"
+              className="w-full border-2 border-rose-200 p-3 rounded-lg focus:ring-2 focus:ring-rose-400 transition-all"
             />
           </div>
           <div>
-            <label className="block font-medium">Upazila</label>
+            <label className="block font-medium mb-2 text-slate-700">
+              Upazila
+            </label>
             <input
               type="text"
               name="recipientUpazila"
               defaultValue={details.recipientUpazila}
-              className="w-full border border-gray-300 p-2 rounded"
+              className="w-full border-2 border-rose-200 p-3 rounded-lg focus:ring-2 focus:ring-rose-400 transition-all"
             />
           </div>
         </div>
 
         <div>
-          <label className="block font-medium">Hospital Name</label>
+          <label className="block font-medium mb-2 text-slate-700">
+            Hospital Name
+          </label>
           <input
             type="text"
             name="hospitalName"
             defaultValue={details.hospitalName}
-            className="w-full border border-gray-300 p-2 rounded"
+            className="w-full border-2 border-rose-200 p-3 rounded-lg focus:ring-2 focus:ring-rose-400 transition-all"
           />
         </div>
 
         <div>
-          <label className="block font-medium">Full Address</label>
+          <label className="block font-medium mb-2 text-slate-700">
+            Full Address
+          </label>
           <textarea
             name="fullAddress"
             defaultValue={details.fullAddress}
-            className="w-full border border-gray-300 p-2 rounded"
+            className="w-full border-2 border-rose-200 p-3 rounded-lg focus:ring-2 focus:ring-rose-400 transition-all"
           ></textarea>
         </div>
 
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label className="block font-medium">Blood Group</label>
+            <label className="block font-medium mb-2 text-slate-700">
+              Blood Group
+            </label>
             <input
               type="text"
               name="bloodGroup"
               defaultValue={details.bloodGroup}
-              className="w-full border border-gray-300 p-2 rounded"
+              className="w-full border-2 border-rose-200 p-3 rounded-lg focus:ring-2 focus:ring-rose-400 transition-all"
             />
           </div>
           <div>
-            <label className="block font-medium">Status</label>
+            <label className="block font-medium mb-2 text-slate-700">
+              Status
+            </label>
             <input
               type="text"
               name="donationStatus"
               defaultValue={details.donationStatus}
-              className="w-full border border-gray-300 p-2 rounded"
+              className="w-full border-2 border-rose-200 p-3 rounded-lg bg-slate-50 capitalize"
               readOnly
             />
           </div>
@@ -156,39 +174,46 @@ export default function UpdateDonationRequest() {
 
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label className="block font-medium">Date</label>
+            <label className="block font-medium mb-2 text-slate-700">
+              Date
+            </label>
             <input
               type="date"
               name="donationDate"
               defaultValue={details.donationDate}
-              className="w-full border border-gray-300 p-2 rounded"
+              className="w-full border-2 border-rose-200 p-3 rounded-lg focus:ring-2 focus:ring-rose-400 transition-all"
             />
           </div>
           <div>
-            <label className="block font-medium">Time</label>
+            <label className="block font-medium mb-2 text-slate-700">
+              Time
+            </label>
             <input
               type="time"
               name="donationTime"
               defaultValue={details.donationTime}
-              className="w-full border border-gray-300 p-2 rounded"
+              className="w-full border-2 border-rose-200 p-3 rounded-lg focus:ring-2 focus:ring-rose-400 transition-all"
             />
           </div>
         </div>
 
         <div>
-          <label className="block font-medium">Request Message</label>
+          <label className="block font-medium mb-2 text-slate-700">
+            Request Message
+          </label>
           <textarea
             name="requestMessage"
             defaultValue={details.requestMessage}
-            className="w-full border border-gray-300 p-2 rounded"
+            className="w-full border-2 border-rose-200 p-3 rounded-lg focus:ring-2 focus:ring-rose-400 transition-all"
+            rows="4"
           ></textarea>
         </div>
 
         <button
           type="submit"
-          className="w-full bg-red-600 hover:bg-red-700 text-white py-2 rounded font-semibold"
+          className="w-full bg-gradient-to-r from-rose-600 to-red-600 hover:from-rose-700 hover:to-red-700 text-white py-3 rounded-lg font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all"
         >
-          Update
+          Update Request
         </button>
       </form>
     </div>

@@ -19,7 +19,7 @@ const DashboardLayout = () => {
 
   return (
     <HelmetProvider>
-      <div className="min-h-screen bg-gradient-to-br from-rose-50/50 via-white to-red-50/50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
+      <div className="min-h-screen bg-gradient-to-br from-rose-50/50 via-white to-red-50/50">
         <Sidebar />
         <main className="transition-all duration-300 lg:ml-72 min-h-screen">
           <div className="p-4 sm:p-6 lg:p-8">

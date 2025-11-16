@@ -137,10 +137,10 @@ const Register = () => {
       <PageTitle title={"Register"} />
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-8 sm:mb-12">
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black bg-gradient-to-r from-rose-600 to-red-600 dark:from-rose-400 dark:to-red-400 bg-clip-text text-transparent mb-2">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black bg-gradient-to-r from-rose-600 to-red-600 bg-clip-text text-transparent mb-2">
             Join Our Community
           </h1>
-          <p className="text-gray-600 dark:text-slate-400 text-sm sm:text-base">
+          <p className="text-gray-600 text-sm sm:text-base">
             Register to become a lifesaver today
           </p>
         </div>
@@ -150,163 +150,163 @@ const Register = () => {
           <div className="flex-1 w-full max-w-lg">
             <form
               onSubmit={handleSubmit}
-              className="glass p-6 sm:p-8 flex flex-col gap-5 sm:gap-6 shadow-2xl rounded-2xl border border-rose-200 dark:border-slate-700"
+              className="glass p-6 sm:p-8 flex flex-col gap-5 sm:gap-6 shadow-2xl rounded-2xl border border-rose-200"
             >
-                {/* Name */}
-                <div className="flex items-center gap-2">
-                  <BiUser className="text-2xl sm:text-3xl text-highlighted flex-shrink-0" />
-                  <input
-                    className="outline-none flex-1 border-b p-2 bg-transparent focus:border-highlighted border-border text-text text-sm sm:text-base"
-                    type="text"
-                    name="name"
-                    placeholder="Enter Full Name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
+              {/* Name */}
+              <div className="flex items-center gap-2">
+                <BiUser className="text-2xl sm:text-3xl text-highlighted flex-shrink-0" />
+                <input
+                  className="outline-none flex-1 border-b p-2 bg-transparent focus:border-highlighted border-border text-text text-sm sm:text-base"
+                  type="text"
+                  name="name"
+                  placeholder="Enter Full Name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
 
-                {/* Image */}
-                <div className="flex items-center gap-2">
-                  <BiImageAdd className="text-2xl sm:text-3xl text-highlighted flex-shrink-0" />
-                  <input
-                    className="outline-none flex-1 border-b p-2 bg-transparent focus:border-highlighted border-border text-text text-sm sm:text-base"
-                    type="text"
-                    name="image"
-                    placeholder="Enter Image URL"
-                    value={formData.image}
-                    onChange={handleChange}
-                  />
-                </div>
+              {/* Image */}
+              <div className="flex items-center gap-2">
+                <BiImageAdd className="text-2xl sm:text-3xl text-highlighted flex-shrink-0" />
+                <input
+                  className="outline-none flex-1 border-b p-2 bg-transparent focus:border-highlighted border-border text-text text-sm sm:text-base"
+                  type="text"
+                  name="image"
+                  placeholder="Enter Image URL"
+                  value={formData.image}
+                  onChange={handleChange}
+                />
+              </div>
 
-                {/* Email */}
-                <div className="flex items-center gap-2">
-                  <BiEnvelope className="text-2xl sm:text-3xl text-highlighted flex-shrink-0" />
-                  <input
-                    className="outline-none flex-1 border-b p-2 bg-transparent focus:border-highlighted border-border text-text text-sm sm:text-base"
-                    type="email"
-                    name="email"
-                    placeholder="Enter Email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
+              {/* Email */}
+              <div className="flex items-center gap-2">
+                <BiEnvelope className="text-2xl sm:text-3xl text-highlighted flex-shrink-0" />
+                <input
+                  className="outline-none flex-1 border-b p-2 bg-transparent focus:border-highlighted border-border text-text text-sm sm:text-base"
+                  type="email"
+                  name="email"
+                  placeholder="Enter Email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
 
-                {/* Blood Group */}
-                <div className="flex items-center gap-2">
-                  <BiDroplet className="text-2xl sm:text-3xl text-highlighted flex-shrink-0" />
-                  <select
-                    name="blood"
-                    value={formData.blood}
-                    onChange={handleChange}
-                    className="outline-none flex-1 border-b p-2 bg-white dark:bg-slate-800 focus:border-highlighted border-border text-text text-sm sm:text-base"
-                    required
-                  >
-                    <option value="">Select Blood Group</option>
-                    <option value="A+">A+</option>
-                    <option value="A-">A-</option>
-                    <option value="B+">B+</option>
-                    <option value="B-">B-</option>
-                    <option value="AB+">AB+</option>
-                    <option value="AB-">AB-</option>
-                    <option value="O+">O+</option>
-                    <option value="O-">O-</option>
-                  </select>
-                </div>
-
-                {/* District */}
-                <div className="flex items-center gap-2">
-                  <SlLocationPin className="text-2xl sm:text-3xl text-highlighted flex-shrink-0" />
-                  <select
-                    name="district"
-                    value={formData.district}
-                    onChange={handleDistrictChange}
-                    className="outline-none flex-1 border-b p-2 bg-white dark:bg-slate-800 focus:border-highlighted border-border text-text text-sm sm:text-base"
-                    required
-                  >
-                    <option value="">Select District</option>
-                    {districts.map((district) => (
-                      <option key={district.id} value={district.name}>
-                        {district.name}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
-                {/* Upazila */}
-                <div className="flex items-center gap-2">
-                  <GrLocationPin className="text-2xl sm:text-3xl text-highlighted flex-shrink-0" />
-                  <select
-                    name="upazila"
-                    value={formData.upazila}
-                    onChange={handleChange}
-                    className="outline-none flex-1 border-b p-2 bg-white dark:bg-slate-800 focus:border-highlighted border-border text-text text-sm sm:text-base"
-                    required
-                  >
-                    <option value="">Select Upazila</option>
-                    {filteredUpazilas.map((u) => (
-                      <option key={u.id} value={u.name}>
-                        {u.name}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
-                {/* Password */}
-                <div className="flex items-center gap-2">
-                  <BiKey className="text-2xl sm:text-3xl text-highlighted flex-shrink-0" />
-                  <input
-                    className="outline-none flex-1 border-b p-2 bg-transparent focus:border-highlighted border-border text-text text-sm sm:text-base"
-                    type="password"
-                    name="pass"
-                    placeholder="Enter Password"
-                    value={formData.pass}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-
-                {/* Confirm Password */}
-                <div className="flex items-center gap-2">
-                  <BiKey className="text-2xl sm:text-3xl text-highlighted flex-shrink-0" />
-                  <input
-                    className="outline-none flex-1 border-b p-2 bg-transparent focus:border-highlighted border-border text-text text-sm sm:text-base"
-                    type="password"
-                    name="confirmPass"
-                    placeholder="Confirm Password"
-                    value={formData.confirmPass}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-
-                {/* Error */}
-                {errorMsg && (
-                  <p className="text-highlighted text-xs sm:text-sm text-center font-medium">
-                    {errorMsg}
-                  </p>
-                )}
-
-                {/* Login link */}
-                <div className="p-1 flex gap-2 text-xs sm:text-sm text-text opacity-80">
-                  <span>Have an account?</span>
-                  <Link
-                    to="/login"
-                    className="text-highlighted hover:underline font-medium"
-                  >
-                    Login
-                  </Link>
-                </div>
-
-                {/* Submit */}
-                <button
-                  type="submit"
-                  className="cursor-pointer px-4 py-2.5 sm:py-3 rounded-lg bg-cta text-btn-text font-semibold text-sm sm:text-base hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
-                  disabled={loadingSave}
+              {/* Blood Group */}
+              <div className="flex items-center gap-2">
+                <BiDroplet className="text-2xl sm:text-3xl text-highlighted flex-shrink-0" />
+                <select
+                  name="blood"
+                  value={formData.blood}
+                  onChange={handleChange}
+                  className="outline-none flex-1 border-b p-2 bg-white focus:border-highlighted border-border text-text text-sm sm:text-base"
+                  required
                 >
-                  {loadingSave ? "Registering..." : "Register Now"}
-                </button>
+                  <option value="">Select Blood Group</option>
+                  <option value="A+">A+</option>
+                  <option value="A-">A-</option>
+                  <option value="B+">B+</option>
+                  <option value="B-">B-</option>
+                  <option value="AB+">AB+</option>
+                  <option value="AB-">AB-</option>
+                  <option value="O+">O+</option>
+                  <option value="O-">O-</option>
+                </select>
+              </div>
+
+              {/* District */}
+              <div className="flex items-center gap-2">
+                <SlLocationPin className="text-2xl sm:text-3xl text-highlighted flex-shrink-0" />
+                <select
+                  name="district"
+                  value={formData.district}
+                  onChange={handleDistrictChange}
+                  className="outline-none flex-1 border-b p-2 bg-white focus:border-highlighted border-border text-text text-sm sm:text-base"
+                  required
+                >
+                  <option value="">Select District</option>
+                  {districts.map((district) => (
+                    <option key={district.id} value={district.name}>
+                      {district.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              {/* Upazila */}
+              <div className="flex items-center gap-2">
+                <GrLocationPin className="text-2xl sm:text-3xl text-highlighted flex-shrink-0" />
+                <select
+                  name="upazila"
+                  value={formData.upazila}
+                  onChange={handleChange}
+                  className="outline-none flex-1 border-b p-2 bg-white focus:border-highlighted border-border text-text text-sm sm:text-base"
+                  required
+                >
+                  <option value="">Select Upazila</option>
+                  {filteredUpazilas.map((u) => (
+                    <option key={u.id} value={u.name}>
+                      {u.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              {/* Password */}
+              <div className="flex items-center gap-2">
+                <BiKey className="text-2xl sm:text-3xl text-highlighted flex-shrink-0" />
+                <input
+                  className="outline-none flex-1 border-b p-2 bg-transparent focus:border-highlighted border-border text-text text-sm sm:text-base"
+                  type="password"
+                  name="pass"
+                  placeholder="Enter Password"
+                  value={formData.pass}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+
+              {/* Confirm Password */}
+              <div className="flex items-center gap-2">
+                <BiKey className="text-2xl sm:text-3xl text-highlighted flex-shrink-0" />
+                <input
+                  className="outline-none flex-1 border-b p-2 bg-transparent focus:border-highlighted border-border text-text text-sm sm:text-base"
+                  type="password"
+                  name="confirmPass"
+                  placeholder="Confirm Password"
+                  value={formData.confirmPass}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+
+              {/* Error */}
+              {errorMsg && (
+                <p className="text-highlighted text-xs sm:text-sm text-center font-medium">
+                  {errorMsg}
+                </p>
+              )}
+
+              {/* Login link */}
+              <div className="p-1 flex gap-2 text-xs sm:text-sm text-text opacity-80">
+                <span>Have an account?</span>
+                <Link
+                  to="/login"
+                  className="text-highlighted hover:underline font-medium"
+                >
+                  Login
+                </Link>
+              </div>
+
+              {/* Submit */}
+              <button
+                type="submit"
+                className="cursor-pointer px-4 py-2.5 sm:py-3 rounded-lg bg-cta text-btn-text font-semibold text-sm sm:text-base hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                disabled={loadingSave}
+              >
+                {loadingSave ? "Registering..." : "Register Now"}
+              </button>
             </form>
           </div>
 

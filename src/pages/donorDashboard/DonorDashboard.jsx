@@ -78,69 +78,87 @@ export default function DonorDashboard({ user }) {
       {/* Donation Requests Table */}
       {loading && <Loader label="Loading your latest requests..." />}
       {!loading && donationRequests.length > 0 && (
-        <div className="glass rounded-2xl overflow-hidden shadow-2xl border border-rose-200 dark:border-slate-700 mt-8">
-        <div className="overflow-x-auto">
-          <table className="min-w-full text-sm">
-            <thead className="bg-gradient-to-r from-rose-50 to-red-50 dark:from-slate-700 dark:to-slate-800">
-              <tr>
-                <th className="px-4 py-3 text-left font-bold text-gray-700 dark:text-slate-200">Recipient</th>
-                <th className="px-4 py-3 text-left font-bold text-gray-700 dark:text-slate-200">Location</th>
-                <th className="px-4 py-3 text-left font-bold text-gray-700 dark:text-slate-200">Date</th>
-                <th className="px-4 py-3 text-left font-bold text-gray-700 dark:text-slate-200">Time</th>
-                <th className="px-4 py-3 text-left font-bold text-gray-700 dark:text-slate-200">Blood</th>
-                <th className="px-4 py-3 text-left font-bold text-gray-700 dark:text-slate-200">Status</th>
-                <th className="px-4 py-3 text-left font-bold text-gray-700 dark:text-slate-200">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {donationRequests.map((item) => (
-                <tr key={item._id} className="border-b border-rose-100 dark:border-slate-700 hover:bg-rose-50 dark:hover:bg-slate-700/50 transition-colors text-text">
-                  <td className="px-4 py-2">{item.recipientName}</td>
-                  <td className="px-4 py-2">
-                    {item.recipientDistrict}, {item.recipientUpazila}
-                  </td>
-                  <td className="px-4 py-2">{item.donationDate}</td>
-                  <td className="px-4 py-2">{item.donationTime}</td>
-                  <td className="px-4 py-2 font-semibold text-red-600">
-                    {item.bloodGroup}
-                  </td>
-                  <td className="px-4 py-2 capitalize">
-                    {item.donationStatus}
-                  </td>
-                  <td className="px-4 py-2 space-x-2">
-                    {item.donationStatus === "inprogress" && (
-                      <>
-                        <button className="text-green-600 hover:underline">
-                          Done
-                        </button>
-                        <button className="text-red-600 hover:underline">
-                          Cancel
-                        </button>
-                      </>
-                    )}
-                    <Link
-                      to={`/dashboard/update-donation-request/${item._id}`}
-                      className="text-blue-600 hover:underline"
-                    >
-                      Edit
-                    </Link>
-                    <button
-                      onClick={() => handleDelete(item._id)}
-                      className="text-red-600 hover:underline text-sm"
-                    >
-                      Delete
-                    </button>
-                    <Link
-                      to={`/details/${item._id}`}
-                      className="text-indigo-600 hover:underline"
-                    >
-                      View
-                    </Link>
-                  </td>
+        <div className="glass rounded-2xl overflow-hidden shadow-2xl border border-rose-200 mt-8">
+          <div className="overflow-x-auto">
+            <table className="min-w-full text-sm">
+              <thead className="bg-gradient-to-r from-rose-50 to-red-50">
+                <tr>
+                  <th className="px-4 py-3 text-left font-bold text-gray-700">
+                    Recipient
+                  </th>
+                  <th className="px-4 py-3 text-left font-bold text-gray-700">
+                    Location
+                  </th>
+                  <th className="px-4 py-3 text-left font-bold text-gray-700">
+                    Date
+                  </th>
+                  <th className="px-4 py-3 text-left font-bold text-gray-700">
+                    Time
+                  </th>
+                  <th className="px-4 py-3 text-left font-bold text-gray-700">
+                    Blood
+                  </th>
+                  <th className="px-4 py-3 text-left font-bold text-gray-700">
+                    Status
+                  </th>
+                  <th className="px-4 py-3 text-left font-bold text-gray-700">
+                    Actions
+                  </th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {donationRequests.map((item) => (
+                  <tr
+                    key={item._id}
+                    className="border-b border-rose-100 hover:bg-rose-50 transition-colors text-text"
+                  >
+                    <td className="px-4 py-2">{item.recipientName}</td>
+                    <td className="px-4 py-2">
+                      {item.recipientDistrict}, {item.recipientUpazila}
+                    </td>
+                    <td className="px-4 py-2">{item.donationDate}</td>
+                    <td className="px-4 py-2">{item.donationTime}</td>
+                    <td className="px-4 py-2 font-semibold text-red-600">
+                      {item.bloodGroup}
+                    </td>
+                    <td className="px-4 py-2 capitalize">
+                      {item.donationStatus}
+                    </td>
+                    <td className="px-4 py-2 space-x-2">
+                      {item.donationStatus === "inprogress" && (
+                        <>
+                          <button className="text-green-600 hover:underline">
+                            Done
+                          </button>
+                          <button className="text-red-600 hover:underline">
+                            Cancel
+                          </button>
+                        </>
+                      )}
+                      <Link
+                        to={`/dashboard/update-donation-request/${item._id}`}
+                        className="text-blue-600 hover:underline"
+                      >
+                        Edit
+                      </Link>
+                      <button
+                        onClick={() => handleDelete(item._id)}
+                        className="text-red-600 hover:underline text-sm"
+                      >
+                        Delete
+                      </button>
+                      <Link
+                        to={`/details/${item._id}`}
+                        className="text-indigo-600 hover:underline"
+                      >
+                        View
+                      </Link>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       )}
 
@@ -165,7 +183,6 @@ export default function DonorDashboard({ user }) {
           </Link>
         </div>
       )}
-    </div>
     </div>
   );
 }

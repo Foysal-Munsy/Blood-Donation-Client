@@ -37,11 +37,15 @@ export default function PendingRequests() {
   }, []);
 
   return (
-    <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-3">
-      <Title>Urgent Pending Requests</Title>
-      <p className="text-text opacity-80">
-        These patients are waiting for your help.
-      </p>
+    <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-6">
+      <div className="text-center mb-8">
+        <h2 className="text-4xl font-bold mb-3 bg-gradient-to-r from-rose-600 to-red-600 bg-clip-text text-transparent">
+          Urgent Pending Requests
+        </h2>
+        <p className="text-slate-600 text-lg">
+          These patients are waiting for your help.
+        </p>
+      </div>
 
       {loading ? (
         <Loader label="Loading requests..." />
@@ -52,41 +56,47 @@ export default function PendingRequests() {
           No pending requests right now.
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {items.map((item) => (
             <article
               key={item._id}
-              className="border border-border rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow duration-200 bg-cardBg"
+              className="glass p-6 rounded-2xl hover:scale-105 transition-transform duration-300 shadow-lg"
             >
-              <div className="flex items-center justify-between mb-3">
-                <h3 className="text-lg font-semibold text-highlighted">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-xl font-bold text-slate-800">
                   {item.recipientName}
                 </h3>
-                <span className="px-2 py-1 text-xs rounded bg-highlighted text-btn-text font-medium">
+                <span className="px-3 py-1.5 text-sm rounded-lg bg-gradient-to-r from-rose-600 to-red-600 text-white font-bold shadow-md">
                   {item.bloodGroup}
                 </span>
               </div>
-              <div className="text-sm text-text space-y-1">
-                <p>
-                  <span className="font-medium">Location:</span>{" "}
-                  {item.recipientDistrict}, {item.recipientUpazila}
+              <div className="text-sm text-slate-600 space-y-2">
+                <p className="flex items-start">
+                  <span className="font-semibold text-slate-700 mr-2">📍</span>
+                  <span>
+                    {item.recipientDistrict}, {item.recipientUpazila}
+                  </span>
                 </p>
-                <p>
-                  <span className="font-medium">When:</span> {item.donationDate}{" "}
-                  at {item.donationTime}
+                <p className="flex items-start">
+                  <span className="font-semibold text-slate-700 mr-2">🕒</span>
+                  <span>
+                    {item.donationDate} at {item.donationTime}
+                  </span>
                 </p>
-                <p className="capitalize">
-                  <span className="font-medium">Status:</span>{" "}
-                  {item.donationStatus}
+                <p className="flex items-start capitalize">
+                  <span className="font-semibold text-slate-700 mr-2">📋</span>
+                  <span className="inline-block px-2 py-0.5 rounded bg-yellow-100 text-yellow-700 text-xs">
+                    {item.donationStatus}
+                  </span>
                 </p>
               </div>
 
-              <div className="mt-4 flex items-center gap-2">
+              <div className="mt-5">
                 <Link
                   to={`/details/${item._id}`}
-                  className="inline-flex items-center justify-center px-4 py-2 rounded-lg bg-cta text-btn-text text-sm font-medium hover:shadow-md transition"
+                  className="block text-center px-4 py-2.5 rounded-lg bg-gradient-to-r from-rose-600 to-red-600 hover:from-rose-700 hover:to-red-700 text-white text-sm font-semibold shadow-lg hover:shadow-xl transition-all"
                 >
-                  View details
+                  View Details
                 </Link>
               </div>
             </article>
@@ -94,12 +104,12 @@ export default function PendingRequests() {
         </div>
       )}
 
-      <div className="text-center mt-8">
+      <div className="text-center mt-10">
         <Link
           to="/request"
-          className="inline-flex items-center justify-center px-5 py-2.5 rounded-lg border border-border text-highlighted dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-slate-700 font-medium"
+          className="inline-flex items-center justify-center px-8 py-3 rounded-lg border-2 border-rose-600 text-rose-600 hover:bg-rose-50 font-semibold transition-all transform hover:scale-105"
         >
-          Browse all requests
+          Browse All Requests
         </Link>
       </div>
     </section>

@@ -44,10 +44,10 @@ const Login = () => {
       <PageTitle title={"Login"} />
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-8 sm:mb-12">
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black bg-gradient-to-r from-rose-600 to-red-600 dark:from-rose-400 dark:to-red-400 bg-clip-text text-transparent mb-2">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black bg-gradient-to-r from-rose-600 to-red-600 bg-clip-text text-transparent mb-2">
             Welcome Back
           </h1>
-          <p className="text-gray-600 dark:text-slate-400 text-sm sm:text-base">
+          <p className="text-gray-600 text-sm sm:text-base">
             Login to continue your life-saving journey
           </p>
         </div>
@@ -56,53 +56,53 @@ const Login = () => {
           <div className="flex-1 w-full max-w-lg">
             <form
               onSubmit={handleSubmit}
-              className="glass p-6 sm:p-8 lg:p-10 flex flex-col gap-6 shadow-2xl rounded-2xl border border-rose-200 dark:border-slate-700"
+              className="glass p-6 sm:p-8 lg:p-10 flex flex-col gap-6 shadow-2xl rounded-2xl border border-rose-200"
             >
-                {/* Email */}
+              {/* Email */}
+              <div className="flex justify-start items-center gap-2">
+                <BiEnvelope className="text-2xl sm:text-3xl text-highlighted flex-shrink-0" />
+                <input
+                  className="outline-none flex-1 border-b p-2 bg-transparent focus:border-highlighted transition-all duration-200 border-border text-text text-sm sm:text-base"
+                  type="email"
+                  name="email"
+                  placeholder="Enter email"
+                  required
+                />
+              </div>
+
+              {/* Password */}
+              <div className="space-y-1">
                 <div className="flex justify-start items-center gap-2">
-                  <BiEnvelope className="text-2xl sm:text-3xl text-highlighted flex-shrink-0" />
+                  <BiKey className="text-2xl sm:text-3xl text-highlighted flex-shrink-0" />
                   <input
                     className="outline-none flex-1 border-b p-2 bg-transparent focus:border-highlighted transition-all duration-200 border-border text-text text-sm sm:text-base"
-                    type="email"
-                    name="email"
-                    placeholder="Enter email"
+                    type="password"
+                    name="pass"
+                    placeholder="Enter password"
                     required
                   />
                 </div>
+                <p className="text-end text-xs sm:text-sm text-highlighted cursor-pointer hover:underline">
+                  Forgot password?
+                </p>
+              </div>
 
-                {/* Password */}
-                <div className="space-y-1">
-                  <div className="flex justify-start items-center gap-2">
-                    <BiKey className="text-2xl sm:text-3xl text-highlighted flex-shrink-0" />
-                    <input
-                      className="outline-none flex-1 border-b p-2 bg-transparent focus:border-highlighted transition-all duration-200 border-border text-text text-sm sm:text-base"
-                      type="password"
-                      name="pass"
-                      placeholder="Enter password"
-                      required
-                    />
-                  </div>
-                  <p className="text-end text-xs sm:text-sm text-highlighted cursor-pointer hover:underline">
-                    Forgot password?
-                  </p>
-                </div>
-
-                {/* Register link */}
-                <div className="p-1 flex gap-2 text-xs sm:text-sm text-text opacity-80">
-                  <span>Don't have an account?</span>
-                  <Link
-                    to="/registration"
-                    className="text-highlighted hover:underline font-medium"
-                  >
-                    Register
-                  </Link>
-                </div>
-                {/* Submit */}
-                <input
-                  type="submit"
-                  value="Login Now"
-                  className="cursor-pointer px-4 py-2.5 sm:py-3 rounded-lg bg-cta text-btn-text font-semibold text-sm sm:text-base hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-300"
-                />
+              {/* Register link */}
+              <div className="p-1 flex gap-2 text-xs sm:text-sm text-text opacity-80">
+                <span>Don't have an account?</span>
+                <Link
+                  to="/registration"
+                  className="text-highlighted hover:underline font-medium"
+                >
+                  Register
+                </Link>
+              </div>
+              {/* Submit */}
+              <input
+                type="submit"
+                value="Login Now"
+                className="cursor-pointer px-4 py-2.5 sm:py-3 rounded-lg bg-cta text-btn-text font-semibold text-sm sm:text-base hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-300"
+              />
             </form>
           </div>
 

@@ -115,141 +115,198 @@ const CreateDonationRequest = () => {
   };
 
   return (
-    <div>
+    <div className="max-w-3xl mx-auto px-4 py-8">
       <PageTitle title={"Create Donation Request"} />
-      <h2 className="text-2xl">Create Donation Request</h2>
-      <form
-        onSubmit={handleSubmit}
-        className="max-w-lg mx-auto p-4 bg-white rounded shadow space-y-4"
-      >
-        <h2 className="text-xl font-semibold text-center">Donation Request</h2>
+      <h2 className="text-4xl font-bold mb-8 text-center bg-gradient-to-r from-rose-600 to-red-600 bg-clip-text text-transparent">
+        Create Donation Request
+      </h2>
+      <form onSubmit={handleSubmit} className="glass p-8 rounded-2xl space-y-6">
+        <div>
+          <label className="block font-medium mb-2 text-slate-700">
+            Requester Name
+          </label>
+          <input
+            type="text"
+            name="requesterName"
+            value={formData.requesterName}
+            readOnly
+            className="w-full border-2 border-rose-200 p-3 rounded-lg bg-slate-50"
+          />
+        </div>
 
-        <input
-          type="text"
-          name="requesterName"
-          value={formData.requesterName}
-          readOnly
-          className="input"
-        />
-        <input
-          type="email"
-          name="requesterEmail"
-          value={formData.requesterEmail}
-          readOnly
-          className="input"
-        />
+        <div>
+          <label className="block font-medium mb-2 text-slate-700">
+            Requester Email
+          </label>
+          <input
+            type="email"
+            name="requesterEmail"
+            value={formData.requesterEmail}
+            readOnly
+            className="w-full border-2 border-rose-200 p-3 rounded-lg bg-slate-50"
+          />
+        </div>
 
-        <input
-          type="text"
-          name="recipientName"
-          placeholder="Recipient Name"
-          value={formData.recipientName}
-          onChange={handleChange}
-          className="input"
-          required
-        />
+        <div>
+          <label className="block font-medium mb-2 text-slate-700">
+            Recipient Name
+          </label>
+          <input
+            type="text"
+            name="recipientName"
+            placeholder="Recipient Name"
+            value={formData.recipientName}
+            onChange={handleChange}
+            className="w-full border-2 border-rose-200 p-3 rounded-lg focus:ring-2 focus:ring-rose-400 transition-all"
+            required
+          />
+        </div>
 
-        <select
-          name="recipientDistrict"
-          value={formData.recipientDistrict}
-          onChange={handleChange}
-          className="input"
-          required
-        >
-          <option value="">Select District</option>
-          {districts.map((district) => (
-            <option key={district.id} value={district.id}>
-              {district.name}
-            </option>
-          ))}
-        </select>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label className="block font-medium mb-2 text-slate-700">
+              District
+            </label>
+            <select
+              name="recipientDistrict"
+              value={formData.recipientDistrict}
+              onChange={handleChange}
+              className="w-full border-2 border-rose-200 p-3 rounded-lg focus:ring-2 focus:ring-rose-400 transition-all"
+              required
+            >
+              <option value="">Select District</option>
+              {districts.map((district) => (
+                <option key={district.id} value={district.id}>
+                  {district.name}
+                </option>
+              ))}
+            </select>
+          </div>
 
-        <select
-          name="recipientUpazila"
-          value={formData.recipientUpazila}
-          onChange={handleChange}
-          className="input"
-          required
-        >
-          <option value="">Select Upazila</option>
-          {filteredUpazilas.map((upazila) => (
-            <option key={upazila.id} value={upazila.name}>
-              {upazila.name}
-            </option>
-          ))}
-        </select>
+          <div>
+            <label className="block font-medium mb-2 text-slate-700">
+              Upazila
+            </label>
+            <select
+              name="recipientUpazila"
+              value={formData.recipientUpazila}
+              onChange={handleChange}
+              className="w-full border-2 border-rose-200 p-3 rounded-lg focus:ring-2 focus:ring-rose-400 transition-all"
+              required
+            >
+              <option value="">Select Upazila</option>
+              {filteredUpazilas.map((upazila) => (
+                <option key={upazila.id} value={upazila.name}>
+                  {upazila.name}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
 
-        <input
-          type="text"
-          name="hospitalName"
-          placeholder="Hospital Name"
-          value={formData.hospitalName}
-          onChange={handleChange}
-          className="input"
-          required
-        />
+        <div>
+          <label className="block font-medium mb-2 text-slate-700">
+            Hospital Name
+          </label>
+          <input
+            type="text"
+            name="hospitalName"
+            placeholder="Hospital Name"
+            value={formData.hospitalName}
+            onChange={handleChange}
+            className="w-full border-2 border-rose-200 p-3 rounded-lg focus:ring-2 focus:ring-rose-400 transition-all"
+            required
+          />
+        </div>
 
-        <input
-          type="text"
-          name="fullAddress"
-          placeholder="Full Address"
-          value={formData.fullAddress}
-          onChange={handleChange}
-          className="input"
-          required
-        />
+        <div>
+          <label className="block font-medium mb-2 text-slate-700">
+            Full Address
+          </label>
+          <input
+            type="text"
+            name="fullAddress"
+            placeholder="Full Address"
+            value={formData.fullAddress}
+            onChange={handleChange}
+            className="w-full border-2 border-rose-200 p-3 rounded-lg focus:ring-2 focus:ring-rose-400 transition-all"
+            required
+          />
+        </div>
 
-        <select
-          name="bloodGroup"
-          value={formData.bloodGroup}
-          onChange={handleChange}
-          className="input"
-          required
-        >
-          <option value="">Select Blood Group</option>
-          <option>A+</option>
-          <option>A-</option>
-          <option>B+</option>
-          <option>B-</option>
-          <option>AB+</option>
-          <option>AB-</option>
-          <option>O+</option>
-          <option>O-</option>
-        </select>
+        <div>
+          <label className="block font-medium mb-2 text-slate-700">
+            Blood Group
+          </label>
+          <select
+            name="bloodGroup"
+            value={formData.bloodGroup}
+            onChange={handleChange}
+            className="w-full border-2 border-rose-200 p-3 rounded-lg focus:ring-2 focus:ring-rose-400 transition-all"
+            required
+          >
+            <option value="">Select Blood Group</option>
+            <option>A+</option>
+            <option>A-</option>
+            <option>B+</option>
+            <option>B-</option>
+            <option>AB+</option>
+            <option>AB-</option>
+            <option>O+</option>
+            <option>O-</option>
+          </select>
+        </div>
 
-        <input
-          type="date"
-          name="donationDate"
-          value={formData.donationDate}
-          onChange={handleChange}
-          className="input"
-          required
-        />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label className="block font-medium mb-2 text-slate-700">
+              Donation Date
+            </label>
+            <input
+              type="date"
+              name="donationDate"
+              value={formData.donationDate}
+              onChange={handleChange}
+              className="w-full border-2 border-rose-200 p-3 rounded-lg focus:ring-2 focus:ring-rose-400 transition-all"
+              required
+            />
+          </div>
 
-        <input
-          type="time"
-          name="donationTime"
-          value={formData.donationTime}
-          onChange={handleChange}
-          className="input"
-          required
-        />
+          <div>
+            <label className="block font-medium mb-2 text-slate-700">
+              Donation Time
+            </label>
+            <input
+              type="time"
+              name="donationTime"
+              value={formData.donationTime}
+              onChange={handleChange}
+              className="w-full border-2 border-rose-200 p-3 rounded-lg focus:ring-2 focus:ring-rose-400 transition-all"
+              required
+            />
+          </div>
+        </div>
 
-        <textarea
-          name="requestMessage"
-          placeholder="Why do you need blood?"
-          value={formData.requestMessage}
-          onChange={handleChange}
-          className="input"
-          rows="4"
-          required
-        ></textarea>
+        <div>
+          <label className="block font-medium mb-2 text-slate-700">
+            Request Message
+          </label>
+          <textarea
+            name="requestMessage"
+            placeholder="Why do you need blood?"
+            value={formData.requestMessage}
+            onChange={handleChange}
+            className="w-full border-2 border-rose-200 p-3 rounded-lg focus:ring-2 focus:ring-rose-400 transition-all"
+            rows="4"
+            required
+          ></textarea>
+        </div>
 
         <button
           type="submit"
-          className="bg-red-500 text-white px-4 py-2 rounded w-full"
+          className="w-full bg-gradient-to-r from-rose-600 to-red-600 hover:from-rose-700 hover:to-red-700 text-white py-3 rounded-lg font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all"
         >
-          Request
+          Submit Request
         </button>
       </form>
     </div>

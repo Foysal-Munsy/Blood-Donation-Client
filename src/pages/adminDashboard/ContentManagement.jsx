@@ -87,26 +87,31 @@ const ContentManagement = () => {
   });
 
   return (
-    <div className="p-6">
+    <div className="px-4 py-8">
       <PageTitle title={"Content Management"} />
       {/* Header */}
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold text-highlighted">Content Management</h1>
+      <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-8">
+        <h1 className="text-4xl font-bold bg-gradient-to-r from-rose-600 to-red-600 bg-clip-text text-transparent">
+          Content Management
+        </h1>
         <Link to="/dashboard/content-management/add-blog">
-          <button className="bg-cta text-btn-text px-4 py-2 rounded shadow-md transition-all cursor-pointer hover:shadow-lg">
+          <button className="bg-gradient-to-r from-rose-600 to-red-600 hover:from-rose-700 hover:to-red-700 text-white px-6 py-3 rounded-lg font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all">
             Add Blog
           </button>
         </Link>
       </div>
 
       {/* Filter */}
-      <div className="mb-4">
+      <div className="mb-6">
+        <label className="block font-medium mb-2 text-slate-700">
+          Filter by Status
+        </label>
         <select
           value={filter}
           onChange={(e) => setFilter(e.target.value)}
-          className="w-full max-w-xs bg-cardBg border border-border rounded-lg px-4 py-2 text-text"
+          className="w-full max-w-xs border-2 border-rose-200 bg-white rounded-lg px-4 py-3 text-slate-700 focus:ring-2 focus:ring-rose-400 transition-all"
         >
-          <option value="all">All</option>
+          <option value="all">All Blogs</option>
           <option value="draft">Draft</option>
           <option value="published">Published</option>
         </select>
@@ -115,25 +120,30 @@ const ContentManagement = () => {
       {/* Blog List */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredBlogs.map((blog) => (
-          <div key={blog._id} className="bg-cardBg border border-border rounded-lg shadow p-4">
+          <div
+            key={blog._id}
+            className="glass p-5 rounded-2xl hover:scale-105 transition-transform duration-300"
+          >
             <img
               src={blog.thumbnail}
               alt={blog.title}
-              className="h-40 w-full object-cover rounded mb-3"
+              className="h-48 w-full object-cover rounded-lg mb-4 shadow-md"
             />
-            <h2 className="text-lg font-semibold mb-2 text-highlighted">{blog.title}</h2>
-            <p className="text-sm opacity-80 mb-2">
-              Status:{" "}
+            <h2 className="text-lg font-bold mb-3 text-slate-800 line-clamp-2">
+              {blog.title}
+            </h2>
+            <div className="mb-4">
+              <span className="text-sm text-slate-600">Status: </span>
               <span
-                className={`font-medium ${
+                className={`inline-block px-3 py-1 rounded-full text-xs font-semibold capitalize ${
                   blog.status === "published"
-                    ? "text-highlighted"
-                    : "opacity-75"
+                    ? "bg-green-100 text-green-700"
+                    : "bg-yellow-100 text-yellow-700"
                 }`}
               >
                 {blog.status}
               </span>
-            </p>
+            </div>
 
             {/* Action Buttons for Admin */}
             {user?.role === "admin" && (
@@ -141,23 +151,22 @@ const ContentManagement = () => {
                 {blog.status === "draft" ? (
                   <button
                     onClick={() => handleStatusChange(blog._id, "published")}
-                    className="bg-cta text-btn-text px-3 py-1 rounded text-sm hover:shadow-md"
+                    className="flex-1 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white px-4 py-2 rounded-lg text-sm font-semibold shadow-md hover:shadow-lg transition-all"
                   >
                     Publish
                   </button>
                 ) : (
                   <button
                     onClick={() => handleStatusChange(blog._id, "draft")}
-                    className="bg-rose-200 text-highlighted px-3 py-1 rounded text-sm hover:shadow-md"
+                    className="flex-1 bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white px-4 py-2 rounded-lg text-sm font-semibold shadow-md hover:shadow-lg transition-all"
                   >
                     Unpublish
                   </button>
                 )}
 
-                {/* Delete button (no logic yet) */}
                 <button
                   onClick={() => handleDeleteBlog(blog._id)}
-                  className="bg-cta text-btn-text px-3 py-1 rounded text-sm hover:shadow-md"
+                  className="flex-1 bg-gradient-to-r from-rose-600 to-red-600 hover:from-rose-700 hover:to-red-700 text-white px-4 py-2 rounded-lg text-sm font-semibold shadow-md hover:shadow-lg transition-all"
                 >
                   Delete
                 </button>

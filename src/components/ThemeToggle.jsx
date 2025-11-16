@@ -31,7 +31,7 @@ const ThemeToggle = () => {
   return (
     <button
       onClick={toggleTheme}
-      className="relative p-3 rounded-full bg-gradient-to-br from-rose-100 to-red-50 dark:from-slate-700 dark:to-slate-800 text-red-600 dark:text-rose-400 hover:shadow-lg hover:scale-110 active:scale-95 transition-all duration-300 border-2 border-rose-200 dark:border-slate-600"
+      className="relative p-3 rounded-full bg-gradient-to-br from-rose-100 to-red-50 text-red-600 hover:shadow-lg hover:scale-110 active:scale-95 transition-all duration-300 border-2 border-rose-200"
       aria-label="Toggle theme"
     >
       <div className="relative w-5 h-5">
@@ -58,7 +58,7 @@ const ThemeToggle = () => {
         )}
       </div>
       {/* Glow effect */}
-      <div className="absolute inset-0 rounded-full bg-rose-400 dark:bg-rose-500 opacity-0 hover:opacity-20 blur-xl transition-opacity duration-300 -z-10"></div>
+      <div className="absolute inset-0 rounded-full bg-rose-400 opacity-0 hover:opacity-20 blur-xl transition-opacity duration-300 -z-10"></div>
     </button>
   );
 };

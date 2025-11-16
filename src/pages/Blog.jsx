@@ -28,18 +28,20 @@ export default function Blog() {
     <section className="container mx-auto px-4 sm:px-6 lg:px-8 ">
       <PageTitle title={"Blog"} />
 
-      <div className="text-center mb-6 sm:mb-8">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4 text-text px-4">
+      <div className="text-center mb-8">
+        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black bg-gradient-to-r from-rose-600 to-red-600 bg-clip-text text-transparent px-4 mb-4">
           Blood Donation Blog
         </h2>
-        <p className="text-base sm:text-lg max-w-2xl mx-auto text-text px-4">
+        <p className="text-base sm:text-lg max-w-2xl mx-auto text-slate-600 px-4">
           Latest news, tips, and information about blood donation
         </p>
       </div>
 
       {blogs.length === 0 ? (
         <div className="text-center py-12 bg-cardBg border-border border rounded-lg mx-4">
-          <p className="text-base sm:text-lg text-text">No published blogs found.</p>
+          <p className="text-base sm:text-lg text-text">
+            No published blogs found.
+          </p>
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
@@ -54,7 +56,7 @@ export default function Blog() {
                 className="w-full h-40 sm:h-48 object-cover group-hover:scale-105 transition-transform duration-300"
               />
               <div className="p-4 sm:p-5 space-y-2 sm:space-y-3 flex-1 flex flex-col">
-                <h3 className="text-base sm:text-lg font-semibold text-highlighted dark:text-rose-400 group-hover:text-highlighted/90 line-clamp-2">
+                <h3 className="text-base sm:text-lg font-semibold text-highlighted group-hover:text-highlighted/90 line-clamp-2">
                   {blog.title}
                 </h3>
                 <div

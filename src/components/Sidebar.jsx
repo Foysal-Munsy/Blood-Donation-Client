@@ -14,7 +14,6 @@ import useRole from "../hooks/useRole";
 import Loader from "./Loader";
 import { CgProfile } from "react-icons/cg";
 import { ArrowLeft } from "lucide-react";
-import ThemeToggle from "./ThemeToggle";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -116,7 +115,7 @@ const Sidebar = () => {
         </Link>
         <button
           onClick={toggleSidebar}
-          className="p-2 rounded-lg text-gray-700 dark:text-slate-300 hover:text-red-700 dark:hover:text-rose-400 hover:bg-rose-50 dark:hover:bg-slate-700 transition-all duration-200"
+          className="p-2 rounded-lg text-gray-700 hover:text-red-700 hover:bg-rose-50 transition-all duration-200"
         >
           <FaBars />
         </button>
@@ -132,7 +131,7 @@ const Sidebar = () => {
 
       {/* Sidebar */}
       <aside
-        className={`fixed top-0 left-0 h-screen glass border-r border-rose-200 dark:border-slate-700 shadow-2xl z-50 transform transition-all duration-300 flex flex-col backdrop-blur-xl ${
+        className={`fixed top-0 left-0 h-screen glass border-r border-rose-200 shadow-2xl z-50 transform transition-all duration-300 flex flex-col backdrop-blur-xl ${
           isMobile
             ? isOpen
               ? "w-72 translate-x-0"
@@ -147,7 +146,7 @@ const Sidebar = () => {
           <div className="hidden lg:flex items-center justify-between h-16 px-4 border-b border-border">
             <Link to="/dashboard" className="flex items-center space-x-2 group">
               <span
-                className={`font-black text-xl tracking-tight bg-gradient-to-r from-red-600 to-rose-700 dark:from-rose-400 dark:to-red-400 bg-clip-text text-transparent transition-opacity duration-300 ${
+                className={`font-black text-xl tracking-tight bg-gradient-to-r from-red-600 to-rose-700 bg-clip-text text-transparent transition-opacity duration-300 ${
                   !isOpen && "opacity-0 hidden"
                 }`}
               >
@@ -155,7 +154,6 @@ const Sidebar = () => {
               </span>
               <span className="text-2xl">🩸</span>
             </Link>
-            <ThemeToggle />
           </div>
 
           {/* Mobile Header */}
@@ -165,14 +163,14 @@ const Sidebar = () => {
               className="flex items-center space-x-2"
               onClick={closeSidebarOnMobile}
             >
-              <span className="font-black text-xl tracking-tight bg-gradient-to-r from-red-600 to-rose-700 dark:from-rose-400 dark:to-red-400 bg-clip-text text-transparent">
+              <span className="font-black text-xl tracking-tight bg-gradient-to-r from-red-600 to-rose-700 bg-clip-text text-transparent">
                 RedDrop
               </span>
               <span className="text-2xl">🩸</span>
             </Link>
             <button
               onClick={closeSidebarOnMobile}
-              className="p-2 rounded-lg text-gray-700 dark:text-slate-300 hover:text-red-700 dark:hover:text-rose-400 hover:bg-rose-50 dark:hover:bg-slate-700 transition-all duration-200"
+              className="p-2 rounded-lg text-gray-700 hover:text-red-700 hover:bg-rose-50 transition-all duration-200"
             >
               <FaTimes />
             </button>
@@ -181,12 +179,12 @@ const Sidebar = () => {
           {/* Section Label */}
           <div className="px-4 mt-6 mb-2">
             <div
-              className={`inline-flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-rose-100 to-red-100 dark:from-rose-900/30 dark:to-red-900/30 rounded-full ${
+              className={`inline-flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-rose-100 to-red-100 rounded-full ${
                 !isMobile && !isOpen ? "opacity-0 hidden" : ""
               }`}
             >
-              <span className="w-2 h-2 bg-rose-600 dark:bg-rose-400 rounded-full animate-pulse"></span>
-              <p className="text-xs font-bold uppercase tracking-wider text-rose-700 dark:text-rose-400">
+              <span className="w-2 h-2 bg-rose-600 rounded-full animate-pulse"></span>
+              <p className="text-xs font-bold uppercase tracking-wider text-rose-700">
                 {role === "admin"
                   ? "Admin Panel"
                   : role === "donor"
@@ -209,8 +207,8 @@ const Sidebar = () => {
                 className={({ isActive }) =>
                   `group relative flex items-center gap-4 px-4 py-3.5 rounded-xl font-semibold text-sm transition-all duration-300 overflow-hidden ${
                     isActive
-                      ? "bg-gradient-to-r from-rose-600 to-red-600 text-white shadow-lg shadow-rose-500/50 dark:shadow-rose-900/50 scale-105"
-                      : "text-gray-700 dark:text-slate-300 hover:text-rose-600 dark:hover:text-rose-400 hover:bg-white/50 dark:hover:bg-slate-800/50 hover:scale-105"
+                      ? "bg-gradient-to-r from-rose-600 to-red-600 text-white shadow-lg shadow-rose-500/50 scale-105"
+                      : "text-gray-700 hover:text-rose-600 hover:bg-white/50 hover:scale-105"
                   }`
                 }
               >
@@ -230,7 +228,7 @@ const Sidebar = () => {
         </div>
 
         {/* Footer */}
-        <footer className="mt-auto pb-6 px-4 border-t border-rose-200 dark:border-slate-700 pt-4 space-y-3">
+        <footer className="mt-auto pb-6 px-4 border-t border-rose-200 pt-4 space-y-3">
           {role === "donor" && (
             <Link
               to="/dashboard/create-donation-request"
@@ -248,7 +246,7 @@ const Sidebar = () => {
             onClick={() => isMobile && setIsOpen(false)}
             className={`group flex items-center gap-2 w-full px-4 py-3 rounded-xl font-semibold text-sm transition-all duration-300 ${
               !isMobile && !isOpen ? "justify-center" : "justify-start"
-            } text-gray-700 dark:text-slate-300 hover:text-rose-600 dark:hover:text-rose-400 hover:bg-white/50 dark:hover:bg-slate-800/50 hover:scale-105`}
+            } text-gray-700 hover:text-rose-600 hover:bg-white/50 hover:scale-105`}
           >
             <ArrowLeft className="text-lg flex-shrink-0 group-hover:-translate-x-1 transition-transform" />
             {(!isMobile || isOpen) && (

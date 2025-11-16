@@ -136,20 +136,20 @@ export default function AllBloodDonationRequest() {
   return (
     <div className="px-4 py-6">
       <PageTitle title={"All Donation Request"} />
-      <h2 className="text-2xl font-semibold mb-4 text-center">
+      <h2 className="text-4xl font-bold mb-8 text-center bg-gradient-to-r from-rose-600 to-red-600 bg-clip-text text-transparent">
         All Donation Requests
       </h2>
 
       {/* Filter Buttons */}
-      <div className="flex flex-wrap justify-center gap-2 mb-6">
+      <div className="flex flex-wrap justify-center gap-3 mb-8">
         {["all", "pending", "inprogress", "done", "canceled"].map((status) => (
           <button
             key={status}
             onClick={() => setFilterStatus(status)}
-            className={`px-4 py-2 rounded text-sm font-medium ${
+            className={`px-5 py-2.5 rounded-lg text-sm font-semibold transition-all transform hover:scale-105 ${
               filterStatus === status
-                ? "bg-red-600 text-white"
-                : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+                ? "bg-gradient-to-r from-rose-600 to-red-600 text-white shadow-lg"
+                : "bg-slate-100 text-slate-700 hover:bg-slate-200"
             }`}
           >
             {status.charAt(0).toUpperCase() + status.slice(1)}
@@ -161,107 +161,145 @@ export default function AllBloodDonationRequest() {
       {loading ? (
         <Loader label="Loading requests..." />
       ) : filteredDonations.length === 0 ? (
-        <p className="text-center opacity-75">No donation requests found.</p>
+        <p className="text-center text-slate-600 py-8">
+          No donation requests found.
+        </p>
       ) : (
-        <div className="overflow-x-auto">
-          <table className="w-full border border-border rounded-lg overflow-hidden text-sm">
-            <thead className="bg-cardBg text-text">
-              <tr>
-                <th className="px-3 py-2">Recipient</th>
-                <th className="px-3 py-2">Location</th>
-                <th className="px-3 py-2">Date & Time</th>
-                <th className="px-3 py-2">Blood Group</th>
-                <th className="px-3 py-2">Status</th>
-                <th className="px-3 py-2">Donor Info</th>
-                <th className="px-3 py-2">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredDonations.map((donation, i) => (
-                <tr
-                  key={donation._id}
-                  className={i % 2 === 0 ? "bg-cardBg" : "bg-rose-50/40"}
-                >
-                  <td className="px-3 py-2 font-medium">
-                    {donation.recipientName}
-                  </td>
-                  <td className="px-3 py-2">
-                    {donation.recipientDistrict}, {donation.recipientUpazila}
-                  </td>
-                  <td className="px-3 py-2">
-                    {donation.donationDate} <br />
-                    <span className="opacity-75 text-xs">
-                      {donation.donationTime}
-                    </span>
-                  </td>
-                  <td className="px-3 py-2">{donation.bloodGroup}</td>
-                  <td className="px-3 py-2 capitalize">
-                    {donation.donationStatus}
-                  </td>
-                  <td className="px-3 py-2">
-                    {donors[donation._id] ? (
-                      <>
-                        <div className="font-medium">
-                          {donors[donation._id].donorName}
-                        </div>
-                        <div className="text-xs opacity-75">
-                          {donors[donation._id].donorEmail}
-                        </div>
-                      </>
-                    ) : (
-                      <span className="opacity-50 italic">—</span>
-                    )}
-                  </td>
-                  <td className="px-3 py-2 space-x-1">
-                    {/* Only show these actions if NOT a volunteer */}
-                    {role !== "volunteer" && (
-                      <>
-                        <Link
-                          to={`/details/${donation._id}`}
-                          className="text-highlighted hover:underline text-sm"
-                        >
-                          View
-                        </Link>
-                        <Link
-                          to={`/dashboard/update-donation-request/${donation._id}`}
-                          className="text-highlighted hover:underline text-sm"
-                        >
-                          Edit
-                        </Link>
-                        <button
-                          onClick={() => handleDelete(donation._id)}
-                          className="text-highlighted cursor-pointer hover:underline text-sm"
-                        >
-                          Delete
-                        </button>
-                      </>
-                    )}
-
-                    {donation.donationStatus === "inprogress" && (
-                      <>
-                        <button
-                          onClick={() =>
-                            handleStatusUpdate(donation._id, "done")
-                          }
-                          className="text-highlighted hover:underline text-sm ml-2"
-                        >
-                          Done
-                        </button>
-                        <button
-                          onClick={() =>
-                            handleStatusUpdate(donation._id, "canceled")
-                          }
-                          className="text-highlighted hover:underline text-sm ml-1"
-                        >
-                          Cancel
-                        </button>
-                      </>
-                    )}
-                  </td>
+        <div className="glass p-4 sm:p-6 rounded-2xl">
+          <div className="overflow-x-auto">
+            <table className="w-full text-xs sm:text-sm min-w-[800px]">
+              <thead className="bg-gradient-to-r from-rose-50 to-red-50">
+                <tr>
+                  <th className="px-2 sm:px-4 py-2 sm:py-3 text-left font-semibold text-slate-700">
+                    Recipient
+                  </th>
+                  <th className="px-2 sm:px-4 py-2 sm:py-3 text-left font-semibold text-slate-700">
+                    Location
+                  </th>
+                  <th className="px-2 sm:px-4 py-2 sm:py-3 text-left font-semibold text-slate-700">
+                    Date & Time
+                  </th>
+                  <th className="px-2 sm:px-4 py-2 sm:py-3 text-left font-semibold text-slate-700">
+                    Blood Group
+                  </th>
+                  <th className="px-2 sm:px-4 py-2 sm:py-3 text-left font-semibold text-slate-700">
+                    Status
+                  </th>
+                  <th className="px-2 sm:px-4 py-2 sm:py-3 text-left font-semibold text-slate-700">
+                    Donor Info
+                  </th>
+                  <th className="px-2 sm:px-4 py-2 sm:py-3 text-left font-semibold text-slate-700">
+                    Actions
+                  </th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {filteredDonations.map((donation, i) => (
+                  <tr
+                    key={donation._id}
+                    className={`border-b border-slate-200 hover:bg-rose-50/30 transition-colors ${
+                      i % 2 === 0 ? "bg-white" : "bg-rose-50/20"
+                    }`}
+                  >
+                    <td className="px-2 sm:px-4 py-2 sm:py-3 font-medium text-slate-800">
+                      {donation.recipientName}
+                    </td>
+                    <td className="px-2 sm:px-4 py-2 sm:py-3 text-slate-600">
+                      {donation.recipientDistrict}, {donation.recipientUpazila}
+                    </td>
+                    <td className="px-2 sm:px-4 py-2 sm:py-3 text-slate-600">
+                      {donation.donationDate} <br />
+                      <span className="text-xs opacity-75">
+                        {donation.donationTime}
+                      </span>
+                    </td>
+                    <td className="px-2 sm:px-4 py-2 sm:py-3">
+                      <span className="inline-block px-2 py-1 bg-rose-100 text-rose-700 rounded text-xs sm:text-sm font-medium">
+                        {donation.bloodGroup}
+                      </span>
+                    </td>
+                    <td className="px-2 sm:px-4 py-2 sm:py-3">
+                      <span
+                        className={`inline-block px-3 py-1 rounded-full text-xs font-semibold capitalize ${
+                          donation.donationStatus === "done"
+                            ? "bg-green-100 text-green-700"
+                            : donation.donationStatus === "inprogress"
+                            ? "bg-blue-100 text-blue-700"
+                            : donation.donationStatus === "canceled"
+                            ? "bg-gray-100 text-gray-700"
+                            : "bg-yellow-100 text-yellow-700"
+                        }`}
+                      >
+                        {donation.donationStatus}
+                      </span>
+                    </td>
+                    <td className="px-2 sm:px-4 py-2 sm:py-3 text-slate-600">
+                      {donors[donation._id] ? (
+                        <>
+                          <div className="font-medium text-xs sm:text-sm">
+                            {donors[donation._id].donorName}
+                          </div>
+                          <div className="text-xs opacity-75">
+                            {donors[donation._id].donorEmail}
+                          </div>
+                        </>
+                      ) : (
+                        <span className="opacity-50 italic">—</span>
+                      )}
+                    </td>
+                    <td className="px-2 sm:px-4 py-2 sm:py-3">
+                      <div className="flex flex-wrap gap-1 sm:gap-2">
+                        {/* Only show these actions if NOT a volunteer */}
+                        {role !== "volunteer" && (
+                          <>
+                            <Link
+                              to={`/details/${donation._id}`}
+                              className="text-blue-600 hover:underline text-xs sm:text-sm font-medium"
+                            >
+                              View
+                            </Link>
+                            <Link
+                              to={`/dashboard/update-donation-request/${donation._id}`}
+                              className="text-green-600 hover:underline text-xs sm:text-sm font-medium"
+                            >
+                              Edit
+                            </Link>
+                            <button
+                              onClick={() => handleDelete(donation._id)}
+                              className="text-red-600 hover:underline text-xs sm:text-sm font-medium"
+                            >
+                              Delete
+                            </button>
+                          </>
+                        )}
+
+                        {donation.donationStatus === "inprogress" && (
+                          <>
+                            <button
+                              onClick={() =>
+                                handleStatusUpdate(donation._id, "done")
+                              }
+                              className="text-green-600 hover:underline text-xs sm:text-sm font-medium"
+                            >
+                              Done
+                            </button>
+                            <button
+                              onClick={() =>
+                                handleStatusUpdate(donation._id, "canceled")
+                              }
+                              className="text-yellow-600 hover:underline text-xs sm:text-sm font-medium"
+                            >
+                              Cancel
+                            </button>
+                          </>
+                        )}
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       )}
     </div>
