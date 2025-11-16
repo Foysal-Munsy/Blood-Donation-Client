@@ -21,7 +21,8 @@ export default function ViewDetails() {
     });
   }, [ID]);
 
-  if (!details) return <Loader label="Loading donation details..." full={true} />;
+  if (!details)
+    return <Loader label="Loading donation details..." full={true} />;
 
   const {
     requesterName,
@@ -91,12 +92,14 @@ export default function ViewDetails() {
   };
 
   return (
-    <div className="container mx-auto px-4 sm:px-6 lg:px-8 min-h-screen">
+    <div className="container mx-auto px-4 sm:px-6 lg:px-8 min-h-screen py-6 sm:py-8">
       <PageTitle title={"Details"} />
 
       {/* Header */}
-      <div className="text-center mb-8">
-        <h2 className="text-3xl font-bold mb-4 text-text">Donation Request Details</h2>
+      <div className="text-center mb-6 sm:mb-8">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4 text-text">
+          Donation Request Details
+        </h2>
         <div
           className={`inline-block px-4 py-2 rounded-full text-sm font-semibold ${
             donationStatus === "pending"
@@ -113,13 +116,13 @@ export default function ViewDetails() {
       </div>
 
       {/* Main Content */}
-      <div className="bg-cardBg border-border border rounded-lg p-6 shadow-sm">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="bg-cardBg border-border border rounded-lg p-4 sm:p-6 shadow-lg">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
           {/* Left Column */}
           <div className="space-y-6">
             {/* Requester Information */}
             <div>
-              <h3 className="text-lg font-semibold text-highlighted mb-3">
+              <h3 className="text-base sm:text-lg font-semibold text-highlighted dark:text-rose-400 mb-2 sm:mb-3">
                 Requester Information
               </h3>
               <div className="space-y-2 text-text">
@@ -134,7 +137,7 @@ export default function ViewDetails() {
 
             {/* Recipient Information */}
             <div>
-              <h3 className="text-lg font-semibold text-highlighted mb-3">
+              <h3 className="text-base sm:text-lg font-semibold text-highlighted dark:text-rose-400 mb-2 sm:mb-3">
                 Recipient Information
               </h3>
               <div className="space-y-2 text-text">
@@ -159,7 +162,7 @@ export default function ViewDetails() {
           <div className="space-y-6">
             {/* Donation Details */}
             <div>
-              <h3 className="text-lg font-semibold text-highlighted mb-3">
+              <h3 className="text-base sm:text-lg font-semibold text-highlighted dark:text-rose-400 mb-2 sm:mb-3">
                 Donation Details
               </h3>
               <div className="space-y-2 text-text">
@@ -180,7 +183,7 @@ export default function ViewDetails() {
 
             {/* Message */}
             <div>
-              <h3 className="text-lg font-semibold text-highlighted dark:text-rose-400 mb-3">
+              <h3 className="text-base sm:text-lg font-semibold text-highlighted dark:text-rose-400 mb-2 sm:mb-3">
                 Message
               </h3>
               <div className="bg-gradient-to-br from-rose-50 to-red-50 dark:from-slate-700 dark:to-slate-800 p-4 rounded-lg border-2 border-rose-200 dark:border-slate-600 shadow-sm">
@@ -194,7 +197,7 @@ export default function ViewDetails() {
       </div>
 
       {/* Action Button */}
-      <div className="text-center mt-8">
+      <div className="text-center mt-6 sm:mt-8">
         <button
           onClick={() => {
             if (
@@ -210,7 +213,7 @@ export default function ViewDetails() {
             donationStatus === "done" ||
             donationStatus === "canceled"
           }
-          className={`px-8 py-3 rounded-lg text-lg font-semibold transition-all duration-300 cursor-pointer ${
+          className={`px-6 sm:px-8 py-2.5 sm:py-3 rounded-lg text-base sm:text-lg font-semibold transition-all duration-300 cursor-pointer ${
             donationStatus === "inprogress" ||
             donationStatus === "done" ||
             donationStatus === "canceled"

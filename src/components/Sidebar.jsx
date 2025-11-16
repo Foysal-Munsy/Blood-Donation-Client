@@ -132,13 +132,13 @@ const Sidebar = () => {
 
       {/* Sidebar */}
       <aside
-        className={`fixed top-0 left-0 h-screen bg-cardBg border-r border-border shadow-lg z-50 transform transition-all duration-300 flex flex-col ${
+        className={`fixed top-0 left-0 h-screen glass border-r border-rose-200 dark:border-slate-700 shadow-2xl z-50 transform transition-all duration-300 flex flex-col backdrop-blur-xl ${
           isMobile
             ? isOpen
-              ? "w-64 translate-x-0"
-              : "w-64 -translate-x-full"
+              ? "w-72 translate-x-0"
+              : "w-72 -translate-x-full"
             : isOpen
-            ? "w-64"
+            ? "w-72"
             : "w-20"
         }`}
       >
@@ -179,12 +179,21 @@ const Sidebar = () => {
           </div>
 
           {/* Section Label */}
-          <div className="px-4 mt-4">
-            <p className={`text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-slate-400 ${
-              !isMobile && !isOpen ? "opacity-0 hidden" : ""
-            }`}>
-              {role === "admin" ? "Admin" : role === "donor" ? "Donor" : "Volunteer"}
-            </p>
+          <div className="px-4 mt-6 mb-2">
+            <div
+              className={`inline-flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-rose-100 to-red-100 dark:from-rose-900/30 dark:to-red-900/30 rounded-full ${
+                !isMobile && !isOpen ? "opacity-0 hidden" : ""
+              }`}
+            >
+              <span className="w-2 h-2 bg-rose-600 dark:bg-rose-400 rounded-full animate-pulse"></span>
+              <p className="text-xs font-bold uppercase tracking-wider text-rose-700 dark:text-rose-400">
+                {role === "admin"
+                  ? "Admin Panel"
+                  : role === "donor"
+                  ? "Donor Dashboard"
+                  : "Volunteer Panel"}
+              </p>
+            </div>
           </div>
 
           {/* Navigation */}
@@ -198,14 +207,16 @@ const Sidebar = () => {
                 title={item.name}
                 aria-label={item.name}
                 className={({ isActive }) =>
-                  `flex items-center gap-3 px-4 py-3 rounded-lg font-medium text-sm transition-all duration-200 border-l-4 ${
+                  `group relative flex items-center gap-4 px-4 py-3.5 rounded-xl font-semibold text-sm transition-all duration-300 overflow-hidden ${
                     isActive
-                      ? "bg-rose-100 dark:bg-slate-700 text-highlighted dark:text-rose-400 shadow-sm border-red-500 dark:border-rose-400"
-                      : "text-text hover:text-highlighted dark:hover:text-rose-400 hover:bg-rose-50 dark:hover:bg-slate-700 border-transparent hover:border-red-200 dark:hover:border-rose-400"
+                      ? "bg-gradient-to-r from-rose-600 to-red-600 text-white shadow-lg shadow-rose-500/50 dark:shadow-rose-900/50 scale-105"
+                      : "text-gray-700 dark:text-slate-300 hover:text-rose-600 dark:hover:text-rose-400 hover:bg-white/50 dark:hover:bg-slate-800/50 hover:scale-105"
                   }`
                 }
               >
-                <span className="text-lg flex-shrink-0 text-highlighted dark:text-rose-400">{item.icon}</span>
+                <span className="text-xl flex-shrink-0 transition-transform duration-300 group-hover:scale-110">
+                  {item.icon}
+                </span>
                 <span
                   className={`transition-opacity duration-300 ${
                     !isMobile && !isOpen && "opacity-0 hidden"
@@ -219,26 +230,27 @@ const Sidebar = () => {
         </div>
 
         {/* Footer */}
-        <footer className="mt-auto pb-4 px-4 border-t border-rose-200/50 space-y-2">
+        <footer className="mt-auto pb-6 px-4 border-t border-rose-200 dark:border-slate-700 pt-4 space-y-3">
           {role === "donor" && (
             <Link
               to="/dashboard/create-donation-request"
               onClick={() => isMobile && setIsOpen(false)}
-              className={`block text-center w-full px-4 py-3 rounded-lg font-semibold text-sm transition-all duration-200 bg-cta text-btn-text hover:shadow-md ${
+              className={`group flex items-center justify-center gap-2 w-full px-4 py-3.5 rounded-xl font-bold text-sm transition-all duration-300 bg-gradient-to-r from-rose-600 to-red-600 hover:from-rose-700 hover:to-red-700 text-white shadow-lg hover:shadow-xl hover:scale-105 ${
                 !isMobile && !isOpen ? "truncate" : ""
               }`}
             >
-              New Donation Request
+              <MdCreate className="text-lg" />
+              {(!isMobile || isOpen) && <span>New Request</span>}
             </Link>
           )}
           <Link
             to="/"
             onClick={() => isMobile && setIsOpen(false)}
-            className={`flex items-center justify-center gap-2 w-full px-4 py-3 rounded-lg font-medium text-sm transition-all duration-200 ${
+            className={`group flex items-center gap-2 w-full px-4 py-3 rounded-xl font-semibold text-sm transition-all duration-300 ${
               !isMobile && !isOpen ? "justify-center" : "justify-start"
-            } text-gray-700 dark:text-slate-300 hover:text-red-700 dark:hover:text-rose-400 hover:bg-rose-50 dark:hover:bg-slate-700`}
+            } text-gray-700 dark:text-slate-300 hover:text-rose-600 dark:hover:text-rose-400 hover:bg-white/50 dark:hover:bg-slate-800/50 hover:scale-105`}
           >
-            <ArrowLeft className="text-lg flex-shrink-0" />
+            <ArrowLeft className="text-lg flex-shrink-0 group-hover:-translate-x-1 transition-transform" />
             {(!isMobile || isOpen) && (
               <span className="transition-opacity duration-300">
                 Back to Home

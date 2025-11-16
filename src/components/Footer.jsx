@@ -14,16 +14,28 @@ const Footer = () => {
 
         {/* Links */}
         <div className="flex justify-center space-x-6 text-sm">
-          <Link to="/" className="hover:underline hover:text-rose-200 dark:hover:text-rose-300 transition-colors">
+          <Link
+            to="/"
+            className="hover:underline hover:text-rose-200 dark:hover:text-rose-300 transition-colors"
+          >
             Home
           </Link>
-          <Link to="/search" className="hover:underline hover:text-rose-200 dark:hover:text-rose-300 transition-colors">
+          <Link
+            to="/search"
+            className="hover:underline hover:text-rose-200 dark:hover:text-rose-300 transition-colors"
+          >
             Search Donor
           </Link>
-          <Link to="/blog" className="hover:underline hover:text-rose-200 dark:hover:text-rose-300 transition-colors">
+          <Link
+            to="/blog"
+            className="hover:underline hover:text-rose-200 dark:hover:text-rose-300 transition-colors"
+          >
             Blog
           </Link>
-          <Link to="/contact" className="hover:underline hover:text-rose-200 dark:hover:text-rose-300 transition-colors">
+          <Link
+            to="/contact"
+            className="hover:underline hover:text-rose-200 dark:hover:text-rose-300 transition-colors"
+          >
             Contact
           </Link>
         </div>

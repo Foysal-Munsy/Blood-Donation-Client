@@ -80,7 +80,9 @@ export default function Profile() {
       <PageTitle title={"Profile"} />
 
       <div className="max-w-4xl mx-auto">
-        <h2 className="text-3xl font-bold text-center mb-8 text-text">Your Profile</h2>
+        <h2 className="text-3xl font-bold text-center mb-8 text-text">
+          Your Profile
+        </h2>
 
         {/* Profile Card with Two Columns */}
         <div className="bg-cardBg border-border border rounded-lg p-8 shadow-sm">

@@ -133,26 +133,30 @@ const Register = () => {
   };
 
   return (
-    <div className="bg-background">
+    <div className="bg-background min-h-screen py-12 sm:py-20">
       <PageTitle title={"Register"} />
-      <div className="min-h-screen">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="title mt-5">
-            <Title>Join with Us</Title>
-          </div>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-8 sm:mb-12">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black bg-gradient-to-r from-rose-600 to-red-600 dark:from-rose-400 dark:to-red-400 bg-clip-text text-transparent mb-2">
+            Join Our Community
+          </h1>
+          <p className="text-gray-600 dark:text-slate-400 text-sm sm:text-base">
+            Register to become a lifesaver today
+          </p>
+        </div>
 
-          <div className="flex justify-between items-center gap-5 pt-8 flex-col lg:flex-row">
-            {/* Form */}
-            <div className="login-form flex-1 w-full max-w-lg">
-              <form
-                onSubmit={handleSubmit}
-                className="bg-cardBg border border-border p-5 flex flex-col gap-6 shadow rounded-lg"
-              >
+        <div className="flex justify-between items-start gap-8 lg:gap-12 flex-col lg:flex-row">
+          {/* Form */}
+          <div className="flex-1 w-full max-w-lg">
+            <form
+              onSubmit={handleSubmit}
+              className="glass p-6 sm:p-8 flex flex-col gap-5 sm:gap-6 shadow-2xl rounded-2xl border border-rose-200 dark:border-slate-700"
+            >
                 {/* Name */}
-                <div className="flex items-center">
-                  <BiUser className="text-3xl text-highlighted mr-2" />
+                <div className="flex items-center gap-2">
+                  <BiUser className="text-2xl sm:text-3xl text-highlighted flex-shrink-0" />
                   <input
-                    className="outline-none flex-1 border-b p-2 bg-transparent focus:border-highlighted border-border text-text"
+                    className="outline-none flex-1 border-b p-2 bg-transparent focus:border-highlighted border-border text-text text-sm sm:text-base"
                     type="text"
                     name="name"
                     placeholder="Enter Full Name"
@@ -163,10 +167,10 @@ const Register = () => {
                 </div>
 
                 {/* Image */}
-                <div className="flex items-center">
-                  <BiImageAdd className="text-3xl text-highlighted mr-2" />
+                <div className="flex items-center gap-2">
+                  <BiImageAdd className="text-2xl sm:text-3xl text-highlighted flex-shrink-0" />
                   <input
-                    className="outline-none flex-1 border-b p-2 bg-transparent focus:border-highlighted border-border text-text"
+                    className="outline-none flex-1 border-b p-2 bg-transparent focus:border-highlighted border-border text-text text-sm sm:text-base"
                     type="text"
                     name="image"
                     placeholder="Enter Image URL"
@@ -176,10 +180,10 @@ const Register = () => {
                 </div>
 
                 {/* Email */}
-                <div className="flex items-center">
-                  <BiEnvelope className="text-3xl text-highlighted mr-2" />
+                <div className="flex items-center gap-2">
+                  <BiEnvelope className="text-2xl sm:text-3xl text-highlighted flex-shrink-0" />
                   <input
-                    className="outline-none flex-1 border-b p-2 bg-transparent focus:border-highlighted border-border text-text"
+                    className="outline-none flex-1 border-b p-2 bg-transparent focus:border-highlighted border-border text-text text-sm sm:text-base"
                     type="email"
                     name="email"
                     placeholder="Enter Email"
@@ -190,13 +194,13 @@ const Register = () => {
                 </div>
 
                 {/* Blood Group */}
-                <div className="flex items-center">
-                  <BiDroplet className="text-3xl text-highlighted mr-2" />
+                <div className="flex items-center gap-2">
+                  <BiDroplet className="text-2xl sm:text-3xl text-highlighted flex-shrink-0" />
                   <select
                     name="blood"
                     value={formData.blood}
                     onChange={handleChange}
-                    className="outline-none flex-1 border-b p-2 bg-white dark:bg-slate-800 focus:border-highlighted border-border text-text"
+                    className="outline-none flex-1 border-b p-2 bg-white dark:bg-slate-800 focus:border-highlighted border-border text-text text-sm sm:text-base"
                     required
                   >
                     <option value="">Select Blood Group</option>
@@ -212,13 +216,13 @@ const Register = () => {
                 </div>
 
                 {/* District */}
-                <div className="flex items-center">
-                  <SlLocationPin className="text-2xl text-highlighted mr-2" />
+                <div className="flex items-center gap-2">
+                  <SlLocationPin className="text-2xl sm:text-3xl text-highlighted flex-shrink-0" />
                   <select
                     name="district"
                     value={formData.district}
                     onChange={handleDistrictChange}
-                    className="outline-none flex-1 border-b p-2 bg-white dark:bg-slate-800 focus:border-highlighted border-border text-text"
+                    className="outline-none flex-1 border-b p-2 bg-white dark:bg-slate-800 focus:border-highlighted border-border text-text text-sm sm:text-base"
                     required
                   >
                     <option value="">Select District</option>
@@ -231,13 +235,13 @@ const Register = () => {
                 </div>
 
                 {/* Upazila */}
-                <div className="flex items-center">
-                  <GrLocationPin className="text-3xl text-highlighted mr-2" />
+                <div className="flex items-center gap-2">
+                  <GrLocationPin className="text-2xl sm:text-3xl text-highlighted flex-shrink-0" />
                   <select
                     name="upazila"
                     value={formData.upazila}
                     onChange={handleChange}
-                    className="outline-none flex-1 border-b p-2 bg-white dark:bg-slate-800 focus:border-highlighted border-border text-text"
+                    className="outline-none flex-1 border-b p-2 bg-white dark:bg-slate-800 focus:border-highlighted border-border text-text text-sm sm:text-base"
                     required
                   >
                     <option value="">Select Upazila</option>
@@ -250,10 +254,10 @@ const Register = () => {
                 </div>
 
                 {/* Password */}
-                <div className="flex items-center">
-                  <BiKey className="text-3xl text-highlighted mr-2" />
+                <div className="flex items-center gap-2">
+                  <BiKey className="text-2xl sm:text-3xl text-highlighted flex-shrink-0" />
                   <input
-                    className="outline-none flex-1 border-b p-2 bg-transparent focus:border-highlighted border-border text-text"
+                    className="outline-none flex-1 border-b p-2 bg-transparent focus:border-highlighted border-border text-text text-sm sm:text-base"
                     type="password"
                     name="pass"
                     placeholder="Enter Password"
@@ -264,10 +268,10 @@ const Register = () => {
                 </div>
 
                 {/* Confirm Password */}
-                <div className="flex items-center">
-                  <BiKey className="text-3xl text-highlighted mr-2" />
+                <div className="flex items-center gap-2">
+                  <BiKey className="text-2xl sm:text-3xl text-highlighted flex-shrink-0" />
                   <input
-                    className="outline-none flex-1 border-b p-2 bg-transparent focus:border-highlighted border-border text-text"
+                    className="outline-none flex-1 border-b p-2 bg-transparent focus:border-highlighted border-border text-text text-sm sm:text-base"
                     type="password"
                     name="confirmPass"
                     placeholder="Confirm Password"
@@ -279,13 +283,18 @@ const Register = () => {
 
                 {/* Error */}
                 {errorMsg && (
-                  <p className="text-highlighted text-sm text-center">{errorMsg}</p>
+                  <p className="text-highlighted text-xs sm:text-sm text-center font-medium">
+                    {errorMsg}
+                  </p>
                 )}
 
                 {/* Login link */}
-                <div className="p-1 flex gap-2 text-sm text-text opacity-80">
+                <div className="p-1 flex gap-2 text-xs sm:text-sm text-text opacity-80">
                   <span>Have an account?</span>
-                  <Link to="/login" className="text-highlighted hover:underline">
+                  <Link
+                    to="/login"
+                    className="text-highlighted hover:underline font-medium"
+                  >
                     Login
                   </Link>
                 </div>
@@ -293,18 +302,17 @@ const Register = () => {
                 {/* Submit */}
                 <button
                   type="submit"
-                  className="cursor-pointer px-4 py-2 rounded-lg bg-cta text-btn-text font-semibold hover:shadow-md transition"
+                  className="cursor-pointer px-4 py-2.5 sm:py-3 rounded-lg bg-cta text-btn-text font-semibold text-sm sm:text-base hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                   disabled={loadingSave}
                 >
                   {loadingSave ? "Registering..." : "Register Now"}
                 </button>
-              </form>
-            </div>
+            </form>
+          </div>
 
-            {/* Lottie Animation */}
-            <div className="lottie flex-1 flex mx-20">
-              <Lottie animationData={happy} />
-            </div>
+          {/* Lottie Animation */}
+          <div className="lottie flex-1 w-full max-w-md lg:max-w-lg mx-auto">
+            <Lottie animationData={happy} />
           </div>
         </div>
       </div>

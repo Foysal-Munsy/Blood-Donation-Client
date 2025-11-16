@@ -31,44 +31,66 @@ const AdminDashboard = ({ user, role, stats }) => {
   } = stats || {};
 
   return (
-    <div className="w-full">
+    <div className="w-full p-4 sm:p-6 lg:p-8">
       <PageTitle title={"Admin Dashboard"} />
+      
       {/* Welcome Message */}
       {user && (
-        <div className="bg-cta text-btn-text py-3 px-4 text-center overflow-hidden rounded-md shadow-md mb-6">
-          <p className="text-sm md:text-base font-medium">
-            Welcome back, <span className="font-bold">{user.displayName}</span>!
-            <span className="ml-2 hidden sm:inline">Your role is {role}.</span>
-          </p>
+        <div className="glass mb-8 p-6 sm:p-8 rounded-2xl border border-rose-200 dark:border-slate-700 shadow-xl">
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-rose-600 to-red-600 flex items-center justify-center">
+              <span className="text-2xl sm:text-3xl">👨‍💼</span>
+            </div>
+            <div>
+              <h2 className="text-2xl sm:text-3xl font-black text-text">
+                Welcome back, <span className="bg-gradient-to-r from-rose-600 to-red-600 dark:from-rose-400 dark:to-red-400 bg-clip-text text-transparent">{user.displayName}</span>!
+              </h2>
+              <p className="text-gray-600 dark:text-slate-400 text-sm sm:text-base mt-1">
+                Managing as <span className="font-semibold capitalize">{role}</span>
+              </p>
+            </div>
+          </div>
         </div>
       )}
 
       {/* Statistics Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
         {/* Total Users */}
-        <div className="bg-gradient-to-br from-[#dc2626] to-[#be123c] text-btn-text rounded-xl p-6 shadow-lg flex items-center gap-4">
-          <FaUsers className="text-4xl md:text-5xl opacity-90" />
-          <div>
-            <p className="text-3xl font-bold">{totalDonor}</p>
-            <p className="text-sm md:text-base font-medium">Total Donors</p>
+        <div className="glass rounded-2xl p-6 sm:p-8 border-l-4 border-rose-600 dark:border-rose-400 shadow-xl card-hover group">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-gray-600 dark:text-slate-400 text-sm font-medium mb-2">Total Donors</p>
+              <p className="text-3xl sm:text-4xl font-black bg-gradient-to-r from-rose-600 to-red-600 dark:from-rose-400 dark:to-red-400 bg-clip-text text-transparent">{totalDonor}</p>
+            </div>
+            <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-rose-600 to-red-600 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+              <FaUsers className="text-2xl sm:text-3xl text-white" />
+            </div>
           </div>
         </div>
 
         {/* Total Funding */}
-        <div className="bg-gradient-to-br from-[#be123c] to-[#881337] text-btn-text rounded-xl p-6 shadow-lg flex items-center gap-4">
-          <FaHandHoldingUsd className="text-4xl md:text-5xl opacity-90" />
-          <div>
-            <p className="text-3xl font-bold">${totalFunding}</p>
-            <p className="text-sm md:text-base font-medium">Total Funding</p>
+        <div className="glass rounded-2xl p-6 sm:p-8 border-l-4 border-red-600 dark:border-red-400 shadow-xl card-hover group">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-gray-600 dark:text-slate-400 text-sm font-medium mb-2">Total Funding</p>
+              <p className="text-3xl sm:text-4xl font-black bg-gradient-to-r from-red-600 to-rose-600 dark:from-red-400 dark:to-rose-400 bg-clip-text text-transparent">${totalFunding}</p>
+            </div>
+            <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-red-600 to-rose-600 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+              <FaHandHoldingUsd className="text-2xl sm:text-3xl text-white" />
+            </div>
           </div>
         </div>
 
         {/* Total Requests */}
-        <div className="bg-gradient-to-br from-[#881337] to-[#dc2626] text-btn-text rounded-xl p-6 shadow-lg flex items-center gap-4">
-          <FaTint className="text-4xl md:text-5xl opacity-90" />
-          <div>
-            <p className="text-3xl font-bold">{totalRequests}</p>
-            <p className="text-sm md:text-base font-medium">Blood Requests</p>
+        <div className="glass rounded-2xl p-6 sm:p-8 border-l-4 border-rose-700 dark:border-rose-500 shadow-xl card-hover group">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-gray-600 dark:text-slate-400 text-sm font-medium mb-2">Blood Requests</p>
+              <p className="text-3xl sm:text-4xl font-black bg-gradient-to-r from-rose-700 to-red-600 dark:from-rose-500 dark:to-red-400 bg-clip-text text-transparent">{totalRequests}</p>
+            </div>
+            <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-rose-700 to-red-600 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+              <FaTint className="text-2xl sm:text-3xl text-white" />
+            </div>
           </div>
         </div>
       </div>
