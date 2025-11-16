@@ -1,8 +1,27 @@
 import { Link } from "react-router";
 import animation from "../assets/blood donner.json";
 import Lottie from "lottie-react";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../providers/AuthProvider";
+import useAxiosPublic from "../hooks/axiosPublic";
 
 const Banner = () => {
+  const { user } = useContext(AuthContext);
+  const axiosPublic = useAxiosPublic();
+  const [activeDonors, setActiveDonors] = useState(0);
+
+  useEffect(() => {
+    axiosPublic
+      .get("/get-donors")
+      .then((res) => {
+        const active = res.data.filter(
+          (donor) => donor.role === "donor" && donor.status === "active"
+        ).length;
+        setActiveDonors(active);
+      })
+      .catch((err) => console.error("Error fetching donors:", err));
+  }, []);
+
   return (
     <section className="relative overflow-hidden min-h-screen flex items-center">
       {/* Animated background gradient */}
@@ -71,34 +90,36 @@ const Banner = () => {
                 <div className="absolute inset-0 bg-gradient-to-r from-red-600 to-rose-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </Link>
 
-              <Link
-                to="/registration"
-                className="group px-6 sm:px-8 py-3 sm:py-4 bg-white border-2 border-rose-600 text-rose-600 font-bold rounded-xl sm:rounded-2xl shadow-lg hover:shadow-2xl hover:bg-rose-50 transform hover:-translate-y-1 transition-all duration-300"
-              >
-                <span className="flex items-center justify-center gap-2 text-sm sm:text-base">
-                  <svg
-                    className="w-4 h-4 sm:w-5 sm:h-5"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M12 4v16m8-8H4"
-                    />
-                  </svg>
-                  Register as Donor
-                </span>
-              </Link>
+              {!user && (
+                <Link
+                  to="/registration"
+                  className="group px-6 sm:px-8 py-3 sm:py-4 bg-white border-2 border-rose-600 text-rose-600 font-bold rounded-xl sm:rounded-2xl shadow-lg hover:shadow-2xl hover:bg-rose-50 transform hover:-translate-y-1 transition-all duration-300"
+                >
+                  <span className="flex items-center justify-center gap-2 text-sm sm:text-base">
+                    <svg
+                      className="w-4 h-4 sm:w-5 sm:h-5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M12 4v16m8-8H4"
+                      />
+                    </svg>
+                    Register as Donor
+                  </span>
+                </Link>
+              )}
             </div>
 
             {/* Stats */}
             <div className="grid grid-cols-3 gap-4 pt-8 max-w-lg mx-auto lg:mx-0">
               <div className="text-center lg:text-left p-3 sm:p-4 bg-white/50 backdrop-blur-sm rounded-xl border border-rose-100">
                 <div className="text-xl sm:text-2xl md:text-3xl font-black bg-gradient-to-r from-rose-600 to-red-600 bg-clip-text text-transparent">
-                  1000+
+                  {activeDonors}+
                 </div>
                 <div className="text-[10px] sm:text-xs md:text-sm text-gray-600 font-medium mt-1">
                   Active Donors

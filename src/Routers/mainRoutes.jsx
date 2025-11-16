@@ -20,7 +20,7 @@ import ViewDetails from "../pages/ViewDetails";
 import UpdateDonationRequest from "../pages/UpdateDonationRequest";
 import BlogDetails from "../pages/BlogDetails";
 import Search from "../pages/Search";
-import Funding from "../pages/Funding";
+import BloodHelper from "../pages/BloodHelper";
 const mainRoutes = createBrowserRouter([
   {
     path: "/",
@@ -60,8 +60,8 @@ const mainRoutes = createBrowserRouter([
         ),
       },
       {
-        path: "funding",
-        element: <Funding />,
+        path: "blood-helper",
+        element: <BloodHelper />,
       },
 
       {

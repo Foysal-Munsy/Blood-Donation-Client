@@ -14,7 +14,7 @@ const Header = () => {
     { name: "Search", path: "/search" },
     { name: "Request", path: "/request" },
     { name: "Blog", path: "/blog" },
-    { name: "Funding", path: "/funding" },
+    { name: "Blood Helper", path: "/blood-helper" },
   ];
 
   const handleNavLinkClick = () => setIsMenuOpen(false);
