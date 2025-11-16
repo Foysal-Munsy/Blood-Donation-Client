@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import PageTitle from "../components/PageTitle";
 import { FiSend, FiMessageCircle } from "react-icons/fi";
 
-export default function BloodHelper() {
+export default function AIAssistant() {
   const [messages, setMessages] = useState([
     {
       role: "assistant",
       content:
-        "Hello! I'm Blood Helper, your donation assistant. I can help you with information about blood donation, eligibility, health benefits, and answer any questions you might have. How can I assist you today?",
+        "Hello! I'm your Blood Donation AI Assistant. I can help you with information about blood donation, eligibility, health benefits, and answer any questions you might have. How can I assist you today?",
     },
   ]);
   const [input, setInput] = useState("");
@@ -108,12 +108,12 @@ export default function BloodHelper() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-rose-50 via-white to-red-50">
-      <PageTitle title="Blood Helper" />
+      <PageTitle title="AI Assistant" />
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
         <div className="text-center mb-8 sm:mb-12">
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black bg-gradient-to-r from-rose-600 to-red-600 bg-clip-text text-transparent mb-3">
-            Blood Helper Assistant
+            AI Blood Donation Assistant
           </h1>
           <p className="text-gray-600 text-sm sm:text-base max-w-2xl mx-auto">
             Get instant answers about blood donation, eligibility, benefits, and
@@ -144,7 +144,7 @@ export default function BloodHelper() {
                       <div className="flex items-center gap-2 mb-2">
                         <FiMessageCircle className="text-rose-600" />
                         <span className="text-xs font-bold text-rose-600">
-                          Blood Helper
+                          AI Assistant
                         </span>
                       </div>
                     )}

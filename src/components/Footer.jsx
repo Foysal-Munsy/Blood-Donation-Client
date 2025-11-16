@@ -33,10 +33,10 @@ const Footer = () => {
             Blog
           </Link>
           <Link
-            to="/contact"
+            to="/blood-helper"
             className="hover:underline hover:text-rose-200 transition-colors"
           >
-            Contact
+            Blood Helper
           </Link>
         </div>
 
