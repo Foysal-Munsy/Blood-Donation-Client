@@ -90,7 +90,7 @@ const Search = () => {
   return (
     <div className="min-h-screen container  mx-auto px-4 sm:px-6 lg:px-8">
       <PageTitle title={"Search"} />
-      <h2 className="text-2xl font-bold text-center mb-6">
+      <h2 className="text-2xl font-bold text-center mb-6 text-text">
         Find a Blood Donor
       </h2>
 
@@ -103,7 +103,7 @@ const Search = () => {
           name="bloodGroup"
           value={formData.bloodGroup}
           onChange={handleChange}
-          className="border-border border rounded px-3 py-2 "
+          className="border-border border rounded px-3 py-2 bg-white dark:bg-slate-800 text-text"
         >
           <option value="">Select Blood Group</option>
           <option value="A+">A+</option>
@@ -121,7 +121,7 @@ const Search = () => {
           name="district"
           value={formData.district}
           onChange={handleChange}
-          className="border-border border rounded px-3 py-2 "
+          className="border-border border rounded px-3 py-2 bg-white dark:bg-slate-800 text-text"
         >
           <option value="">Select District</option>
           {districts.map((district) => (
@@ -136,7 +136,7 @@ const Search = () => {
           name="upazila"
           value={formData.upazila}
           onChange={handleChange}
-          className="border-border border rounded px-3 py-2 "
+          className="border-border border rounded px-3 py-2 bg-white dark:bg-slate-800 text-text"
           disabled={!filteredUpazilas.length}
         >
           <option value="">Select Upazila</option>
@@ -169,17 +169,17 @@ const Search = () => {
                 alt={donor.name}
                 className="w-24 h-24 mx-auto rounded-full object-cover mb-2 border-2 border-border"
               />
-              <h3 className="font-semibold text-lg">{donor.name}</h3>
+              <h3 className="font-semibold text-lg text-text">{donor.name}</h3>
               <p className="text-sm text-highlighted">{donor.bloodGroup}</p>
-              <p className="text-sm">
+              <p className="text-sm text-text">
                 {donor.upazila}, {donor.district}
               </p>
-              <p className="text-sm text-blue-600">{donor.email}</p>
+              <p className="text-sm text-blue-600 dark:text-blue-400">{donor.email}</p>
             </div>
           ))}
         </div>
       ) : (
-        <p className="text-center">
+        <p className="text-center text-text">
           {donors.length > 0
             ? "No donor found!"
             : "Please search to find donors."}

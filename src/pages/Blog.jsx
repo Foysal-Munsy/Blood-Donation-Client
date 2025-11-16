@@ -29,15 +29,15 @@ export default function Blog() {
       <PageTitle title={"Blog"} />
 
       <div className="text-center mb-8">
-        <h2 className="text-3xl font-bold mb-4">Blood Donation Blog</h2>
-        <p className="text-lg max-w-2xl mx-auto">
+        <h2 className="text-3xl font-bold mb-4 text-text">Blood Donation Blog</h2>
+        <p className="text-lg max-w-2xl mx-auto text-text">
           Latest news, tips, and information about blood donation
         </p>
       </div>
 
       {blogs.length === 0 ? (
         <div className="text-center py-12 bg-cardBg border-border border rounded-lg">
-          <p className="text-lg">No published blogs found.</p>
+          <p className="text-lg text-text">No published blogs found.</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -52,11 +52,11 @@ export default function Blog() {
                 className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
               />
               <div className="p-5 space-y-3">
-                <h3 className="text-lg font-semibold text-highlighted group-hover:text-highlighted/90">
+                <h3 className="text-lg font-semibold text-highlighted dark:text-rose-400 group-hover:text-highlighted/90">
                   {blog.title}
                 </h3>
                 <div
-                  className="text-sm line-clamp-3"
+                  className="text-sm line-clamp-3 text-text"
                   dangerouslySetInnerHTML={{ __html: blog.content }}
                 />
                 <Link

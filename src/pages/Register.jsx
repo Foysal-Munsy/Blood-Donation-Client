@@ -196,7 +196,7 @@ const Register = () => {
                     name="blood"
                     value={formData.blood}
                     onChange={handleChange}
-                    className="outline-none flex-1 border-b p-2 bg-cardBg focus:border-highlighted border-border text-text"
+                    className="outline-none flex-1 border-b p-2 bg-white dark:bg-slate-800 focus:border-highlighted border-border text-text"
                     required
                   >
                     <option value="">Select Blood Group</option>
@@ -218,7 +218,7 @@ const Register = () => {
                     name="district"
                     value={formData.district}
                     onChange={handleDistrictChange}
-                    className="outline-none flex-1 border-b p-2 bg-cardBg focus:border-highlighted border-border text-text"
+                    className="outline-none flex-1 border-b p-2 bg-white dark:bg-slate-800 focus:border-highlighted border-border text-text"
                     required
                   >
                     <option value="">Select District</option>
@@ -237,7 +237,7 @@ const Register = () => {
                     name="upazila"
                     value={formData.upazila}
                     onChange={handleChange}
-                    className="outline-none flex-1 border-b p-2 bg-cardBg focus:border-highlighted border-border text-text"
+                    className="outline-none flex-1 border-b p-2 bg-white dark:bg-slate-800 focus:border-highlighted border-border text-text"
                     required
                   >
                     <option value="">Select Upazila</option>

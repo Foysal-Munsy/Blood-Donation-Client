@@ -24,7 +24,7 @@ export default function Request() {
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8">
       <PageTitle title={"Request"} />
-      <h2 className="text-2xl font-semibold mb-4 text-center">
+      <h2 className="text-2xl font-semibold mb-4 text-center text-text">
         Pending Blood Donation Requests
       </h2>
 
@@ -34,8 +34,8 @@ export default function Request() {
         <p className="text-center">No pending donation requests found.</p>
       ) : (
         <div className="overflow-x-auto">
-          <table className="w-full border border-border rounded-lg overflow-hidden text-sm">
-            <thead className="bg-cardBg text-highlighted">
+          <table className="w-full border border-border rounded-lg overflow-hidden text-sm bg-white dark:bg-slate-800">
+            <thead className="bg-cardBg text-highlighted dark:bg-slate-700">
               <tr>
                 <th className="px-3 py-2">Recipient</th>
                 <th className="px-3 py-2">Location</th>
@@ -45,14 +45,14 @@ export default function Request() {
                 <th className="px-3 py-2">Actions</th>
               </tr>
             </thead>
-            <tbody className="text-center">
+            <tbody className="text-center text-text">
               {donations.map((donation, i) => (
                 <tr
                   key={donation._id}
                   className={
                     i % 2 === 0
-                      ? "border border-white"
-                      : "border border-rose-50"
+                      ? "border border-border dark:bg-slate-800"
+                      : "border border-border dark:bg-slate-700/50"
                   }
                 >
                   <td className="px-3 py-2 font-medium">

@@ -48,7 +48,7 @@ export default function PendingRequests() {
       ) : error ? (
         <div className="text-center text-highlighted">{error}</div>
       ) : items.length === 0 ? (
-        <div className="text-center opacity-70">
+        <div className="text-center opacity-70 text-text">
           No pending requests right now.
         </div>
       ) : (
@@ -97,7 +97,7 @@ export default function PendingRequests() {
       <div className="text-center mt-8">
         <Link
           to="/request"
-          className="inline-flex items-center justify-center px-5 py-2.5 rounded-lg border border-border text-highlighted hover:bg-rose-50 font-medium"
+          className="inline-flex items-center justify-center px-5 py-2.5 rounded-lg border border-border text-highlighted dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-slate-700 font-medium"
         >
           Browse all requests
         </Link>

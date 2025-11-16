@@ -116,7 +116,7 @@ const Sidebar = () => {
         </Link>
         <button
           onClick={toggleSidebar}
-          className="p-2 rounded-lg text-gray-700 hover:text-red-700 hover:bg-rose-50 transition-all duration-200"
+          className="p-2 rounded-lg text-gray-700 dark:text-slate-300 hover:text-red-700 dark:hover:text-rose-400 hover:bg-rose-50 dark:hover:bg-slate-700 transition-all duration-200"
         >
           <FaBars />
         </button>
@@ -147,7 +147,7 @@ const Sidebar = () => {
           <div className="hidden lg:flex items-center justify-between h-16 px-4 border-b border-border">
             <Link to="/dashboard" className="flex items-center space-x-2 group">
               <span
-                className={`font-black text-xl tracking-tight bg-gradient-to-r from-red-600 to-rose-700 bg-clip-text text-transparent transition-opacity duration-300 ${
+                className={`font-black text-xl tracking-tight bg-gradient-to-r from-red-600 to-rose-700 dark:from-rose-400 dark:to-red-400 bg-clip-text text-transparent transition-opacity duration-300 ${
                   !isOpen && "opacity-0 hidden"
                 }`}
               >
@@ -165,14 +165,14 @@ const Sidebar = () => {
               className="flex items-center space-x-2"
               onClick={closeSidebarOnMobile}
             >
-              <span className="font-black text-xl tracking-tight bg-gradient-to-r from-red-600 to-rose-700 bg-clip-text text-transparent">
+              <span className="font-black text-xl tracking-tight bg-gradient-to-r from-red-600 to-rose-700 dark:from-rose-400 dark:to-red-400 bg-clip-text text-transparent">
                 RedDrop
               </span>
               <span className="text-2xl">🩸</span>
             </Link>
             <button
               onClick={closeSidebarOnMobile}
-              className="p-2 rounded-lg text-gray-700 hover:text-red-700 hover:bg-rose-50 transition-all duration-200"
+              className="p-2 rounded-lg text-gray-700 dark:text-slate-300 hover:text-red-700 dark:hover:text-rose-400 hover:bg-rose-50 dark:hover:bg-slate-700 transition-all duration-200"
             >
               <FaTimes />
             </button>
@@ -180,7 +180,7 @@ const Sidebar = () => {
 
           {/* Section Label */}
           <div className="px-4 mt-4">
-            <p className={`text-xs font-semibold uppercase tracking-wider text-gray-500 ${
+            <p className={`text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-slate-400 ${
               !isMobile && !isOpen ? "opacity-0 hidden" : ""
             }`}>
               {role === "admin" ? "Admin" : role === "donor" ? "Donor" : "Volunteer"}
@@ -200,12 +200,12 @@ const Sidebar = () => {
                 className={({ isActive }) =>
                   `flex items-center gap-3 px-4 py-3 rounded-lg font-medium text-sm transition-all duration-200 border-l-4 ${
                     isActive
-                      ? "bg-rose-100 text-highlighted shadow-sm border-red-500"
-                      : "text-text hover:text-highlighted hover:bg-rose-50 border-transparent hover:border-red-200"
+                      ? "bg-rose-100 dark:bg-slate-700 text-highlighted dark:text-rose-400 shadow-sm border-red-500 dark:border-rose-400"
+                      : "text-text hover:text-highlighted dark:hover:text-rose-400 hover:bg-rose-50 dark:hover:bg-slate-700 border-transparent hover:border-red-200 dark:hover:border-rose-400"
                   }`
                 }
               >
-                <span className="text-lg flex-shrink-0 text-highlighted">{item.icon}</span>
+                <span className="text-lg flex-shrink-0 text-highlighted dark:text-rose-400">{item.icon}</span>
                 <span
                   className={`transition-opacity duration-300 ${
                     !isMobile && !isOpen && "opacity-0 hidden"
@@ -236,7 +236,7 @@ const Sidebar = () => {
             onClick={() => isMobile && setIsOpen(false)}
             className={`flex items-center justify-center gap-2 w-full px-4 py-3 rounded-lg font-medium text-sm transition-all duration-200 ${
               !isMobile && !isOpen ? "justify-center" : "justify-start"
-            } text-gray-700 hover:text-red-700 hover:bg-rose-50`}
+            } text-gray-700 dark:text-slate-300 hover:text-red-700 dark:hover:text-rose-400 hover:bg-rose-50 dark:hover:bg-slate-700`}
           >
             <ArrowLeft className="text-lg flex-shrink-0" />
             {(!isMobile || isOpen) && (

@@ -80,7 +80,7 @@ export default function Profile() {
       <PageTitle title={"Profile"} />
 
       <div className="max-w-4xl mx-auto">
-        <h2 className="text-3xl font-bold text-center mb-8">Your Profile</h2>
+        <h2 className="text-3xl font-bold text-center mb-8 text-text">Your Profile</h2>
 
         {/* Profile Card with Two Columns */}
         <div className="bg-cardBg border-border border rounded-lg p-8 shadow-sm">
@@ -106,20 +106,20 @@ export default function Profile() {
                 <img
                   src={formData.image}
                   alt="Profile"
-                  className="w-40 h-40 rounded-full object-cover border-2 border-border shadow-md mx-auto mb-4"
+                  className="w-40 h-40 rounded-full object-cover border-2 border-border dark:border-slate-600 shadow-md mx-auto mb-4"
                 />
-                <h3 className="text-xl font-semibold text-highlighted">
+                <h3 className="text-xl font-semibold text-highlighted dark:text-rose-400">
                   {formData.name}
                 </h3>
-                <p className="text-sm opacity-75">{formData.email}</p>
+                <p className="text-sm opacity-75 text-text">{formData.email}</p>
               </div>
 
               {/* Quick Stats */}
-              <div className=" border border-border rounded-lg p-4">
-                <h4 className="font-semibold text-highlighted mb-3">
+              <div className="border border-border dark:border-slate-600 rounded-lg p-4 bg-white dark:bg-slate-800/50">
+                <h4 className="font-semibold text-highlighted dark:text-rose-400 mb-3">
                   Profile Details
                 </h4>
-                <div className="space-y-2 text-sm">
+                <div className="space-y-2 text-sm text-text">
                   <p>
                     <span className="font-medium">Blood Group:</span>{" "}
                     {formData.bloodGroup || "Not set"}
@@ -146,7 +146,7 @@ export default function Profile() {
             <div className="space-y-4">
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium mb-2">
+                  <label className="block text-sm font-medium mb-2 text-text">
                     Full Name
                   </label>
                   <input
@@ -155,13 +155,13 @@ export default function Profile() {
                     value={formData.name}
                     onChange={handleChange}
                     readOnly={!editMode}
-                    className="w-full border-border border rounded-lg px-4 py-3  focus:ring-2 focus:ring-highlighted focus:border-transparent"
+                    className="w-full border-border border rounded-lg px-4 py-3 bg-white dark:bg-slate-800 text-text focus:ring-2 focus:ring-highlighted focus:border-transparent"
                     placeholder="Enter your name"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium mb-2">
+                  <label className="block text-sm font-medium mb-2 text-text">
                     Email
                   </label>
                   <input
@@ -169,12 +169,12 @@ export default function Profile() {
                     name="email"
                     value={formData.email}
                     readOnly
-                    className="w-full border-border border rounded-lg px-4 py-3  cursor-not-allowed"
+                    className="w-full border-border border rounded-lg px-4 py-3 bg-gray-100 dark:bg-slate-700 text-text cursor-not-allowed"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium mb-2">
+                  <label className="block text-sm font-medium mb-2 text-text">
                     Profile Image URL
                   </label>
                   <input
@@ -183,14 +183,14 @@ export default function Profile() {
                     value={formData.image}
                     onChange={handleChange}
                     readOnly={!editMode}
-                    className="w-full border-border border rounded-lg px-4 py-3  focus:ring-2 focus:ring-highlighted focus:border-transparent"
+                    className="w-full border-border border rounded-lg px-4 py-3 bg-white dark:bg-slate-800 text-text focus:ring-2 focus:ring-highlighted focus:border-transparent"
                     placeholder="Enter image URL"
                   />
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium mb-2">
+                    <label className="block text-sm font-medium mb-2 text-text">
                       District
                     </label>
                     <input
@@ -199,13 +199,13 @@ export default function Profile() {
                       value={formData.district}
                       onChange={handleChange}
                       readOnly={!editMode}
-                      className="w-full border-border border rounded-lg px-4 py-3  focus:ring-2 focus:ring-highlighted focus:border-transparent"
+                      className="w-full border-border border rounded-lg px-4 py-3 bg-white dark:bg-slate-800 text-text focus:ring-2 focus:ring-highlighted focus:border-transparent"
                       placeholder="District"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium mb-2">
+                    <label className="block text-sm font-medium mb-2 text-text">
                       Upazila
                     </label>
                     <input
@@ -214,14 +214,14 @@ export default function Profile() {
                       value={formData.upazila}
                       onChange={handleChange}
                       readOnly={!editMode}
-                      className="w-full border-border border rounded-lg px-4 py-3  focus:ring-2 focus:ring-highlighted focus:border-transparent"
+                      className="w-full border-border border rounded-lg px-4 py-3 bg-white dark:bg-slate-800 text-text focus:ring-2 focus:ring-highlighted focus:border-transparent"
                       placeholder="Upazila"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium mb-2">
+                  <label className="block text-sm font-medium mb-2 text-text">
                     Blood Group
                   </label>
                   <select
@@ -229,7 +229,7 @@ export default function Profile() {
                     value={formData.bloodGroup}
                     onChange={handleChange}
                     disabled={!editMode}
-                    className="w-full border-border border rounded-lg px-4 py-3  focus:ring-2 focus:ring-highlighted focus:border-transparent"
+                    className="w-full border-border border rounded-lg px-4 py-3 bg-white dark:bg-slate-800 text-text focus:ring-2 focus:ring-highlighted focus:border-transparent"
                   >
                     <option value="">Select Blood Group</option>
                     <option>A+</option>

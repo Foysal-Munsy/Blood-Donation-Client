@@ -96,16 +96,16 @@ export default function ViewDetails() {
 
       {/* Header */}
       <div className="text-center mb-8">
-        <h2 className="text-3xl font-bold mb-4">Donation Request Details</h2>
+        <h2 className="text-3xl font-bold mb-4 text-text">Donation Request Details</h2>
         <div
           className={`inline-block px-4 py-2 rounded-full text-sm font-semibold ${
             donationStatus === "pending"
-              ? "bg-yellow-100 text-yellow-800"
+              ? "bg-yellow-100 dark:bg-yellow-900/50 text-yellow-800 dark:text-yellow-300"
               : donationStatus === "inprogress"
-              ? "bg-blue-100 text-blue-800"
+              ? "bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-300"
               : donationStatus === "done"
-              ? "bg-green-100 text-green-800"
-              : "bg-red-100 text-red-800"
+              ? "bg-green-100 dark:bg-green-900/50 text-green-800 dark:text-green-300"
+              : "bg-red-100 dark:bg-red-900/50 text-red-800 dark:text-red-300"
           }`}
         >
           Status: {donationStatus.toUpperCase()}
@@ -122,7 +122,7 @@ export default function ViewDetails() {
               <h3 className="text-lg font-semibold text-highlighted mb-3">
                 Requester Information
               </h3>
-              <div className="space-y-2">
+              <div className="space-y-2 text-text">
                 <p>
                   <strong>Name:</strong> {requesterName}
                 </p>
@@ -137,7 +137,7 @@ export default function ViewDetails() {
               <h3 className="text-lg font-semibold text-highlighted mb-3">
                 Recipient Information
               </h3>
-              <div className="space-y-2">
+              <div className="space-y-2 text-text">
                 <p>
                   <strong>Name:</strong> {recipientName}
                 </p>
@@ -162,10 +162,10 @@ export default function ViewDetails() {
               <h3 className="text-lg font-semibold text-highlighted mb-3">
                 Donation Details
               </h3>
-              <div className="space-y-2">
+              <div className="space-y-2 text-text">
                 <p>
                   <strong>Blood Group:</strong>{" "}
-                  <span className="text-highlighted font-bold">
+                  <span className="text-highlighted dark:text-rose-400 font-bold">
                     {bloodGroup}
                   </span>
                 </p>
@@ -180,12 +180,14 @@ export default function ViewDetails() {
 
             {/* Message */}
             <div>
-              <h3 className="text-lg font-semibold text-highlighted mb-3">
+              <h3 className="text-lg font-semibold text-highlighted dark:text-rose-400 mb-3">
                 Message
               </h3>
-              <p className="bg-rose-50 p-4 rounded-lg border border-border">
-                {requestMessage}
-              </p>
+              <div className="bg-gradient-to-br from-rose-50 to-red-50 dark:from-slate-700 dark:to-slate-800 p-4 rounded-lg border-2 border-rose-200 dark:border-slate-600 shadow-sm">
+                <p className="text-gray-800 dark:text-slate-100 text-base leading-relaxed">
+                  {requestMessage}
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -228,46 +230,46 @@ export default function ViewDetails() {
 
       {/* Modal */}
       {showModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 p-4">
-          <div className="bg-white p-6 rounded-lg shadow-xl w-full max-w-md relative">
+        <div className="fixed inset-0 bg-black/60 dark:bg-black/80 backdrop-blur-sm flex justify-center items-center z-50 p-4 animate-fadeIn">
+          <div className="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-2xl w-full max-w-md relative border border-border dark:border-slate-600 transform transition-all duration-300 scale-100">
             <button
               onClick={() => setShowModal(false)}
-              className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 text-2xl"
+              className="absolute top-4 right-4 text-gray-500 dark:text-slate-400 hover:text-gray-700 dark:hover:text-rose-400 text-2xl transition-colors"
             >
               ×
             </button>
 
-            <h3 className="text-2xl font-semibold text-highlighted mb-6 text-center">
+            <h3 className="text-2xl font-semibold text-highlighted dark:text-rose-400 mb-6 text-center">
               Confirm Donation
             </h3>
 
             <div className="space-y-4 mb-6">
               <div>
-                <label className="block text-sm font-medium mb-2">
+                <label className="block text-sm font-medium mb-2 text-text">
                   Donor Name
                 </label>
                 <input
                   type="text"
                   value={user?.displayName || ""}
                   readOnly
-                  className="w-full border-border border rounded-lg px-4 py-3 bg-gray-50"
+                  className="w-full border-border dark:border-slate-600 border rounded-lg px-4 py-3 bg-gray-50 dark:bg-slate-700 text-text"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-2">
+                <label className="block text-sm font-medium mb-2 text-text">
                   Donor Email
                 </label>
                 <input
                   type="email"
                   value={user?.email || ""}
                   readOnly
-                  className="w-full border-border border rounded-lg px-4 py-3 bg-gray-50"
+                  className="w-full border-border dark:border-slate-600 border rounded-lg px-4 py-3 bg-gray-50 dark:bg-slate-700 text-text"
                 />
               </div>
             </div>
 
-            <div className="bg-rose-50 border border-border rounded-lg p-4 mb-6">
-              <p className="text-sm text-highlighted font-semibold">
+            <div className="bg-rose-50 dark:bg-rose-900/30 border border-border dark:border-rose-800 rounded-lg p-4 mb-6">
+              <p className="text-sm text-highlighted dark:text-rose-400 font-semibold">
                 ⚠️ By confirming, you agree to donate blood and will be
                 contacted for further details.
               </p>
@@ -276,7 +278,7 @@ export default function ViewDetails() {
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <button
                 onClick={() => setShowModal(false)}
-                className="px-6 py-3 border border-border rounded-lg hover:bg-gray-100 transition-colors"
+                className="px-6 py-3 border border-border dark:border-slate-600 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-700 text-text transition-colors"
               >
                 Cancel
               </button>
