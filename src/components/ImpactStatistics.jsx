@@ -104,16 +104,22 @@ const ImpactStatistics = () => {
               className="group relative glass border-2 border-rose-200 rounded-2xl p-6 sm:p-8 text-center transform hover:-translate-y-2 transition-all duration-300 hover:shadow-2xl overflow-hidden"
             >
               {/* Background Gradient Effect */}
-              <div className={`absolute inset-0 bg-gradient-to-br ${card.color} opacity-0 group-hover:opacity-5 transition-opacity duration-300`}></div>
+              <div
+                className={`absolute inset-0 bg-gradient-to-br ${card.color} opacity-0 group-hover:opacity-5 transition-opacity duration-300`}
+              ></div>
 
               {/* Icon */}
-              <div className={`relative inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-r ${card.color} text-white mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
+              <div
+                className={`relative inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-r ${card.color} text-white mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg`}
+              >
                 {card.icon}
               </div>
 
               {/* Value */}
               <div className="relative">
-                <h3 className={`text-4xl sm:text-5xl font-black bg-gradient-to-r ${card.color} bg-clip-text text-transparent mb-2`}>
+                <h3
+                  className={`text-4xl sm:text-5xl font-black bg-gradient-to-r ${card.color} bg-clip-text text-transparent mb-2`}
+                >
                   {card.value}
                   <span className="text-2xl">{card.suffix}</span>
                 </h3>
@@ -126,7 +132,9 @@ const ImpactStatistics = () => {
               </div>
 
               {/* Bottom Accent */}
-              <div className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${card.color} transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300`}></div>
+              <div
+                className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${card.color} transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300`}
+              ></div>
             </div>
           ))}
         </div>
@@ -139,7 +147,8 @@ const ImpactStatistics = () => {
               One Donation
             </h4>
             <p className="text-gray-600 text-sm">
-              Can save up to <span className="font-bold text-rose-600">3 lives</span>
+              Can save up to{" "}
+              <span className="font-bold text-rose-600">3 lives</span>
             </p>
           </div>
 
@@ -149,7 +158,8 @@ const ImpactStatistics = () => {
               Every 2 Seconds
             </h4>
             <p className="text-gray-600 text-sm">
-              Someone needs <span className="font-bold text-rose-600">blood</span> transfusion
+              Someone needs{" "}
+              <span className="font-bold text-rose-600">blood</span> transfusion
             </p>
           </div>
 
@@ -159,7 +169,8 @@ const ImpactStatistics = () => {
               38% Population
             </h4>
             <p className="text-gray-600 text-sm">
-              Eligible to donate, but only <span className="font-bold text-rose-600">3%</span> do
+              Eligible to donate, but only{" "}
+              <span className="font-bold text-rose-600">3%</span> do
             </p>
           </div>
         </div>

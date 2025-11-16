@@ -8,7 +8,8 @@ const DonationProcess = () => {
     {
       icon: <FiClipboard className="w-8 h-8" />,
       title: "Registration",
-      description: "Fill out a simple health questionnaire and provide basic information",
+      description:
+        "Fill out a simple health questionnaire and provide basic information",
       duration: "10 minutes",
       color: "from-blue-500 to-blue-600",
       bgColor: "bg-blue-50",
@@ -16,7 +17,8 @@ const DonationProcess = () => {
     {
       icon: <FiActivity className="w-8 h-8" />,
       title: "Health Screening",
-      description: "Quick check of blood pressure, temperature, and hemoglobin levels",
+      description:
+        "Quick check of blood pressure, temperature, and hemoglobin levels",
       duration: "15 minutes",
       color: "from-green-500 to-green-600",
       bgColor: "bg-green-50",
@@ -60,10 +62,7 @@ const DonationProcess = () => {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 relative z-10">
             {steps.map((step, index) => (
-              <div
-                key={index}
-                className="group relative"
-              >
+              <div key={index} className="group relative">
                 {/* Card */}
                 <div className="glass border-2 border-rose-200 rounded-2xl p-6 sm:p-8 text-center transform hover:-translate-y-2 transition-all duration-300 hover:shadow-2xl h-full">
                   {/* Step Number */}
@@ -72,7 +71,9 @@ const DonationProcess = () => {
                   </div>
 
                   {/* Icon */}
-                  <div className={`inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-r ${step.color} text-white mb-4 group-hover:scale-110 transition-transform duration-300 mt-4`}>
+                  <div
+                    className={`inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-r ${step.color} text-white mb-4 group-hover:scale-110 transition-transform duration-300 mt-4`}
+                  >
                     {step.icon}
                   </div>
 
@@ -85,7 +86,9 @@ const DonationProcess = () => {
                   </p>
 
                   {/* Duration Badge */}
-                  <div className={`inline-block px-4 py-2 ${step.bgColor} rounded-full`}>
+                  <div
+                    className={`inline-block px-4 py-2 ${step.bgColor} rounded-full`}
+                  >
                     <span className="text-sm font-semibold text-gray-700">
                       ⏱️ {step.duration}
                     </span>
@@ -103,7 +106,8 @@ const DonationProcess = () => {
               Ready to Save Lives?
             </h3>
             <p className="text-gray-600 mb-6">
-              The entire process takes less than an hour, but your impact lasts a lifetime
+              The entire process takes less than an hour, but your impact lasts
+              a lifetime
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               {!user && (
